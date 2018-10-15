@@ -1,0 +1,1660 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="sbv_uuwebstoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ads">
+          <Key>
+            <PropertyRef Name="adsId" />
+          </Key>
+          <Property Name="adsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="adsHtml" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+          <Property Name="adsSizeId" Type="int" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="adsSize">
+          <Key>
+            <PropertyRef Name="adsSizeId" />
+          </Key>
+          <Property Name="adsSizeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="height" Type="int" Nullable="false" />
+          <Property Name="width" Type="int" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="banner">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="bannerHtml" />
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="createdBy" />
+            <PropertyRef Name="createdDate" />
+            <PropertyRef Name="modifiedBy" />
+            <PropertyRef Name="modifiedDate" />
+            <PropertyRef Name="isActive" />
+            <PropertyRef Name="isDelete" />
+          </Key>
+          <Property Name="bannerId" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="bannerHtml" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="brandClient">
+          <Key>
+            <PropertyRef Name="brandClientId" />
+          </Key>
+          <Property Name="brandClientId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="brandId" Type="int" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="isFeaturedBrand" Type="bit" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="brands">
+          <Key>
+            <PropertyRef Name="brandId" />
+          </Key>
+          <Property Name="brandId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clientWebInformation">
+          <Key>
+            <PropertyRef Name="ClientWebsiteInformationid" />
+          </Key>
+          <Property Name="ClientWebsiteInformationid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+          <Property Name="themeId" Type="int" Nullable="false" />
+          <Property Name="fontFamilyId" Type="int" Nullable="false" />
+          <Property Name="logoName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="logoWebAddress" Type="varchar(max)" Nullable="false" />
+          <Property Name="FaviconName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="FaviconURL" Type="varchar(max)" Nullable="false" />
+          <Property Name="bussinessName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="businessContact" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="homePageContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="contactUsPageContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="aboutUsPageContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="visits" Type="bigint" Nullable="false" />
+          <Property Name="clicks" Type="bigint" Nullable="false" />
+          <Property Name="search" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientWebsiteAdsInfo">
+          <Key>
+            <PropertyRef Name="ClientWebsiteAdsInfoid" />
+          </Key>
+          <Property Name="ClientWebsiteAdsInfoid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adsId" Type="int" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientWebsiteBannerInfo">
+          <Key>
+            <PropertyRef Name="ClientWebsiteBannerInfoid" />
+          </Key>
+          <Property Name="ClientWebsiteBannerInfoid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bannerId" Type="int" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="countryId" />
+          </Key>
+          <Property Name="countryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="enquiry">
+          <Key>
+            <PropertyRef Name="enquiryId" />
+          </Key>
+          <Property Name="enquiryId" Type="bigint" Nullable="false" />
+          <Property Name="enquiryHtml" Type="nvarchar(max)" />
+          <Property Name="fullName" Type="varchar" MaxLength="500" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="emailAddress" Type="varchar" MaxLength="500" />
+          <Property Name="title" Type="varchar" MaxLength="500" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="isNew" Type="bit" />
+        </EntityType>
+        <EntityType Name="fontFamily">
+          <Key>
+            <PropertyRef Name="fontFamilyId" />
+          </Key>
+          <Property Name="fontFamilyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productAvailableSize">
+          <Key>
+            <PropertyRef Name="productSizeId" />
+          </Key>
+          <Property Name="productSizeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productId" Type="bigint" Nullable="false" />
+          <Property Name="availableSize" Type="varchar" MaxLength="500" />
+          <Property Name="unit" Type="varchar" MaxLength="500" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productCategory">
+          <Key>
+            <PropertyRef Name="productCategoryId" />
+          </Key>
+          <Property Name="productCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="parentCategoryid" Type="int" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productCategoryClient">
+          <Key>
+            <PropertyRef Name="proCategoryClientId" />
+          </Key>
+          <Property Name="proCategoryClientId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="proCategoryId" Type="int" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="isFeaturedCategory" Type="bit" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productColor">
+          <Key>
+            <PropertyRef Name="productColorId" />
+          </Key>
+          <Property Name="productColorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productId" Type="bigint" Nullable="false" />
+          <Property Name="colorName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productForClient">
+          <Key>
+            <PropertyRef Name="productForWebClientId" />
+          </Key>
+          <Property Name="productForWebClientId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productId" Type="bigint" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="sku" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="addedDate" Type="datetime" Nullable="false" />
+          <Property Name="productTitle" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="slugURL" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="proCategoryId" Type="int" Nullable="false" />
+          <Property Name="brandId" Type="int" Nullable="false" />
+          <Property Name="descriptionHtml" Type="nvarchar(max)" />
+          <Property Name="materialHtml" Type="nvarchar(max)" />
+          <Property Name="productInformationHtml" Type="nvarchar(max)" />
+          <Property Name="imprintInformationHtml" Type="nvarchar(max)" />
+          <Property Name="ProductionHtml" Type="nvarchar(max)" />
+          <Property Name="SpecificationsHtml" Type="nvarchar(max)" />
+          <Property Name="ContentsHtml" Type="nvarchar(max)" />
+          <Property Name="ShippingHtml" Type="nvarchar(max)" />
+          <Property Name="pricingHtml" Type="nvarchar(max)" />
+          <Property Name="PoductionHtml" Type="nvarchar(max)" />
+          <Property Name="safetyAndCompliance" Type="nvarchar(max)" />
+          <Property Name="unit" Type="varchar" MaxLength="500" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="isShowPrice" Type="bit" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productImages">
+          <Key>
+            <PropertyRef Name="productImageId" />
+          </Key>
+          <Property Name="productImageId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imgName" Type="varchar" MaxLength="500" />
+          <Property Name="imgWebAddress" Type="varchar" MaxLength="500" />
+          <Property Name="productId" Type="bigint" />
+          <Property Name="isFrontInterface" Type="bit" />
+          <Property Name="isThumbimg" Type="bit" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductPrice">
+          <Key>
+            <PropertyRef Name="productPriceId" />
+          </Key>
+          <Property Name="productPriceId" Type="bigint" Nullable="false" />
+          <Property Name="productId" Type="bigint" />
+          <Property Name="price" Type="float" />
+          <Property Name="lastDatePrice" Type="date" />
+          <Property Name="tax" Type="float" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productsCRA">
+          <Key>
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="productId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="sku" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="addedDate" Type="datetime" Nullable="false" />
+          <Property Name="productTitle" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="slugURL" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="proCategoryId" Type="int" Nullable="false" />
+          <Property Name="brandId" Type="int" Nullable="false" />
+          <Property Name="descriptionHtml" Type="nvarchar(max)" />
+          <Property Name="materialHtml" Type="nvarchar(max)" />
+          <Property Name="productInformationHtml" Type="nvarchar(max)" />
+          <Property Name="imprintInformationHtml" Type="nvarchar(max)" />
+          <Property Name="productionHtml" Type="nvarchar(max)" />
+          <Property Name="specificationsHtml" Type="nvarchar(max)" />
+          <Property Name="cntentsHtml" Type="nvarchar(max)" />
+          <Property Name="shippingHtml" Type="nvarchar(max)" />
+          <Property Name="pricingHtml" Type="nvarchar(max)" />
+          <Property Name="poductionHtml" Type="nvarchar(max)" />
+          <Property Name="safetyAndCompliance" Type="nvarchar(max)" />
+          <Property Name="unit" Type="varchar" MaxLength="500" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productVedio">
+          <Key>
+            <PropertyRef Name="productVedioId" />
+          </Key>
+          <Property Name="productVedioId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vedioName" Type="varchar" MaxLength="500" />
+          <Property Name="vedioURL" Type="varchar" MaxLength="500" />
+          <Property Name="productId" Type="bigint" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roleUser">
+          <Key>
+            <PropertyRef Name="roleID" />
+          </Key>
+          <Property Name="roleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sendGridDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="projectname" />
+            <PropertyRef Name="APIKEY" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="projectname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="APIKEY" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="states">
+          <Key>
+            <PropertyRef Name="stateId" />
+          </Key>
+          <Property Name="stateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="countryId" Type="int" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="supplierCategory">
+          <Key>
+            <PropertyRef Name="supplierCategoryId" />
+          </Key>
+          <Property Name="supplierCategoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive1" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="supplierCategoryOptions">
+          <Key>
+            <PropertyRef Name="supplierCategoryOptId" />
+          </Key>
+          <Property Name="supplierCategoryOptId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="themes">
+          <Key>
+            <PropertyRef Name="themeId" />
+          </Key>
+          <Property Name="themeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="webURL" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="fontFamily" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TodayOffer">
+          <Key>
+            <PropertyRef Name="offerId" />
+          </Key>
+          <Property Name="offerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productId" Type="bigint" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="discountPercentage" Type="float" />
+          <Property Name="offerDate" Type="date" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userRights">
+          <Key>
+            <PropertyRef Name="userRightsId" />
+          </Key>
+          <Property Name="userRightsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleID" Type="int" Nullable="false" />
+          <Property Name="controllerName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="actionName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="fullName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="mobile" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="emailAddress" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="website" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="stateId" Type="int" Nullable="false" />
+          <Property Name="countryId" Type="int" Nullable="false" />
+          <Property Name="zipcode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="roleID" Type="int" Nullable="false" />
+          <Property Name="otp" Type="varchar" MaxLength="500" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+          <Property Name="isBlocked" Type="bit" />
+          <Property Name="lastLogin" Type="datetime" />
+          <Property Name="LastbadAttempt" Type="datetime" />
+          <Property Name="fakeAttemptCount" Type="int" />
+        </EntityType>
+        <EntityType Name="WebClientSuppliers">
+          <Key>
+            <PropertyRef Name="WebClientid" />
+          </Key>
+          <Property Name="WebClientid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+          <Property Name="supplierId" Type="bigint" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <Function Name="sp_LoginUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="emailAddress" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="sbv_uuwebstoreModelStoreContainer">
+          <EntitySet Name="ads" EntityType="Self.ads" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="adsSize" EntityType="Self.adsSize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="brandClient" EntityType="Self.brandClient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="brands" EntityType="Self.brands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clientWebInformation" EntityType="Self.clientWebInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientWebsiteAdsInfo" EntityType="Self.ClientWebsiteAdsInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientWebsiteBannerInfo" EntityType="Self.ClientWebsiteBannerInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="enquiry" EntityType="Self.enquiry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fontFamily" EntityType="Self.fontFamily" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productAvailableSize" EntityType="Self.productAvailableSize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productCategory" EntityType="Self.productCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productCategoryClient" EntityType="Self.productCategoryClient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productColor" EntityType="Self.productColor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productForClient" EntityType="Self.productForClient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productImages" EntityType="Self.productImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productsCRA" EntityType="Self.productsCRA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productVedio" EntityType="Self.productVedio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roleUser" EntityType="Self.roleUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="states" EntityType="Self.states" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="supplierCategory" EntityType="Self.supplierCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="supplierCategoryOptions" EntityType="Self.supplierCategoryOptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="themes" EntityType="Self.themes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TodayOffer" EntityType="Self.TodayOffer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userRights" EntityType="Self.userRights" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebClientSuppliers" EntityType="Self.WebClientSuppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="banner" EntityType="Self.banner" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [banner].[bannerId] AS [bannerId], 
+    [banner].[name] AS [name], 
+    [banner].[bannerHtml] AS [bannerHtml], 
+    [banner].[userId] AS [userId], 
+    [banner].[createdBy] AS [createdBy], 
+    [banner].[createdDate] AS [createdDate], 
+    [banner].[modifiedBy] AS [modifiedBy], 
+    [banner].[modifiedDate] AS [modifiedDate], 
+    [banner].[isActive] AS [isActive], 
+    [banner].[isDelete] AS [isDelete]
+    FROM [dbo].[banner] AS [banner]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sendGridDetails" EntityType="Self.sendGridDetails" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sendGridDetails].[ID] AS [ID], 
+    [sendGridDetails].[projectname] AS [projectname], 
+    [sendGridDetails].[APIKEY] AS [APIKEY]
+    FROM [dbo].[sendGridDetails] AS [sendGridDetails]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sbv_uuwebstoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ad">
+          <Key>
+            <PropertyRef Name="adsId" />
+          </Key>
+          <Property Name="adsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adsHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="adsSizeId" Type="Int32" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="adsSize">
+          <Key>
+            <PropertyRef Name="adsSizeId" />
+          </Key>
+          <Property Name="adsSizeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="height" Type="Int32" Nullable="false" />
+          <Property Name="width" Type="Int32" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="brandClient">
+          <Key>
+            <PropertyRef Name="brandClientId" />
+          </Key>
+          <Property Name="brandClientId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="brandId" Type="Int32" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="isFeaturedBrand" Type="Boolean" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="brand">
+          <Key>
+            <PropertyRef Name="brandId" />
+          </Key>
+          <Property Name="brandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clientWebInformation">
+          <Key>
+            <PropertyRef Name="ClientWebsiteInformationid" />
+          </Key>
+          <Property Name="ClientWebsiteInformationid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="themeId" Type="Int32" Nullable="false" />
+          <Property Name="fontFamilyId" Type="Int32" Nullable="false" />
+          <Property Name="logoName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="logoWebAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FaviconName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FaviconURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bussinessName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="businessContact" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="homePageContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contactUsPageContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="aboutUsPageContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="visits" Type="Int64" Nullable="false" />
+          <Property Name="clicks" Type="Int64" Nullable="false" />
+          <Property Name="search" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientWebsiteAdsInfo">
+          <Key>
+            <PropertyRef Name="ClientWebsiteAdsInfoid" />
+          </Key>
+          <Property Name="ClientWebsiteAdsInfoid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adsId" Type="Int32" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientWebsiteBannerInfo">
+          <Key>
+            <PropertyRef Name="ClientWebsiteBannerInfoid" />
+          </Key>
+          <Property Name="ClientWebsiteBannerInfoid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bannerId" Type="Int32" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="countryId" />
+          </Key>
+          <Property Name="countryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="enquiry">
+          <Key>
+            <PropertyRef Name="enquiryId" />
+          </Key>
+          <Property Name="enquiryId" Type="Int64" Nullable="false" />
+          <Property Name="enquiryHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fullName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="emailAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="isNew" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="fontFamily">
+          <Key>
+            <PropertyRef Name="fontFamilyId" />
+          </Key>
+          <Property Name="fontFamilyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productAvailableSize">
+          <Key>
+            <PropertyRef Name="productSizeId" />
+          </Key>
+          <Property Name="productSizeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productId" Type="Int64" Nullable="false" />
+          <Property Name="availableSize" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="unit" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productCategory">
+          <Key>
+            <PropertyRef Name="productCategoryId" />
+          </Key>
+          <Property Name="productCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="parentCategoryid" Type="Int32" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productCategoryClient">
+          <Key>
+            <PropertyRef Name="proCategoryClientId" />
+          </Key>
+          <Property Name="proCategoryClientId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="proCategoryId" Type="Int32" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="isFeaturedCategory" Type="Boolean" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productColor">
+          <Key>
+            <PropertyRef Name="productColorId" />
+          </Key>
+          <Property Name="productColorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productId" Type="Int64" Nullable="false" />
+          <Property Name="colorName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productForClient">
+          <Key>
+            <PropertyRef Name="productForWebClientId" />
+          </Key>
+          <Property Name="productForWebClientId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productId" Type="Int64" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sku" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="addedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="productTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="slugURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="proCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="brandId" Type="Int32" Nullable="false" />
+          <Property Name="descriptionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="materialHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="productInformationHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="imprintInformationHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SpecificationsHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContentsHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShippingHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pricingHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PoductionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="safetyAndCompliance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="unit" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="isShowPrice" Type="Boolean" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productImage">
+          <Key>
+            <PropertyRef Name="productImageId" />
+          </Key>
+          <Property Name="productImageId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imgName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="imgWebAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="productId" Type="Int64" />
+          <Property Name="isFrontInterface" Type="Boolean" />
+          <Property Name="isThumbimg" Type="Boolean" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductPrice">
+          <Key>
+            <PropertyRef Name="productPriceId" />
+          </Key>
+          <Property Name="productPriceId" Type="Int64" Nullable="false" />
+          <Property Name="productId" Type="Int64" />
+          <Property Name="price" Type="Double" />
+          <Property Name="lastDatePrice" Type="DateTime" Precision="0" />
+          <Property Name="tax" Type="Double" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productsCRA">
+          <Key>
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="productId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sku" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="addedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="productTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="slugURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="proCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="brandId" Type="Int32" Nullable="false" />
+          <Property Name="descriptionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="materialHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="productInformationHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="imprintInformationHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="productionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="specificationsHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cntentsHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="shippingHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pricingHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="poductionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="safetyAndCompliance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="unit" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productVedio">
+          <Key>
+            <PropertyRef Name="productVedioId" />
+          </Key>
+          <Property Name="productVedioId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vedioName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="vedioURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="productId" Type="Int64" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roleUser">
+          <Key>
+            <PropertyRef Name="roleID" />
+          </Key>
+          <Property Name="roleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="stateId" />
+          </Key>
+          <Property Name="stateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="countryId" Type="Int32" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="supplierCategory">
+          <Key>
+            <PropertyRef Name="supplierCategoryId" />
+          </Key>
+          <Property Name="supplierCategoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive1" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="supplierCategoryOption">
+          <Key>
+            <PropertyRef Name="supplierCategoryOptId" />
+          </Key>
+          <Property Name="supplierCategoryOptId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="theme">
+          <Key>
+            <PropertyRef Name="themeId" />
+          </Key>
+          <Property Name="themeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="webURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fontFamily" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TodayOffer">
+          <Key>
+            <PropertyRef Name="offerId" />
+          </Key>
+          <Property Name="offerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productId" Type="Int64" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="discountPercentage" Type="Double" />
+          <Property Name="offerDate" Type="DateTime" Precision="0" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userRight">
+          <Key>
+            <PropertyRef Name="userRightsId" />
+          </Key>
+          <Property Name="userRightsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleID" Type="Int32" Nullable="false" />
+          <Property Name="controllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="actionName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fullName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="emailAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="website" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="location" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stateId" Type="Int32" Nullable="false" />
+          <Property Name="countryId" Type="Int32" Nullable="false" />
+          <Property Name="zipcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="roleID" Type="Int32" Nullable="false" />
+          <Property Name="otp" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+          <Property Name="isBlocked" Type="Boolean" />
+          <Property Name="lastLogin" Type="DateTime" Precision="3" />
+          <Property Name="LastbadAttempt" Type="DateTime" Precision="3" />
+          <Property Name="fakeAttemptCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="WebClientSupplier">
+          <Key>
+            <PropertyRef Name="WebClientid" />
+          </Key>
+          <Property Name="WebClientid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="supplierId" Type="Int64" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="banner">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="bannerHtml" />
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="createdBy" />
+            <PropertyRef Name="createdDate" />
+            <PropertyRef Name="modifiedBy" />
+            <PropertyRef Name="modifiedDate" />
+            <PropertyRef Name="isActive" />
+            <PropertyRef Name="isDelete" />
+          </Key>
+          <Property Name="bannerId" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bannerHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sendGridDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="projectname" />
+            <PropertyRef Name="APIKEY" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="projectname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="APIKEY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="sbv_uuwebstoreEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ads" EntityType="Self.ad" />
+          <EntitySet Name="adsSizes" EntityType="Self.adsSize" />
+          <EntitySet Name="brandClients" EntityType="Self.brandClient" />
+          <EntitySet Name="brands" EntityType="Self.brand" />
+          <EntitySet Name="clientWebInformations" EntityType="Self.clientWebInformation" />
+          <EntitySet Name="ClientWebsiteAdsInfoes" EntityType="Self.ClientWebsiteAdsInfo" />
+          <EntitySet Name="ClientWebsiteBannerInfoes" EntityType="Self.ClientWebsiteBannerInfo" />
+          <EntitySet Name="countries" EntityType="Self.country" />
+          <EntitySet Name="enquiries" EntityType="Self.enquiry" />
+          <EntitySet Name="fontFamilies" EntityType="Self.fontFamily" />
+          <EntitySet Name="productAvailableSizes" EntityType="Self.productAvailableSize" />
+          <EntitySet Name="productCategories" EntityType="Self.productCategory" />
+          <EntitySet Name="productCategoryClients" EntityType="Self.productCategoryClient" />
+          <EntitySet Name="productColors" EntityType="Self.productColor" />
+          <EntitySet Name="productForClients" EntityType="Self.productForClient" />
+          <EntitySet Name="productImages" EntityType="Self.productImage" />
+          <EntitySet Name="ProductPrices" EntityType="Self.ProductPrice" />
+          <EntitySet Name="productsCRAs" EntityType="Self.productsCRA" />
+          <EntitySet Name="productVedios" EntityType="Self.productVedio" />
+          <EntitySet Name="roleUsers" EntityType="Self.roleUser" />
+          <EntitySet Name="states" EntityType="Self.state" />
+          <EntitySet Name="supplierCategories" EntityType="Self.supplierCategory" />
+          <EntitySet Name="supplierCategoryOptions" EntityType="Self.supplierCategoryOption" />
+          <EntitySet Name="themes" EntityType="Self.theme" />
+          <EntitySet Name="TodayOffers" EntityType="Self.TodayOffer" />
+          <EntitySet Name="userRights" EntityType="Self.userRight" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="WebClientSuppliers" EntityType="Self.WebClientSupplier" />
+          <EntitySet Name="banners" EntityType="Self.banner" />
+          <EntitySet Name="sendGridDetails" EntityType="Self.sendGridDetail" />
+          <FunctionImport Name="sp_LoginUser" ReturnType="Collection(sbv_uuwebstoreModel.sp_LoginUser_Result)">
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="emailAddress" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_LoginUser_Result">
+          <Property Type="String" Name="userId" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="fullName" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="roleID" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="message" Nullable="false" MaxLength="1" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sbv_uuwebstoreModelStoreContainer" CdmEntityContainer="sbv_uuwebstoreEntities">
+          <EntitySetMapping Name="ads">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.ad">
+              <MappingFragment StoreEntitySet="ads">
+                <ScalarProperty Name="adsId" ColumnName="adsId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="adsHtml" ColumnName="adsHtml" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="adsSizeId" ColumnName="adsSizeId" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="adsSizes">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.adsSize">
+              <MappingFragment StoreEntitySet="adsSize">
+                <ScalarProperty Name="adsSizeId" ColumnName="adsSizeId" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="brandClients">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.brandClient">
+              <MappingFragment StoreEntitySet="brandClient">
+                <ScalarProperty Name="brandClientId" ColumnName="brandClientId" />
+                <ScalarProperty Name="brandId" ColumnName="brandId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="isFeaturedBrand" ColumnName="isFeaturedBrand" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="brands">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.brand">
+              <MappingFragment StoreEntitySet="brands">
+                <ScalarProperty Name="brandId" ColumnName="brandId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientWebInformations">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.clientWebInformation">
+              <MappingFragment StoreEntitySet="clientWebInformation">
+                <ScalarProperty Name="ClientWebsiteInformationid" ColumnName="ClientWebsiteInformationid" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="themeId" ColumnName="themeId" />
+                <ScalarProperty Name="fontFamilyId" ColumnName="fontFamilyId" />
+                <ScalarProperty Name="logoName" ColumnName="logoName" />
+                <ScalarProperty Name="logoWebAddress" ColumnName="logoWebAddress" />
+                <ScalarProperty Name="FaviconName" ColumnName="FaviconName" />
+                <ScalarProperty Name="FaviconURL" ColumnName="FaviconURL" />
+                <ScalarProperty Name="bussinessName" ColumnName="bussinessName" />
+                <ScalarProperty Name="businessContact" ColumnName="businessContact" />
+                <ScalarProperty Name="homePageContent" ColumnName="homePageContent" />
+                <ScalarProperty Name="contactUsPageContent" ColumnName="contactUsPageContent" />
+                <ScalarProperty Name="aboutUsPageContent" ColumnName="aboutUsPageContent" />
+                <ScalarProperty Name="visits" ColumnName="visits" />
+                <ScalarProperty Name="clicks" ColumnName="clicks" />
+                <ScalarProperty Name="search" ColumnName="search" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientWebsiteAdsInfoes">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.ClientWebsiteAdsInfo">
+              <MappingFragment StoreEntitySet="ClientWebsiteAdsInfo">
+                <ScalarProperty Name="ClientWebsiteAdsInfoid" ColumnName="ClientWebsiteAdsInfoid" />
+                <ScalarProperty Name="adsId" ColumnName="adsId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientWebsiteBannerInfoes">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.ClientWebsiteBannerInfo">
+              <MappingFragment StoreEntitySet="ClientWebsiteBannerInfo">
+                <ScalarProperty Name="ClientWebsiteBannerInfoid" ColumnName="ClientWebsiteBannerInfoid" />
+                <ScalarProperty Name="bannerId" ColumnName="bannerId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="enquiries">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.enquiry">
+              <MappingFragment StoreEntitySet="enquiry">
+                <ScalarProperty Name="enquiryId" ColumnName="enquiryId" />
+                <ScalarProperty Name="enquiryHtml" ColumnName="enquiryHtml" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="isNew" ColumnName="isNew" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fontFamilies">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.fontFamily">
+              <MappingFragment StoreEntitySet="fontFamily">
+                <ScalarProperty Name="fontFamilyId" ColumnName="fontFamilyId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productAvailableSizes">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.productAvailableSize">
+              <MappingFragment StoreEntitySet="productAvailableSize">
+                <ScalarProperty Name="productSizeId" ColumnName="productSizeId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="availableSize" ColumnName="availableSize" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productCategories">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.productCategory">
+              <MappingFragment StoreEntitySet="productCategory">
+                <ScalarProperty Name="productCategoryId" ColumnName="productCategoryId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="parentCategoryid" ColumnName="parentCategoryid" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productCategoryClients">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.productCategoryClient">
+              <MappingFragment StoreEntitySet="productCategoryClient">
+                <ScalarProperty Name="proCategoryClientId" ColumnName="proCategoryClientId" />
+                <ScalarProperty Name="proCategoryId" ColumnName="proCategoryId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="isFeaturedCategory" ColumnName="isFeaturedCategory" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productColors">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.productColor">
+              <MappingFragment StoreEntitySet="productColor">
+                <ScalarProperty Name="productColorId" ColumnName="productColorId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="colorName" ColumnName="colorName" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productForClients">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.productForClient">
+              <MappingFragment StoreEntitySet="productForClient">
+                <ScalarProperty Name="productForWebClientId" ColumnName="productForWebClientId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="addedDate" ColumnName="addedDate" />
+                <ScalarProperty Name="productTitle" ColumnName="productTitle" />
+                <ScalarProperty Name="slugURL" ColumnName="slugURL" />
+                <ScalarProperty Name="proCategoryId" ColumnName="proCategoryId" />
+                <ScalarProperty Name="brandId" ColumnName="brandId" />
+                <ScalarProperty Name="descriptionHtml" ColumnName="descriptionHtml" />
+                <ScalarProperty Name="materialHtml" ColumnName="materialHtml" />
+                <ScalarProperty Name="productInformationHtml" ColumnName="productInformationHtml" />
+                <ScalarProperty Name="imprintInformationHtml" ColumnName="imprintInformationHtml" />
+                <ScalarProperty Name="ProductionHtml" ColumnName="ProductionHtml" />
+                <ScalarProperty Name="SpecificationsHtml" ColumnName="SpecificationsHtml" />
+                <ScalarProperty Name="ContentsHtml" ColumnName="ContentsHtml" />
+                <ScalarProperty Name="ShippingHtml" ColumnName="ShippingHtml" />
+                <ScalarProperty Name="pricingHtml" ColumnName="pricingHtml" />
+                <ScalarProperty Name="PoductionHtml" ColumnName="PoductionHtml" />
+                <ScalarProperty Name="safetyAndCompliance" ColumnName="safetyAndCompliance" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="isShowPrice" ColumnName="isShowPrice" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productImages">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.productImage">
+              <MappingFragment StoreEntitySet="productImages">
+                <ScalarProperty Name="productImageId" ColumnName="productImageId" />
+                <ScalarProperty Name="imgName" ColumnName="imgName" />
+                <ScalarProperty Name="imgWebAddress" ColumnName="imgWebAddress" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="isFrontInterface" ColumnName="isFrontInterface" />
+                <ScalarProperty Name="isThumbimg" ColumnName="isThumbimg" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPrices">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.ProductPrice">
+              <MappingFragment StoreEntitySet="ProductPrice">
+                <ScalarProperty Name="productPriceId" ColumnName="productPriceId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="lastDatePrice" ColumnName="lastDatePrice" />
+                <ScalarProperty Name="tax" ColumnName="tax" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productsCRAs">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.productsCRA">
+              <MappingFragment StoreEntitySet="productsCRA">
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="addedDate" ColumnName="addedDate" />
+                <ScalarProperty Name="productTitle" ColumnName="productTitle" />
+                <ScalarProperty Name="slugURL" ColumnName="slugURL" />
+                <ScalarProperty Name="proCategoryId" ColumnName="proCategoryId" />
+                <ScalarProperty Name="brandId" ColumnName="brandId" />
+                <ScalarProperty Name="descriptionHtml" ColumnName="descriptionHtml" />
+                <ScalarProperty Name="materialHtml" ColumnName="materialHtml" />
+                <ScalarProperty Name="productInformationHtml" ColumnName="productInformationHtml" />
+                <ScalarProperty Name="imprintInformationHtml" ColumnName="imprintInformationHtml" />
+                <ScalarProperty Name="productionHtml" ColumnName="productionHtml" />
+                <ScalarProperty Name="specificationsHtml" ColumnName="specificationsHtml" />
+                <ScalarProperty Name="cntentsHtml" ColumnName="cntentsHtml" />
+                <ScalarProperty Name="shippingHtml" ColumnName="shippingHtml" />
+                <ScalarProperty Name="pricingHtml" ColumnName="pricingHtml" />
+                <ScalarProperty Name="poductionHtml" ColumnName="poductionHtml" />
+                <ScalarProperty Name="safetyAndCompliance" ColumnName="safetyAndCompliance" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productVedios">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.productVedio">
+              <MappingFragment StoreEntitySet="productVedio">
+                <ScalarProperty Name="productVedioId" ColumnName="productVedioId" />
+                <ScalarProperty Name="vedioName" ColumnName="vedioName" />
+                <ScalarProperty Name="vedioURL" ColumnName="vedioURL" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roleUsers">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.roleUser">
+              <MappingFragment StoreEntitySet="roleUser">
+                <ScalarProperty Name="roleID" ColumnName="roleID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="states">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.state">
+              <MappingFragment StoreEntitySet="states">
+                <ScalarProperty Name="stateId" ColumnName="stateId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supplierCategories">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.supplierCategory">
+              <MappingFragment StoreEntitySet="supplierCategory">
+                <ScalarProperty Name="supplierCategoryId" ColumnName="supplierCategoryId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive1" ColumnName="isActive1" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supplierCategoryOptions">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.supplierCategoryOption">
+              <MappingFragment StoreEntitySet="supplierCategoryOptions">
+                <ScalarProperty Name="supplierCategoryOptId" ColumnName="supplierCategoryOptId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="themes">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.theme">
+              <MappingFragment StoreEntitySet="themes">
+                <ScalarProperty Name="themeId" ColumnName="themeId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="webURL" ColumnName="webURL" />
+                <ScalarProperty Name="fontFamily" ColumnName="fontFamily" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TodayOffers">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.TodayOffer">
+              <MappingFragment StoreEntitySet="TodayOffer">
+                <ScalarProperty Name="offerId" ColumnName="offerId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="discountPercentage" ColumnName="discountPercentage" />
+                <ScalarProperty Name="offerDate" ColumnName="offerDate" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userRights">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.userRight">
+              <MappingFragment StoreEntitySet="userRights">
+                <ScalarProperty Name="userRightsId" ColumnName="userRightsId" />
+                <ScalarProperty Name="roleID" ColumnName="roleID" />
+                <ScalarProperty Name="controllerName" ColumnName="controllerName" />
+                <ScalarProperty Name="actionName" ColumnName="actionName" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="fakeAttemptCount" ColumnName="fakeAttemptCount" />
+                <ScalarProperty Name="LastbadAttempt" ColumnName="LastbadAttempt" />
+                <ScalarProperty Name="lastLogin" ColumnName="lastLogin" />
+                <ScalarProperty Name="isBlocked" ColumnName="isBlocked" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="stateId" ColumnName="stateId" />
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="roleID" ColumnName="roleID" />
+                <ScalarProperty Name="otp" ColumnName="otp" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebClientSuppliers">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.WebClientSupplier">
+              <MappingFragment StoreEntitySet="WebClientSuppliers">
+                <ScalarProperty Name="WebClientid" ColumnName="WebClientid" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="supplierId" ColumnName="supplierId" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="banners">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.banner">
+              <MappingFragment StoreEntitySet="banner">
+                <ScalarProperty Name="bannerId" ColumnName="bannerId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="bannerHtml" ColumnName="bannerHtml" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sendGridDetails">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.sendGridDetail">
+              <MappingFragment StoreEntitySet="sendGridDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="projectname" ColumnName="projectname" />
+                <ScalarProperty Name="APIKEY" ColumnName="APIKEY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_LoginUser" FunctionName="sbv_uuwebstoreModel.Store.sp_LoginUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.sp_LoginUser_Result">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="roleID" ColumnName="roleID" />
+                <ScalarProperty Name="message" ColumnName="message" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

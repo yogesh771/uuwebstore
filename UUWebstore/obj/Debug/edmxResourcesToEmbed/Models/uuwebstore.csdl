@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sbv_uuwebstoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ad">
+    <Key>
+      <PropertyRef Name="adsId" />
+    </Key>
+    <Property Name="adsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="adsHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userId" Type="Int64" Nullable="false" />
+    <Property Name="adsSizeId" Type="Int32" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="adsSize">
+    <Key>
+      <PropertyRef Name="adsSizeId" />
+    </Key>
+    <Property Name="adsSizeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="height" Type="Int32" Nullable="false" />
+    <Property Name="width" Type="Int32" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="brandClient">
+    <Key>
+      <PropertyRef Name="brandClientId" />
+    </Key>
+    <Property Name="brandClientId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="brandId" Type="Int32" />
+    <Property Name="userId" Type="Int64" />
+    <Property Name="isFeaturedBrand" Type="Boolean" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="brand">
+    <Key>
+      <PropertyRef Name="brandId" />
+    </Key>
+    <Property Name="brandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="clientWebInformation">
+    <Key>
+      <PropertyRef Name="ClientWebsiteInformationid" />
+    </Key>
+    <Property Name="ClientWebsiteInformationid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int64" Nullable="false" />
+    <Property Name="themeId" Type="Int32" Nullable="false" />
+    <Property Name="fontFamilyId" Type="Int32" Nullable="false" />
+    <Property Name="logoName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="logoWebAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FaviconName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FaviconURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="bussinessName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="businessContact" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="homePageContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="contactUsPageContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="aboutUsPageContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="visits" Type="Int64" Nullable="false" />
+    <Property Name="clicks" Type="Int64" Nullable="false" />
+    <Property Name="search" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientWebsiteAdsInfo">
+    <Key>
+      <PropertyRef Name="ClientWebsiteAdsInfoid" />
+    </Key>
+    <Property Name="ClientWebsiteAdsInfoid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="adsId" Type="Int32" />
+    <Property Name="userId" Type="Int64" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientWebsiteBannerInfo">
+    <Key>
+      <PropertyRef Name="ClientWebsiteBannerInfoid" />
+    </Key>
+    <Property Name="ClientWebsiteBannerInfoid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bannerId" Type="Int32" />
+    <Property Name="userId" Type="Int64" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="countryId" />
+    </Key>
+    <Property Name="countryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="enquiry">
+    <Key>
+      <PropertyRef Name="enquiryId" />
+    </Key>
+    <Property Name="enquiryId" Type="Int64" Nullable="false" />
+    <Property Name="enquiryHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fullName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="emailAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="userId" Type="Int64" />
+    <Property Name="isNew" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="fontFamily">
+    <Key>
+      <PropertyRef Name="fontFamilyId" />
+    </Key>
+    <Property Name="fontFamilyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="productAvailableSize">
+    <Key>
+      <PropertyRef Name="productSizeId" />
+    </Key>
+    <Property Name="productSizeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productId" Type="Int64" Nullable="false" />
+    <Property Name="availableSize" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="unit" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="productCategory">
+    <Key>
+      <PropertyRef Name="productCategoryId" />
+    </Key>
+    <Property Name="productCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="parentCategoryid" Type="Int32" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="productCategoryClient">
+    <Key>
+      <PropertyRef Name="proCategoryClientId" />
+    </Key>
+    <Property Name="proCategoryClientId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proCategoryId" Type="Int32" />
+    <Property Name="userId" Type="Int64" />
+    <Property Name="isFeaturedCategory" Type="Boolean" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="productColor">
+    <Key>
+      <PropertyRef Name="productColorId" />
+    </Key>
+    <Property Name="productColorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productId" Type="Int64" Nullable="false" />
+    <Property Name="colorName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="productForClient">
+    <Key>
+      <PropertyRef Name="productForWebClientId" />
+    </Key>
+    <Property Name="productForWebClientId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productId" Type="Int64" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sku" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="addedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="productTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="slugURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="proCategoryId" Type="Int32" Nullable="false" />
+    <Property Name="brandId" Type="Int32" Nullable="false" />
+    <Property Name="descriptionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="materialHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="productInformationHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="imprintInformationHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProductionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SpecificationsHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ContentsHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ShippingHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="pricingHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PoductionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="safetyAndCompliance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="unit" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="userId" Type="Int64" />
+    <Property Name="isShowPrice" Type="Boolean" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="productImage">
+    <Key>
+      <PropertyRef Name="productImageId" />
+    </Key>
+    <Property Name="productImageId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="imgName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="imgWebAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="productId" Type="Int64" />
+    <Property Name="isFrontInterface" Type="Boolean" />
+    <Property Name="isThumbimg" Type="Boolean" />
+    <Property Name="userId" Type="Int64" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductPrice">
+    <Key>
+      <PropertyRef Name="productPriceId" />
+    </Key>
+    <Property Name="productPriceId" Type="Int64" Nullable="false" />
+    <Property Name="productId" Type="Int64" />
+    <Property Name="price" Type="Double" />
+    <Property Name="lastDatePrice" Type="DateTime" Precision="0" />
+    <Property Name="tax" Type="Double" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="productsCRA">
+    <Key>
+      <PropertyRef Name="productId" />
+    </Key>
+    <Property Name="productId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sku" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="addedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="productTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="slugURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="proCategoryId" Type="Int32" Nullable="false" />
+    <Property Name="brandId" Type="Int32" Nullable="false" />
+    <Property Name="descriptionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="materialHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="productInformationHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="imprintInformationHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="productionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="specificationsHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="cntentsHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="shippingHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="pricingHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="poductionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="safetyAndCompliance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="unit" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="productVedio">
+    <Key>
+      <PropertyRef Name="productVedioId" />
+    </Key>
+    <Property Name="productVedioId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="vedioName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="vedioURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="productId" Type="Int64" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="roleUser">
+    <Key>
+      <PropertyRef Name="roleID" />
+    </Key>
+    <Property Name="roleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="state">
+    <Key>
+      <PropertyRef Name="stateId" />
+    </Key>
+    <Property Name="stateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="countryId" Type="Int32" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="supplierCategory">
+    <Key>
+      <PropertyRef Name="supplierCategoryId" />
+    </Key>
+    <Property Name="supplierCategoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int64" />
+    <Property Name="isActive" Type="Boolean" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive1" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="supplierCategoryOption">
+    <Key>
+      <PropertyRef Name="supplierCategoryOptId" />
+    </Key>
+    <Property Name="supplierCategoryOptId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="theme">
+    <Key>
+      <PropertyRef Name="themeId" />
+    </Key>
+    <Property Name="themeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="webURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fontFamily" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TodayOffer">
+    <Key>
+      <PropertyRef Name="offerId" />
+    </Key>
+    <Property Name="offerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productId" Type="Int64" />
+    <Property Name="userId" Type="Int64" />
+    <Property Name="discountPercentage" Type="Double" />
+    <Property Name="offerDate" Type="DateTime" Precision="0" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="userRight">
+    <Key>
+      <PropertyRef Name="userRightsId" />
+    </Key>
+    <Property Name="userRightsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roleID" Type="Int32" Nullable="false" />
+    <Property Name="controllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="actionName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fullName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="emailAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="website" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="location" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="city" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="stateId" Type="Int32" Nullable="false" />
+    <Property Name="countryId" Type="Int32" Nullable="false" />
+    <Property Name="zipcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="roleID" Type="Int32" Nullable="false" />
+    <Property Name="otp" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WebClientSupplier">
+    <Key>
+      <PropertyRef Name="WebClientid" />
+    </Key>
+    <Property Name="WebClientid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int64" Nullable="false" />
+    <Property Name="supplierId" Type="Int64" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="banner">
+    <Key>
+      <PropertyRef Name="name" />
+      <PropertyRef Name="bannerHtml" />
+      <PropertyRef Name="userId" />
+      <PropertyRef Name="createdBy" />
+      <PropertyRef Name="createdDate" />
+      <PropertyRef Name="modifiedBy" />
+      <PropertyRef Name="modifiedDate" />
+      <PropertyRef Name="isActive" />
+      <PropertyRef Name="isDelete" />
+    </Key>
+    <Property Name="bannerId" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="bannerHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userId" Type="Int64" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sendGridDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="projectname" />
+      <PropertyRef Name="APIKEY" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="projectname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="APIKEY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="sbv_uuwebstoreEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ads" EntityType="Self.ad" />
+    <EntitySet Name="adsSizes" EntityType="Self.adsSize" />
+    <EntitySet Name="brandClients" EntityType="Self.brandClient" />
+    <EntitySet Name="brands" EntityType="Self.brand" />
+    <EntitySet Name="clientWebInformations" EntityType="Self.clientWebInformation" />
+    <EntitySet Name="ClientWebsiteAdsInfoes" EntityType="Self.ClientWebsiteAdsInfo" />
+    <EntitySet Name="ClientWebsiteBannerInfoes" EntityType="Self.ClientWebsiteBannerInfo" />
+    <EntitySet Name="countries" EntityType="Self.country" />
+    <EntitySet Name="enquiries" EntityType="Self.enquiry" />
+    <EntitySet Name="fontFamilies" EntityType="Self.fontFamily" />
+    <EntitySet Name="productAvailableSizes" EntityType="Self.productAvailableSize" />
+    <EntitySet Name="productCategories" EntityType="Self.productCategory" />
+    <EntitySet Name="productCategoryClients" EntityType="Self.productCategoryClient" />
+    <EntitySet Name="productColors" EntityType="Self.productColor" />
+    <EntitySet Name="productForClients" EntityType="Self.productForClient" />
+    <EntitySet Name="productImages" EntityType="Self.productImage" />
+    <EntitySet Name="ProductPrices" EntityType="Self.ProductPrice" />
+    <EntitySet Name="productsCRAs" EntityType="Self.productsCRA" />
+    <EntitySet Name="productVedios" EntityType="Self.productVedio" />
+    <EntitySet Name="roleUsers" EntityType="Self.roleUser" />
+    <EntitySet Name="states" EntityType="Self.state" />
+    <EntitySet Name="supplierCategories" EntityType="Self.supplierCategory" />
+    <EntitySet Name="supplierCategoryOptions" EntityType="Self.supplierCategoryOption" />
+    <EntitySet Name="themes" EntityType="Self.theme" />
+    <EntitySet Name="TodayOffers" EntityType="Self.TodayOffer" />
+    <EntitySet Name="userRights" EntityType="Self.userRight" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <EntitySet Name="WebClientSuppliers" EntityType="Self.WebClientSupplier" />
+    <EntitySet Name="banners" EntityType="Self.banner" />
+    <EntitySet Name="sendGridDetails" EntityType="Self.sendGridDetail" />
+  </EntityContainer>
+</Schema>
