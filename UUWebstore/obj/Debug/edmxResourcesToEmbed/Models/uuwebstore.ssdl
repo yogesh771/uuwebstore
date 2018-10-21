@@ -30,6 +30,16 @@
     <Property Name="isActive" Type="bit" Nullable="false" />
     <Property Name="isDelete" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="AppErrorLog">
+    <Key>
+      <PropertyRef Name="ErrorID" />
+    </Key>
+    <Property Name="ErrorID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ErrorMsg" Type="varchar(max)" />
+    <Property Name="datelog" Type="datetime" />
+    <Property Name="innerException" Type="varchar(max)" />
+    <Property Name="stackTrace" Type="varchar(max)" />
+  </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="banner">
@@ -83,6 +93,14 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
     <Property Name="isActive" Type="bit" Nullable="false" />
     <Property Name="isDelete" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="cityId" />
+    </Key>
+    <Property Name="cityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="varchar" MaxLength="500" />
+    <Property Name="stateId" Type="int" />
+  </EntityType>
   <EntityType Name="clientWebInformation">
     <Key>
       <PropertyRef Name="ClientWebsiteInformationid" />
@@ -90,19 +108,25 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
     <Property Name="ClientWebsiteInformationid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="userId" Type="bigint" Nullable="false" />
     <Property Name="themeId" Type="int" Nullable="false" />
-    <Property Name="fontFamilyId" Type="int" Nullable="false" />
-    <Property Name="logoName" Type="varchar" MaxLength="500" Nullable="false" />
-    <Property Name="logoWebAddress" Type="varchar(max)" Nullable="false" />
-    <Property Name="FaviconName" Type="varchar" MaxLength="500" Nullable="false" />
-    <Property Name="FaviconURL" Type="varchar(max)" Nullable="false" />
-    <Property Name="bussinessName" Type="varchar" MaxLength="500" Nullable="false" />
-    <Property Name="businessContact" Type="varchar" MaxLength="500" Nullable="false" />
-    <Property Name="homePageContent" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="contactUsPageContent" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="aboutUsPageContent" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="visits" Type="bigint" Nullable="false" />
-    <Property Name="clicks" Type="bigint" Nullable="false" />
-    <Property Name="search" Type="bigint" Nullable="false" />
+    <Property Name="fontFamilyId" Type="int" />
+    <Property Name="logoName" Type="varchar" MaxLength="500" />
+    <Property Name="logoWebAddress" Type="varchar(max)" />
+    <Property Name="FaviconName" Type="varchar" MaxLength="500" />
+    <Property Name="FaviconURL" Type="varchar(max)" />
+    <Property Name="bussinessName" Type="varchar" MaxLength="500" />
+    <Property Name="businessContact" Type="varchar" MaxLength="500" />
+    <Property Name="homePageContent" Type="nvarchar(max)" />
+    <Property Name="contactUsPageContent" Type="nvarchar(max)" />
+    <Property Name="aboutUsPageContent" Type="nvarchar(max)" />
+    <Property Name="visits" Type="bigint" />
+    <Property Name="clicks" Type="bigint" />
+    <Property Name="search" Type="bigint" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="isDelete" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ClientWebsiteAdsInfo">
     <Key>
@@ -423,6 +447,8 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
     <Property Name="modifiedDate" Type="datetime" Nullable="false" />
     <Property Name="isActive" Type="bit" Nullable="false" />
     <Property Name="isDelete" Type="bit" Nullable="false" />
+    <Property Name="themeImage" Type="varchar" MaxLength="500" />
+    <Property Name="DemoSiteURl" Type="varchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="TodayOffer">
     <Key>
@@ -464,12 +490,12 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
     <Property Name="password" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="fullName" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="phone" Type="varchar" MaxLength="500" Nullable="false" />
-    <Property Name="mobile" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="mobile" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="emailAddress" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="website" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="address" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="location" Type="varchar" MaxLength="500" Nullable="false" />
-    <Property Name="city" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="cityId" Type="int" Nullable="false" />
     <Property Name="stateId" Type="int" Nullable="false" />
     <Property Name="countryId" Type="int" Nullable="false" />
     <Property Name="zipcode" Type="varchar" MaxLength="50" Nullable="false" />
@@ -481,6 +507,11 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
     <Property Name="modifiedDate" Type="datetime" Nullable="false" />
     <Property Name="isActive" Type="bit" Nullable="false" />
     <Property Name="isDelete" Type="bit" Nullable="false" />
+    <Property Name="isBlocked" Type="bit" Nullable="false" />
+    <Property Name="lastLogin" Type="datetime" />
+    <Property Name="LastbadAttempt" Type="datetime" />
+    <Property Name="fakeAttemptCount" Type="int" />
+    <Property Name="supplier_PPAI_ASI" Type="varchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="WebClientSuppliers">
     <Key>
@@ -496,11 +527,40 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
     <Property Name="isActive" Type="bit" Nullable="false" />
     <Property Name="isDelete" Type="bit" Nullable="false" />
   </EntityType>
+  <Function Name="applyTheme_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="themeId" Type="int" Mode="In" />
+    <Parameter Name="modifyBy" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="getFilteredUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleID" Type="int" Mode="In" />
+    <Parameter Name="isDeleted" Type="bit" Mode="In" />
+    <Parameter Name="userName" Type="varchar" Mode="In" />
+    <Parameter Name="fullName" Type="varchar" Mode="In" />
+    <Parameter Name="cityid" Type="int" Mode="In" />
+    <Parameter Name="stateid" Type="int" Mode="In" />
+    <Parameter Name="countryid" Type="int" Mode="In" />
+    <Parameter Name="zipcode" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="resetPassword_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userId" Type="bigint" Mode="In" />
+    <Parameter Name="oldPassword" Type="varchar" Mode="In" />
+    <Parameter Name="newPassword" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_LoginUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+    <Parameter Name="emailAddress" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="updateLogo_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="logoUrl" Type="int" Mode="In" />
+    <Parameter Name="modifyBy" Type="bigint" Mode="In" />
+  </Function>
   <EntityContainer Name="sbv_uuwebstoreModelStoreContainer">
     <EntitySet Name="ads" EntityType="Self.ads" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="adsSize" EntityType="Self.adsSize" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppErrorLog" EntityType="Self.AppErrorLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="brandClient" EntityType="Self.brandClient" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="brands" EntityType="Self.brands" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="city" EntityType="Self.city" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="clientWebInformation" EntityType="Self.clientWebInformation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ClientWebsiteAdsInfo" EntityType="Self.ClientWebsiteAdsInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ClientWebsiteBannerInfo" EntityType="Self.ClientWebsiteBannerInfo" Schema="dbo" store:Type="Tables" />

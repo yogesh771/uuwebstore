@@ -24,5 +24,7 @@ namespace UUWebstore.Models
         public System.DateTime modifiedDate { get; set; }
         public bool isActive { get; set; }
         public bool isDelete { get; set; }
+        public string themeImage { get; set; }
+        public string DemoSiteURl { get; set; }
     }
 }

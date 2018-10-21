@@ -9,7 +9,7 @@ using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using UUWebstore.Models;
 
-namespace electo.Models.Repositories
+namespace UUWebstore.Models.Repositories
 {
     public class Repositories<TEntity>  where TEntity : class
     {

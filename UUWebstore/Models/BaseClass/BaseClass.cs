@@ -5,6 +5,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using UUWebstore.Models;
+using UUWebstore.Models.Repositories;
 
 namespace UUWebstore.Models.BaseClass
 {
@@ -37,12 +38,33 @@ namespace UUWebstore.Models.BaseClass
         {
              sbv_uuwebstoreEntities db = new sbv_uuwebstoreEntities();
             if (!exceptionContext.ExceptionHandled)
-            {               
+            {
+                var uow = new UnitOfWork();
+                var AppErrorLog = new AppErrorLog();
+                AppErrorLog.ErrorMsg = exceptionContext.Exception.Message;
+                AppErrorLog.datelog = BaseUtil.GetCurrentDateTime();
+                if (exceptionContext.Exception.InnerException != null)
+                {
+                    AppErrorLog.innerException = exceptionContext.Exception.InnerException.Message;
+                    AppErrorLog.stackTrace = exceptionContext.Exception.StackTrace;
+                }
+                uow.AppErrorLog_.Add(AppErrorLog);
+                TempData["error"] = exceptionContext.Exception.Message;
+                TempData["innererror"]= exceptionContext.Exception.InnerException;
                 exceptionContext.ExceptionHandled = true;
-                Response.Redirect("~/Views/Shared/Error.cshtml");
+                exceptionContext.Result= new RedirectResult("~/Views/Shared/Error.cshtml");
+                return;
             }
         }
-
+        public void CaptureErrorValues(string error)
+        {
+            var uow = new UnitOfWork();
+            var AppErrorLog = new AppErrorLog();
+            AppErrorLog.ErrorMsg = error;
+            AppErrorLog.datelog = BaseUtil.GetCurrentDateTime();
+            uow.AppErrorLog_.Add(AppErrorLog);
+           
+        }
     }
-        
+  
 }

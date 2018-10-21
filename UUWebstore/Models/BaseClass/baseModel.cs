@@ -13,7 +13,7 @@ using System.Data.Entity;
 using System.Security.Cryptography;
 using System.IO;
 using System.Diagnostics;
-
+using UUWebstore.Models.Repositories;
 
 namespace UUWebstore.Models
 {
@@ -120,15 +120,10 @@ namespace UUWebstore.Models
 
 
     }
-    public class User
-    {
-        public int UserID { get; set; }
-        public string Name { get; set; }
-    }
 
     public enum AdminInfo
     {
-         FullName,  LoginID, logo, unikKey,userPhoto, userType,campaignID, electionType, campaign,volunteerID,politicalPartyID
+         FullName,  LoginID, logo, userPhoto, userType
     }
 
     public enum FileType
@@ -271,7 +266,7 @@ namespace UUWebstore.Models
         }
         public static List<string> ListControllerExcluded()
         {
-            List<string> list = new List<string>() { "JSON", "HOME","ACCOUNT", "ENQUIRIES" };
+            List<string> list = new List<string>() { "JSON", "HOME","ACCOUNT", "users" };
             return list;
         }
      
@@ -510,6 +505,8 @@ namespace UUWebstore.Models
             }
             return cipherText;
         }
+
+       
     }
 
  

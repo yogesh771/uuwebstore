@@ -29,8 +29,10 @@ namespace UUWebstore.Models
     
         public virtual DbSet<ad> ads { get; set; }
         public virtual DbSet<adsSize> adsSizes { get; set; }
+        public virtual DbSet<AppErrorLog> AppErrorLogs { get; set; }
         public virtual DbSet<brandClient> brandClients { get; set; }
         public virtual DbSet<brand> brands { get; set; }
+        public virtual DbSet<city> cities { get; set; }
         public virtual DbSet<clientWebInformation> clientWebInformations { get; set; }
         public virtual DbSet<ClientWebsiteAdsInfo> ClientWebsiteAdsInfoes { get; set; }
         public virtual DbSet<ClientWebsiteBannerInfo> ClientWebsiteBannerInfoes { get; set; }
@@ -69,6 +71,86 @@ namespace UUWebstore.Models
                 new ObjectParameter("emailAddress", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_LoginUser_Result>("sp_LoginUser", passwordParameter, emailAddressParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> resetPassword_sp(Nullable<long> userId, string oldPassword, string newPassword)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(long));
+    
+            var oldPasswordParameter = oldPassword != null ?
+                new ObjectParameter("oldPassword", oldPassword) :
+                new ObjectParameter("oldPassword", typeof(string));
+    
+            var newPasswordParameter = newPassword != null ?
+                new ObjectParameter("newPassword", newPassword) :
+                new ObjectParameter("newPassword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("resetPassword_sp", userIdParameter, oldPasswordParameter, newPasswordParameter);
+        }
+    
+        public virtual ObjectResult<getFilteredUsers_Result> getFilteredUsers(Nullable<int> roleID, Nullable<bool> isDeleted, string userName, string fullName, Nullable<int> cityid, Nullable<int> stateid, Nullable<int> countryid, string zipcode)
+        {
+            var roleIDParameter = roleID.HasValue ?
+                new ObjectParameter("RoleID", roleID) :
+                new ObjectParameter("RoleID", typeof(int));
+    
+            var isDeletedParameter = isDeleted.HasValue ?
+                new ObjectParameter("isDeleted", isDeleted) :
+                new ObjectParameter("isDeleted", typeof(bool));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("userName", userName) :
+                new ObjectParameter("userName", typeof(string));
+    
+            var fullNameParameter = fullName != null ?
+                new ObjectParameter("fullName", fullName) :
+                new ObjectParameter("fullName", typeof(string));
+    
+            var cityidParameter = cityid.HasValue ?
+                new ObjectParameter("cityid", cityid) :
+                new ObjectParameter("cityid", typeof(int));
+    
+            var stateidParameter = stateid.HasValue ?
+                new ObjectParameter("stateid", stateid) :
+                new ObjectParameter("stateid", typeof(int));
+    
+            var countryidParameter = countryid.HasValue ?
+                new ObjectParameter("countryid", countryid) :
+                new ObjectParameter("countryid", typeof(int));
+    
+            var zipcodeParameter = zipcode != null ?
+                new ObjectParameter("zipcode", zipcode) :
+                new ObjectParameter("zipcode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getFilteredUsers_Result>("getFilteredUsers", roleIDParameter, isDeletedParameter, userNameParameter, fullNameParameter, cityidParameter, stateidParameter, countryidParameter, zipcodeParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> applyTheme_sp(Nullable<int> themeId, Nullable<long> modifyBy)
+        {
+            var themeIdParameter = themeId.HasValue ?
+                new ObjectParameter("themeId", themeId) :
+                new ObjectParameter("themeId", typeof(int));
+    
+            var modifyByParameter = modifyBy.HasValue ?
+                new ObjectParameter("modifyBy", modifyBy) :
+                new ObjectParameter("modifyBy", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("applyTheme_sp", themeIdParameter, modifyByParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> updateLogo_sp(Nullable<int> logoUrl, Nullable<long> modifyBy)
+        {
+            var logoUrlParameter = logoUrl.HasValue ?
+                new ObjectParameter("logoUrl", logoUrl) :
+                new ObjectParameter("logoUrl", typeof(int));
+    
+            var modifyByParameter = modifyBy.HasValue ?
+                new ObjectParameter("modifyBy", modifyBy) :
+                new ObjectParameter("modifyBy", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("updateLogo_sp", logoUrlParameter, modifyByParameter);
         }
     }
 }

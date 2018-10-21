@@ -24,7 +24,7 @@ namespace UUWebstore.Models
         public string website { get; set; }
         public string address { get; set; }
         public string location { get; set; }
-        public string city { get; set; }
+        public int cityId { get; set; }
         public int stateId { get; set; }
         public int countryId { get; set; }
         public string zipcode { get; set; }
@@ -36,9 +36,10 @@ namespace UUWebstore.Models
         public System.DateTime modifiedDate { get; set; }
         public bool isActive { get; set; }
         public bool isDelete { get; set; }
-        public Nullable<bool> isBlocked { get; set; }
+        public bool isBlocked { get; set; }
         public Nullable<System.DateTime> lastLogin { get; set; }
         public Nullable<System.DateTime> LastbadAttempt { get; set; }
         public Nullable<int> fakeAttemptCount { get; set; }
+        public string supplier_PPAI_ASI { get; set; }
     }
 }

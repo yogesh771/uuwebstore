@@ -17,7 +17,7 @@ namespace UUWebstore.Models
         public int ClientWebsiteInformationid { get; set; }
         public long userId { get; set; }
         public int themeId { get; set; }
-        public int fontFamilyId { get; set; }
+        public Nullable<int> fontFamilyId { get; set; }
         public string logoName { get; set; }
         public string logoWebAddress { get; set; }
         public string FaviconName { get; set; }
@@ -27,8 +27,14 @@ namespace UUWebstore.Models
         public string homePageContent { get; set; }
         public string contactUsPageContent { get; set; }
         public string aboutUsPageContent { get; set; }
-        public long visits { get; set; }
-        public long clicks { get; set; }
-        public long search { get; set; }
+        public Nullable<long> visits { get; set; }
+        public Nullable<long> clicks { get; set; }
+        public Nullable<long> search { get; set; }
+        public long createdBy { get; set; }
+        public System.DateTime createdDate { get; set; }
+        public long modifiedBy { get; set; }
+        public System.DateTime modifiedDate { get; set; }
+        public bool isActive { get; set; }
+        public bool isDelete { get; set; }
     }
 }
