@@ -1,9 +1,5 @@
 ﻿@model UUWebstore.Models.user
 
-@{
-    ViewBag.Title = "Add_user";
-    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
-}
 
 @using (Html.BeginForm("Add_user","users")) 
 {
@@ -137,3 +133,15 @@
 <div>
     @Html.ActionLink("Back to List", "searchUser","users")
 </div>
+<script>
+
+    $(document).ready(function () {
+        debugger
+        if ('@TempData["result"] ' != null && '@TempData["result"] ' != '') {
+                bootbox.alert({
+                    title: "Alert !",
+                    message: '<p>' + TempData["result"] + '</p>',
+                });
+        }
+    });
+</script>

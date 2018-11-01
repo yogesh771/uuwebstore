@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using UUWebstore.Models.IRepositories;
 using UUWebstore.Models;
+using System.IO;
 
 namespace UUWebstore.Models.Repositories
 {
@@ -36,7 +37,13 @@ namespace UUWebstore.Models.Repositories
             var result = uow.sp_LoginUser_Result_.SQLQuery<int>("resetPassword_sp @userId,@oldPassword,@newPassword", userID, old_password, new_password).FirstOrDefault();
             return result;
         }
-
+        public int resetPasswordFromForget(forgotPassword forgotPassword)
+        {
+            var userID = new SqlParameter("@userID", forgotPassword.userID);
+            var new_password = new SqlParameter("@newPassword", forgotPassword.Password);
+            var result = uow.sp_LoginUser_Result_.SQLQuery<int>("resetPasswordfromForget_sp @userId,@newPassword", userID, new_password).FirstOrDefault();
+            return result;
+        }
         public bool create_update_userINformations_sp(user objUser)
         {
             var result = false;
@@ -105,7 +112,7 @@ namespace UUWebstore.Models.Repositories
             var zipCode = new SqlParameter("@zipcode", search.zipcode == "" ? SqlString.Null : search.zipcode);
 
             var cityid = new SqlParameter("@cityid", SqlString.Null);
-            if (search.cityId != 0)
+            if (search.cityId != 0 && search.cityId!=null)
             cityid =    new SqlParameter("@cityid",  search.cityId);
 
             var stateid = new SqlParameter("@stateid", SqlString.Null);
@@ -124,6 +131,21 @@ namespace UUWebstore.Models.Repositories
         public user getUserById(Int64 userId)
         {
             return uow.user_.Find(u => u.userId == userId).FirstOrDefault();
+        }
+        public string getUserByEmailAddress(string emailId)
+        {
+            string result = "no";
+            var user = uow.user_.Find(u => u.emailAddress == emailId).FirstOrDefault();
+            if (user != null)
+            {
+                StreamReader sr = new StreamReader(System.Web.Hosting.HostingEnvironment.MapPath("~/Emailer/ForgotPassword.html"));
+                string HTML_Body = sr.ReadToEnd();
+                string final_Html_Body = HTML_Body.Replace("#name", user.fullName).Replace("#userID", user.userId.ToString());
+                sr.Close();
+                string To = user.emailAddress;
+                result = BaseUtil.sendEmailer(user.emailAddress, "Reset your password, UU WebStore.", final_Html_Body);
+            }
+            return result;
         }
     }
 }

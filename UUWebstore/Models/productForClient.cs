@@ -35,7 +35,6 @@ namespace UUWebstore.Models
         public string PoductionHtml { get; set; }
         public string safetyAndCompliance { get; set; }
         public string unit { get; set; }
-        public Nullable<long> userId { get; set; }
         public Nullable<bool> isShowPrice { get; set; }
         public long createdBy { get; set; }
         public System.DateTime createdDate { get; set; }
@@ -43,5 +42,7 @@ namespace UUWebstore.Models
         public System.DateTime modifiedDate { get; set; }
         public bool isActive { get; set; }
         public bool isDelete { get; set; }
+        public int productSubCategoryId { get; set; }
+        public bool isFeaturedProduct { get; set; }
     }
 }

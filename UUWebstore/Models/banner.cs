@@ -14,9 +14,9 @@ namespace UUWebstore.Models
     
     public partial class banner
     {
-        public Nullable<int> bannerId { get; set; }
+        public int bannerId { get; set; }
         public string name { get; set; }
-        public string bannerHtml { get; set; }
+        public string bannerImgURL { get; set; }
         public long userId { get; set; }
         public long createdBy { get; set; }
         public System.DateTime createdDate { get; set; }
@@ -24,5 +24,6 @@ namespace UUWebstore.Models
         public System.DateTime modifiedDate { get; set; }
         public bool isActive { get; set; }
         public bool isDelete { get; set; }
+        public Nullable<int> srNumber { get; set; }
     }
 }

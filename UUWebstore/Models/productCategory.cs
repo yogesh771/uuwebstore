@@ -16,7 +16,6 @@ namespace UUWebstore.Models
     {
         public int productCategoryId { get; set; }
         public string name { get; set; }
-        public Nullable<int> parentCategoryid { get; set; }
         public long createdBy { get; set; }
         public System.DateTime createdDate { get; set; }
         public long modifiedBy { get; set; }

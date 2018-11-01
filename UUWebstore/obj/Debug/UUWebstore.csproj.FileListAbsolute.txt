@@ -162,3 +162,6 @@ D:\Project\uuWebStoreNew\UUWebstore\bin\Microsoft.Owin.Security.MicrosoftAccount
 D:\Project\uuWebStoreNew\UUWebstore\obj\Debug\UUWebstore.csprojResolveAssemblyReference.cache
 D:\Project\uuWebStoreNew\UUWebstore\obj\Debug\UUWebstore.dll
 D:\Project\uuWebStoreNew\UUWebstore\obj\Debug\UUWebstore.pdb
+D:\Project\uuWebStoreNew\UUWebstore\bin\SendGrid.dll
+D:\Project\uuWebStoreNew\UUWebstore\bin\SendGrid.pdb
+D:\Project\uuWebStoreNew\UUWebstore\bin\SendGrid.xml

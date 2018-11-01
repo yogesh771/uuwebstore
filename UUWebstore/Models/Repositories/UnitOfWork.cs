@@ -111,6 +111,66 @@ namespace UUWebstore.Models.Repositories
                 return _clientWebInformation;
             }
         }
+        private Repositories<banner> _banner { get; set; }
+        public Repositories<banner> banner_
+        {
+            get
+            {
+                if (this._banner == null)
+                    this._banner = new Repositories<banner>(db);
+                return _banner;
+            }
+        }
+        private Repositories<productCategory> _productCategory { get; set; }
+        public Repositories<productCategory> productCategory_
+        {
+            get
+            {
+                if (this._productCategory == null)
+                    this._productCategory = new Repositories<productCategory>(db);
+                return _productCategory;
+            }
+        }
+        private Repositories<productCategoryClient> _productCategoryClient { get; set; }
+        public Repositories<productCategoryClient> productCategoryClient_
+        {
+            get
+            {
+                if (this._productCategoryClient == null)
+                    this._productCategoryClient = new Repositories<productCategoryClient>(db);
+                return _productCategoryClient;
+            }
+        }
+        private Repositories<productSubCategory> _productSubCategory { get; set; }
+        public Repositories<productSubCategory> ProductSubCategory
+        {
+            get
+            {
+                if (this._productSubCategory == null)
+                    this._productSubCategory = new Repositories<productSubCategory>(db);
+                return _productSubCategory;
+            }
+        }
+        private Repositories<productsCRA> _productsCRA { get; set; }
+        public Repositories<productsCRA> ProductsCRA_
+        {
+            get
+            {
+                if (this._productsCRA == null)
+                    this._productsCRA = new Repositories<productsCRA>(db);
+                return _productsCRA;
+            }
+        }
+        private Repositories<ContactU> _ContactU { get; set; }
+        public Repositories<ContactU> ContactU_
+        {
+            get
+            {
+                if (this._ContactU == null)
+                    this._ContactU = new Repositories<ContactU>(db);
+                return _ContactU;
+            }
+        }
         public void Dispose()
         {
            // _context.Dispose();

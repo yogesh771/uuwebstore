@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
-using UUWebstore.Models;
 using UUWebstore.Models.Repositories;
 
 namespace UUWebstore.Models.BaseClass
@@ -20,7 +17,7 @@ namespace UUWebstore.Models.BaseClass
 
             if (BaseUtil.ListControllerExcluded().Contains(ControllerName))
             {
-                if (ControllerName == "ACCOUNT" || ControllerName == "HOME" || (ControllerName == "marketings" && ActionName == "INDEX") )
+                if (ControllerName == "ACCOUNT" || ControllerName == "HOME" || ControllerName== "CONTACTUS" || (ControllerName == "marketings" && ActionName == "INDEX") )
                 {
                     return;
                 }
@@ -64,6 +61,14 @@ namespace UUWebstore.Models.BaseClass
             AppErrorLog.datelog = BaseUtil.GetCurrentDateTime();
             uow.AppErrorLog_.Add(AppErrorLog);
            
+        }
+        public string UploadFile(HttpPostedFileBase file, string path)
+        {
+            String fileName = "";
+            fileName = Guid.NewGuid() + "_" + Path.GetFileName(file.FileName);
+            var savedToPath = Path.Combine(Server.MapPath("~" + path), fileName);
+            file.SaveAs(savedToPath);
+            return path +"/"+ fileName;
         }
     }
   

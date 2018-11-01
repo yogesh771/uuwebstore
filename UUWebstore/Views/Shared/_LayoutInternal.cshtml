@@ -24,13 +24,17 @@
     <link href="~/content/theme/vendor/morrisjs/morris.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="~/content/theme/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <script src="~/content/theme/vendor/jquery/jquery.min.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <link href="~/Content/slimtable.css" rel="stylesheet" />
-    <script src="~/Scripts/slimtable.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/bootbox.min.js"></script>
+
+
+
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/slimtable.js"></script>
+
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <!-- Metis Menu Plugin JavaScript -->
@@ -41,6 +45,7 @@
     <script src="~/content/theme/data/morris-data.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="~/content/theme/dist/js/sb-admin-2.js"></script>
+
 </head>
 <body>
     <div id="wrapper">
@@ -274,16 +279,32 @@
                         <li>
                             <a href='@Url.Action("Index","account")'>Dashboard</a>
                         </li>
-                    
-                            <li>
-                                <a href='@Url.Action("searchUser","users")'> Web Clients</a>
-                            </li>                            
-                    
+
+                        <li>
+                            <a href='@Url.Action("searchUser","users")'> Web Clients</a>
+                        </li>
+                        <li>
+                            <a href='@Url.Action("Contacts","ContactUs")'> Contacts</a>
+                        </li>
+
+                        <li>
+                            <a href='@Url.Action("Index","Products")'> Products</a>
+                        </li>
+                        <li>
+                            <a href='@Url.Action("theme","Index")'>Themes</a>
+                        </li>
+                        <li>
+                            <a href='@Url.Action("availablebanners","websetting")'> Banners</a>
+                        </li>
+                      
+                         <li>
+                            <a href='@Url.Action("AllProductCategories","websetting")'> Product Categories</a>
+                        </li>
+                                               
                         <li>
                             <a href='@Url.Action("reset_password","account")'> Reset Password</a>
                         </li>
-                  
-                      
+
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -432,6 +453,38 @@
                     $("#cityId").append($('<option></option>').val('').html(' City'));
                     $.each($.parseJSON(result), function (i, VSC) {
                         $("#cityId").append($('<option></option>').val(VSC.cityId).html(VSC.CityName))
+                    })
+
+                },
+                error: function () {
+
+                    bootbox.alert({
+                        title: "Alert !",
+                        message: '<p>Whooaaa! Something went wrong..</p>',
+                        timeOut: 2000
+
+                    });
+                },
+            });
+        }
+    }
+</script>
+<script>
+    function fillSubCategories()
+    {
+        var productCategoryId = $("#productCategoryId").val();
+        if (productCategoryId != "") {
+            debugger
+            $.ajax({
+                url: '/Products/fillProductSubcategories',
+                type: 'GET',
+                data: { 'productCategoryId': productCategoryId },
+                success: function (result) {
+
+                    $("#productSubCategoryId").html("");
+                    $("#productSubCategoryId").append($('<option></option>').val('').html('Product Subcategories'));
+                    $.each($.parseJSON(result), function (i, VSC) {
+                        $("#productSubCategoryId").append($('<option></option>').val(VSC.productSubCategoryId).html(VSC.name))
                     })
 
                 },

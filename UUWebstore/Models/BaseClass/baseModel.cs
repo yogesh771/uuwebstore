@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Net;
-using System.Net.Mail;
 using System.Text;
 using System.Web.Mvc;
 using System.Globalization;
 using System.Reflection;
 using System.Web.Routing;
-using System.Data.Entity;
 using System.Security.Cryptography;
 using System.IO;
-using System.Diagnostics;
-using UUWebstore.Models.Repositories;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace UUWebstore.Models
 {
@@ -266,7 +263,7 @@ namespace UUWebstore.Models
         }
         public static List<string> ListControllerExcluded()
         {
-            List<string> list = new List<string>() { "JSON", "HOME","ACCOUNT", "users" };
+            List<string> list = new List<string>() { "JSON", "HOME","ACCOUNT", "users", "CONTACTUS" };
             return list;
         }
      
@@ -409,50 +406,27 @@ namespace UUWebstore.Models
         
         // Central Method for sending emails using send grid 
 
-        public static string sendEmailer(string ToEmail, string Mail_Subject, string HTML_Body, string attachment)
+       
+        public static string sendEmailer(string ToEmail, string Mail_Subject, string HTML_Body)
         {
             string result = "no";
-            //var apiKey = db.sendGridDetails.Select(e => new { e.APIKEY }).FirstOrDefault();
-            //var client = new SendGridClient(apiKey.APIKEY);
-            //var from = new EmailAddress("info@mulberryindia.com", "Mulberry India");
-            //var to = new EmailAddress(ToEmail);
-            //var plainTextContent = "";
-            //var msg = MailHelper.CreateSingleEmail(from, to, Mail_Subject, plainTextContent, HTML_Body);
-            try {
-                var response = "";
-                result= "ok";
+            var apiKey = db.sendGridDetails.Select(e => new { e.APIKEY }).FirstOrDefault();
+            var client = new SendGridClient(apiKey.APIKEY);
+            var from = new EmailAddress("yogeshwar@qendidate.com", "UU WebStore");
+            var to = new EmailAddress(ToEmail);
+            var plainTextContent = "";
+            var msg = MailHelper.CreateSingleEmail(from, to, Mail_Subject, plainTextContent, HTML_Body);
+            try
+            {
+                var response = client.SendEmailAsync(msg);
+                result = "ok";
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 result = "no";
             }
             HTML_Body = null;
             return result;
-        }
-
-        public static string sendSMS(string msg,string mobile)
-        {
-            string senderid = "Electo";
-            string type = "Trans";
-            //For localhost during debugging code
-            string trackkey = "lkFUql84t4BPcenGVwQOIEixnR47p8";
-
-            //for server
-            //string trackkey = "eZlzNvDWlyB7hejRJV9hoeY8YBNe6i";
-            WebRequest request = WebRequest.Create("http://panel.cloudshope.com/index.php/front/Api_1?trackkey=" + trackkey + "&service=SMS&message=" + msg + "&to=" + mobile + "&route=5&senderid=" + senderid + "&type=" + type + "&unicode=" + 0);
-            request.Method = "POST";
-            //request.ContentType = "text/xml";
-            request.ContentType = "text/xml;charset=UTF-8";
-            //request.ContentType = "application/x-www-form-urlencoded";
-            WebResponse response = request.GetResponse();
-            if (((HttpWebResponse)response).StatusDescription.Equals("OK"))
-            {
-                return "ok";
-            }
-            else
-            {
-                return "not sent";
-            }
         }
 
         // Central Method for string encryption
@@ -504,10 +478,8 @@ namespace UUWebstore.Models
                 }
             }
             return cipherText;
-        }
-
-       
-    }
+        }     
+  }
 
  
     public class BaseValidation

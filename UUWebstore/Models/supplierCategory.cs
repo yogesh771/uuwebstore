@@ -16,12 +16,12 @@ namespace UUWebstore.Models
     {
         public long supplierCategoryId { get; set; }
         public Nullable<long> userId { get; set; }
+        public int supplierCategoryOptId { get; set; }
         public Nullable<bool> isActive { get; set; }
         public long createdBy { get; set; }
         public System.DateTime createdDate { get; set; }
         public long modifiedBy { get; set; }
         public System.DateTime modifiedDate { get; set; }
-        public bool isActive1 { get; set; }
         public bool isDelete { get; set; }
     }
 }

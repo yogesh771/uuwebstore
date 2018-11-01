@@ -45,23 +45,13 @@
           <Property Name="innerException" Type="varchar(max)" />
           <Property Name="stackTrace" Type="varchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="banner">
           <Key>
-            <PropertyRef Name="name" />
-            <PropertyRef Name="bannerHtml" />
-            <PropertyRef Name="userId" />
-            <PropertyRef Name="createdBy" />
-            <PropertyRef Name="createdDate" />
-            <PropertyRef Name="modifiedBy" />
-            <PropertyRef Name="modifiedDate" />
-            <PropertyRef Name="isActive" />
-            <PropertyRef Name="isDelete" />
+            <PropertyRef Name="bannerId" />
           </Key>
-          <Property Name="bannerId" Type="int" />
+          <Property Name="bannerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="bannerHtml" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="bannerImgURL" Type="nvarchar(max)" Nullable="false" />
           <Property Name="userId" Type="bigint" Nullable="false" />
           <Property Name="createdBy" Type="bigint" Nullable="false" />
           <Property Name="createdDate" Type="datetime" Nullable="false" />
@@ -69,6 +59,7 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
           <Property Name="modifiedDate" Type="datetime" Nullable="false" />
           <Property Name="isActive" Type="bit" Nullable="false" />
           <Property Name="isDelete" Type="bit" Nullable="false" />
+          <Property Name="srNumber" Type="int" />
         </EntityType>
         <EntityType Name="brandClient">
           <Key>
@@ -105,6 +96,15 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
           <Property Name="cityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CityName" Type="varchar" MaxLength="500" />
           <Property Name="stateId" Type="int" />
+        </EntityType>
+        <EntityType Name="ClientFeaturedReferrence">
+          <Key>
+            <PropertyRef Name="ClientFeaturedReferrenceId" />
+          </Key>
+          <Property Name="ClientFeaturedReferrenceId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+          <Property Name="categoryType" Type="int" Nullable="false" />
+          <Property Name="featuredReferrenceValue" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="clientWebInformation">
           <Key>
@@ -161,6 +161,22 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
           <Property Name="isActive" Type="bit" Nullable="false" />
           <Property Name="isDelete" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="ContactUs">
+          <Key>
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Name="ContactID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactPerson" Type="nvarchar" MaxLength="500" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="50" />
+          <Property Name="ContactEmail" Type="varchar" MaxLength="500" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="500" />
+          <Property Name="Title" Type="varchar" MaxLength="500" />
+          <Property Name="CompanyUrl" Type="varchar" MaxLength="500" />
+          <Property Name="isRead" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="country">
           <Key>
             <PropertyRef Name="countryId" />
@@ -186,6 +202,16 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
           <Property Name="title" Type="varchar" MaxLength="500" />
           <Property Name="userId" Type="bigint" />
           <Property Name="isNew" Type="bit" />
+        </EntityType>
+        <EntityType Name="featuredCategoryReferrence">
+          <Key>
+            <PropertyRef Name="featuredCategoryReferrenceId" />
+          </Key>
+          <Property Name="featuredCategoryReferrenceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="categoryCode" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="categoryType" Type="int" Nullable="false" />
+          <Property Name="cateoryDDlValue" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="fontFamily">
           <Key>
@@ -221,7 +247,6 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
           </Key>
           <Property Name="productCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="parentCategoryid" Type="int" />
           <Property Name="createdBy" Type="bigint" Nullable="false" />
           <Property Name="createdDate" Type="datetime" Nullable="false" />
           <Property Name="modifiedBy" Type="bigint" Nullable="false" />
@@ -235,7 +260,6 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
           </Key>
           <Property Name="proCategoryClientId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="proCategoryId" Type="int" />
-          <Property Name="userId" Type="bigint" />
           <Property Name="isFeaturedCategory" Type="bit" />
           <Property Name="createdBy" Type="bigint" Nullable="false" />
           <Property Name="createdDate" Type="datetime" Nullable="false" />
@@ -283,7 +307,6 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
           <Property Name="PoductionHtml" Type="nvarchar(max)" />
           <Property Name="safetyAndCompliance" Type="nvarchar(max)" />
           <Property Name="unit" Type="varchar" MaxLength="500" />
-          <Property Name="userId" Type="bigint" />
           <Property Name="isShowPrice" Type="bit" />
           <Property Name="createdBy" Type="bigint" Nullable="false" />
           <Property Name="createdDate" Type="datetime" Nullable="false" />
@@ -291,6 +314,8 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
           <Property Name="modifiedDate" Type="datetime" Nullable="false" />
           <Property Name="isActive" Type="bit" Nullable="false" />
           <Property Name="isDelete" Type="bit" Nullable="false" />
+          <Property Name="productSubCategoryId" Type="int" Nullable="false" />
+          <Property Name="isFeaturedProduct" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="productImages">
           <Key>
@@ -344,18 +369,35 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
           <Property Name="imprintInformationHtml" Type="nvarchar(max)" />
           <Property Name="productionHtml" Type="nvarchar(max)" />
           <Property Name="specificationsHtml" Type="nvarchar(max)" />
-          <Property Name="cntentsHtml" Type="nvarchar(max)" />
-          <Property Name="shippingHtml" Type="nvarchar(max)" />
+          <Property Name="ContentsHtml" Type="nvarchar(max)" />
+          <Property Name="ShippingHtml" Type="nvarchar(max)" />
           <Property Name="pricingHtml" Type="nvarchar(max)" />
-          <Property Name="poductionHtml" Type="nvarchar(max)" />
+          <Property Name="PoductionHtml" Type="nvarchar(max)" />
           <Property Name="safetyAndCompliance" Type="nvarchar(max)" />
           <Property Name="unit" Type="varchar" MaxLength="500" />
+          <Property Name="isShowPrice" Type="bit" />
           <Property Name="createdBy" Type="bigint" Nullable="false" />
           <Property Name="createdDate" Type="datetime" Nullable="false" />
           <Property Name="modifiedBy" Type="bigint" Nullable="false" />
           <Property Name="modifiedDate" Type="datetime" Nullable="false" />
           <Property Name="isActive" Type="bit" Nullable="false" />
           <Property Name="isDelete" Type="bit" Nullable="false" />
+          <Property Name="productSubCategoryId" Type="int" Nullable="false" />
+          <Property Name="isFeaturedProduct" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productSubCategory">
+          <Key>
+            <PropertyRef Name="productSubCategoryId" />
+          </Key>
+          <Property Name="productSubCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="createdBy" Type="bigint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+          <Property Name="productCategoryId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="productVedio">
           <Key>
@@ -385,15 +427,11 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
           <Property Name="isActive" Type="bit" Nullable="false" />
           <Property Name="isDelete" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="sendGridDetails">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="projectname" />
-            <PropertyRef Name="APIKEY" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="projectname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="APIKEY" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
@@ -417,12 +455,12 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           </Key>
           <Property Name="supplierCategoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="userId" Type="bigint" />
+          <Property Name="supplierCategoryOptId" Type="int" Nullable="false" />
           <Property Name="isActive" Type="bit" />
           <Property Name="createdBy" Type="bigint" Nullable="false" />
           <Property Name="createdDate" Type="datetime" Nullable="false" />
           <Property Name="modifiedBy" Type="bigint" Nullable="false" />
           <Property Name="modifiedDate" Type="datetime" Nullable="false" />
-          <Property Name="isActive1" Type="bit" Nullable="false" />
           <Property Name="isDelete" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="supplierCategoryOptions">
@@ -536,6 +574,26 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           <Parameter Name="themeId" Type="int" Mode="In" />
           <Parameter Name="modifyBy" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="bannersCreaTedBy_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_filterSuppliers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="supplierName" Type="varchar" Mode="In" />
+          <Parameter Name="cityId" Type="int" Mode="In" />
+          <Parameter Name="stateId" Type="int" Mode="In" />
+          <Parameter Name="countryId" Type="int" Mode="In" />
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getAllbannersCreatedBy_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="bigint" Mode="In" />
+          <Parameter Name="ddl_filter_AutoAll" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getAllProductCategories_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="bigint" Mode="In" />
+          <Parameter Name="featuredOption" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getAllProductClient_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="bigint" Mode="In" />
+          <Parameter Name="isFeatured" Type="int" Mode="In" />
+        </Function>
         <Function Name="getFilteredUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RoleID" Type="int" Mode="In" />
           <Parameter Name="isDeleted" Type="bit" Mode="In" />
@@ -546,31 +604,62 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           <Parameter Name="countryid" Type="int" Mode="In" />
           <Parameter Name="zipcode" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="getProductList_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productOptions_All_featured" Type="int" Mode="In" />
+          <Parameter Name="productCategoryId" Type="int" Mode="In" />
+          <Parameter Name="productSubCategoryId" Type="int" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
         <Function Name="resetPassword_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userId" Type="bigint" Mode="In" />
           <Parameter Name="oldPassword" Type="varchar" Mode="In" />
           <Parameter Name="newPassword" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="resetPasswordfromForget_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="bigint" Mode="In" />
+          <Parameter Name="newPassword" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="selectBanners_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SelectProductCategories_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="createdBy" Type="bigint" Mode="In" />
+          <Parameter Name="productCategoryId" Type="int" Mode="In" />
+          <Parameter Name="chk" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SelectSupplier_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="createdBy" Type="bigint" Mode="In" />
+          <Parameter Name="supplierId_UserID" Type="bigint" Mode="In" />
+          <Parameter Name="chk" Type="bit" Mode="In" />
+        </Function>
         <Function Name="sp_LoginUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="password" Type="nvarchar" Mode="In" />
           <Parameter Name="emailAddress" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="updateFavicon_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="faviconUrl" Type="varchar" Mode="In" />
+          <Parameter Name="modifyBy" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="updateLogo_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="logoUrl" Type="int" Mode="In" />
+          <Parameter Name="logoUrl" Type="varchar" Mode="In" />
           <Parameter Name="modifyBy" Type="bigint" Mode="In" />
         </Function>
         <EntityContainer Name="sbv_uuwebstoreModelStoreContainer">
           <EntitySet Name="ads" EntityType="Self.ads" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="adsSize" EntityType="Self.adsSize" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AppErrorLog" EntityType="Self.AppErrorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="banner" EntityType="Self.banner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="brandClient" EntityType="Self.brandClient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="brands" EntityType="Self.brands" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="city" EntityType="Self.city" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientFeaturedReferrence" EntityType="Self.ClientFeaturedReferrence" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="clientWebInformation" EntityType="Self.clientWebInformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientWebsiteAdsInfo" EntityType="Self.ClientWebsiteAdsInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientWebsiteBannerInfo" EntityType="Self.ClientWebsiteBannerInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactUs" EntityType="Self.ContactUs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="enquiry" EntityType="Self.enquiry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="featuredCategoryReferrence" EntityType="Self.featuredCategoryReferrence" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fontFamily" EntityType="Self.fontFamily" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="productAvailableSize" EntityType="Self.productAvailableSize" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="productCategory" EntityType="Self.productCategory" Schema="dbo" store:Type="Tables" />
@@ -580,8 +669,10 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           <EntitySet Name="productImages" EntityType="Self.productImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="productsCRA" EntityType="Self.productsCRA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productSubCategory" EntityType="Self.productSubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="productVedio" EntityType="Self.productVedio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="roleUser" EntityType="Self.roleUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sendGridDetails" EntityType="Self.sendGridDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="states" EntityType="Self.states" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="supplierCategory" EntityType="Self.supplierCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="supplierCategoryOptions" EntityType="Self.supplierCategoryOptions" Schema="dbo" store:Type="Tables" />
@@ -590,27 +681,6 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           <EntitySet Name="userRights" EntityType="Self.userRights" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebClientSuppliers" EntityType="Self.WebClientSuppliers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="banner" EntityType="Self.banner" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [banner].[bannerId] AS [bannerId], 
-    [banner].[name] AS [name], 
-    [banner].[bannerHtml] AS [bannerHtml], 
-    [banner].[userId] AS [userId], 
-    [banner].[createdBy] AS [createdBy], 
-    [banner].[createdDate] AS [createdDate], 
-    [banner].[modifiedBy] AS [modifiedBy], 
-    [banner].[modifiedDate] AS [modifiedDate], 
-    [banner].[isActive] AS [isActive], 
-    [banner].[isDelete] AS [isDelete]
-    FROM [dbo].[banner] AS [banner]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="sendGridDetails" EntityType="Self.sendGridDetails" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [sendGridDetails].[ID] AS [ID], 
-    [sendGridDetails].[projectname] AS [projectname], 
-    [sendGridDetails].[APIKEY] AS [APIKEY]
-    FROM [dbo].[sendGridDetails] AS [sendGridDetails]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -626,38 +696,6 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
             <Parameter Name="oldPassword" Mode="In" Type="String" />
             <Parameter Name="newPassword" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="ads" EntityType="sbv_uuwebstoreModel.ad" />
-          <EntitySet Name="adsSizes" EntityType="sbv_uuwebstoreModel.adsSize" />
-          <EntitySet Name="AppErrorLogs" EntityType="sbv_uuwebstoreModel.AppErrorLog" />
-          <EntitySet Name="brandClients" EntityType="sbv_uuwebstoreModel.brandClient" />
-          <EntitySet Name="brands" EntityType="sbv_uuwebstoreModel.brand" />
-          <EntitySet Name="cities" EntityType="sbv_uuwebstoreModel.city" />
-          <EntitySet Name="clientWebInformations" EntityType="sbv_uuwebstoreModel.clientWebInformation" />
-          <EntitySet Name="ClientWebsiteAdsInfoes" EntityType="sbv_uuwebstoreModel.ClientWebsiteAdsInfo" />
-          <EntitySet Name="ClientWebsiteBannerInfoes" EntityType="sbv_uuwebstoreModel.ClientWebsiteBannerInfo" />
-          <EntitySet Name="countries" EntityType="sbv_uuwebstoreModel.country" />
-          <EntitySet Name="enquiries" EntityType="sbv_uuwebstoreModel.enquiry" />
-          <EntitySet Name="fontFamilies" EntityType="sbv_uuwebstoreModel.fontFamily" />
-          <EntitySet Name="productAvailableSizes" EntityType="sbv_uuwebstoreModel.productAvailableSize" />
-          <EntitySet Name="productCategories" EntityType="sbv_uuwebstoreModel.productCategory" />
-          <EntitySet Name="productCategoryClients" EntityType="sbv_uuwebstoreModel.productCategoryClient" />
-          <EntitySet Name="productColors" EntityType="sbv_uuwebstoreModel.productColor" />
-          <EntitySet Name="productForClients" EntityType="sbv_uuwebstoreModel.productForClient" />
-          <EntitySet Name="productImages" EntityType="sbv_uuwebstoreModel.productImage" />
-          <EntitySet Name="ProductPrices" EntityType="sbv_uuwebstoreModel.ProductPrice" />
-          <EntitySet Name="productsCRAs" EntityType="sbv_uuwebstoreModel.productsCRA" />
-          <EntitySet Name="productVedios" EntityType="sbv_uuwebstoreModel.productVedio" />
-          <EntitySet Name="roleUsers" EntityType="sbv_uuwebstoreModel.roleUser" />
-          <EntitySet Name="states" EntityType="sbv_uuwebstoreModel.state" />
-          <EntitySet Name="supplierCategories" EntityType="sbv_uuwebstoreModel.supplierCategory" />
-          <EntitySet Name="supplierCategoryOptions" EntityType="sbv_uuwebstoreModel.supplierCategoryOption" />
-          <EntitySet Name="themes" EntityType="sbv_uuwebstoreModel.theme" />
-          <EntitySet Name="TodayOffers" EntityType="sbv_uuwebstoreModel.TodayOffer" />
-          <EntitySet Name="userRights" EntityType="sbv_uuwebstoreModel.userRight" />
-          <EntitySet Name="users" EntityType="sbv_uuwebstoreModel.user" />
-          <EntitySet Name="WebClientSuppliers" EntityType="sbv_uuwebstoreModel.WebClientSupplier" />
-          <EntitySet Name="banners" EntityType="sbv_uuwebstoreModel.banner" />
-          <EntitySet Name="sendGridDetails" EntityType="sbv_uuwebstoreModel.sendGridDetail" />
           <FunctionImport Name="getFilteredUsers" ReturnType="Collection(sbv_uuwebstoreModel.getFilteredUsers_Result)">
             <Parameter Name="RoleID" Mode="In" Type="Int32" />
             <Parameter Name="isDeleted" Mode="In" Type="Boolean" />
@@ -673,15 +711,193 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
             <Parameter Name="modifyBy" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="updateLogo_sp" ReturnType="Collection(Int32)">
-            <Parameter Name="logoUrl" Mode="In" Type="Int32" />
+            <Parameter Name="logoUrl" Mode="In" Type="String" />
             <Parameter Name="modifyBy" Mode="In" Type="Int64" />
           </FunctionImport>
-        </EntityContainer>
+          <FunctionImport Name="resetPasswordfromForget_sp" ReturnType="Collection(Int32)">
+            <Parameter Name="userId" Mode="In" Type="Int64" />
+            <Parameter Name="newPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="updateFavicon_sp" ReturnType="Collection(Int32)">
+            <Parameter Name="faviconUrl" Mode="In" Type="String" />
+            <Parameter Name="modifyBy" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="bannersCreaTedBy_sp" ReturnType="Collection(sbv_uuwebstoreModel.bannersCreaTedBy_sp_Result)" />
+          <FunctionImport Name="getAllbannersCreatedBy_sp" ReturnType="Collection(sbv_uuwebstoreModel.getAllbannersCreatedBy_sp_Result)">
+            <Parameter Name="userId" Mode="In" Type="Int64" />
+            <Parameter Name="ddl_filter_AutoAll" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="selectBanners_sp" ReturnType="Collection(Int32)">
+          <Parameter Name="userID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="getAllProductCategories_sp" ReturnType="Collection(sbv_uuwebstoreModel.getAllProductCategories_sp_Result)">
+            <Parameter Name="userid" Mode="In" Type="Int64" />
+            <Parameter Name="featuredOption" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="get_filterSuppliers" ReturnType="Collection(sbv_uuwebstoreModel.get_filterSuppliers_Result)">
+            <Parameter Name="supplierName" Mode="In" Type="String" />
+            <Parameter Name="cityId" Mode="In" Type="Int32" />
+            <Parameter Name="stateId" Mode="In" Type="Int32" />
+            <Parameter Name="countryId" Mode="In" Type="Int32" />
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getAllProductClient_sp" ReturnType="Collection(sbv_uuwebstoreModel.getAllProductClient_sp_Result)">
+            <Parameter Name="userId" Mode="In" Type="Int64" />
+            <Parameter Name="isFeatured" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getProductList_sp" ReturnType="Collection(sbv_uuwebstoreModel.getProductList_sp_Result)">
+            <Parameter Name="productOptions_All_featured" Mode="In" Type="Int32" />
+            <Parameter Name="productCategoryId" Mode="In" Type="Int32" />
+            <Parameter Name="productSubCategoryId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SelectProductCategories_sp" ReturnType="Collection(Int32)">
+            <Parameter Name="createdBy" Mode="In" Type="Int64" />
+            <Parameter Name="productCategoryId" Mode="In" Type="Int32" />
+            <Parameter Name="chk" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="SelectSupplier_sp" ReturnType="Collection(Int32)">
+            <Parameter Name="createdBy" Mode="In" Type="Int64" />
+            <Parameter Name="supplierId_UserID" Mode="In" Type="Int64" />
+            <Parameter Name="chk" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <EntitySet Name="ads" EntityType="sbv_uuwebstoreModel.ad" />
+          <EntitySet Name="adsSizes" EntityType="sbv_uuwebstoreModel.adsSize" />
+          <EntitySet Name="AppErrorLogs" EntityType="sbv_uuwebstoreModel.AppErrorLog" />
+          <EntitySet Name="banners" EntityType="sbv_uuwebstoreModel.banner" />
+          <EntitySet Name="brandClients" EntityType="sbv_uuwebstoreModel.brandClient" />
+          <EntitySet Name="brands" EntityType="sbv_uuwebstoreModel.brand" />
+          <EntitySet Name="cities" EntityType="sbv_uuwebstoreModel.city" />
+          <EntitySet Name="ClientFeaturedReferrences" EntityType="sbv_uuwebstoreModel.ClientFeaturedReferrence" />
+          <EntitySet Name="clientWebInformations" EntityType="sbv_uuwebstoreModel.clientWebInformation" />
+          <EntitySet Name="ClientWebsiteAdsInfoes" EntityType="sbv_uuwebstoreModel.ClientWebsiteAdsInfo" />
+          <EntitySet Name="ClientWebsiteBannerInfoes" EntityType="sbv_uuwebstoreModel.ClientWebsiteBannerInfo" />
+          <EntitySet Name="ContactUs" EntityType="sbv_uuwebstoreModel.ContactU" />
+          <EntitySet Name="countries" EntityType="sbv_uuwebstoreModel.country" />
+          <EntitySet Name="enquiries" EntityType="sbv_uuwebstoreModel.enquiry" />
+          <EntitySet Name="featuredCategoryReferrences" EntityType="sbv_uuwebstoreModel.featuredCategoryReferrence" />
+          <EntitySet Name="fontFamilies" EntityType="sbv_uuwebstoreModel.fontFamily" />
+          <EntitySet Name="productAvailableSizes" EntityType="sbv_uuwebstoreModel.productAvailableSize" />
+          <EntitySet Name="productCategories" EntityType="sbv_uuwebstoreModel.productCategory" />
+          <EntitySet Name="productCategoryClients" EntityType="sbv_uuwebstoreModel.productCategoryClient" />
+          <EntitySet Name="productColors" EntityType="sbv_uuwebstoreModel.productColor" />
+          <EntitySet Name="productForClients" EntityType="sbv_uuwebstoreModel.productForClient" />
+          <EntitySet Name="productImages" EntityType="sbv_uuwebstoreModel.productImage" />
+          <EntitySet Name="ProductPrices" EntityType="sbv_uuwebstoreModel.ProductPrice" />
+          <EntitySet Name="productsCRAs" EntityType="sbv_uuwebstoreModel.productsCRA" />
+          <EntitySet Name="productSubCategories" EntityType="sbv_uuwebstoreModel.productSubCategory" />
+          <EntitySet Name="productVedios" EntityType="sbv_uuwebstoreModel.productVedio" />
+          <EntitySet Name="roleUsers" EntityType="sbv_uuwebstoreModel.roleUser" />
+          <EntitySet Name="sendGridDetails" EntityType="sbv_uuwebstoreModel.sendGridDetail" />
+          <EntitySet Name="states" EntityType="sbv_uuwebstoreModel.state" />
+          <EntitySet Name="supplierCategories" EntityType="sbv_uuwebstoreModel.supplierCategory" />
+          <EntitySet Name="supplierCategoryOptions" EntityType="sbv_uuwebstoreModel.supplierCategoryOption" />
+          <EntitySet Name="themes" EntityType="sbv_uuwebstoreModel.theme" />
+          <EntitySet Name="TodayOffers" EntityType="sbv_uuwebstoreModel.TodayOffer" />
+          <EntitySet Name="userRights" EntityType="sbv_uuwebstoreModel.userRight" />
+          <EntitySet Name="users" EntityType="sbv_uuwebstoreModel.user" />
+          <EntitySet Name="WebClientSuppliers" EntityType="sbv_uuwebstoreModel.WebClientSupplier" />
+          </EntityContainer>
         <ComplexType Name="sp_LoginUser_Result">
           <Property Type="String" Name="userId" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="fullName" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="roleID" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="message" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="getFilteredUsers_Result">
+          <Property Type="Int64" Name="userId" Nullable="false" />
+          <Property Type="String" Name="userName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="fullName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="phone" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="mobile" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="emailAddress" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="website" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="address" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="location" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="cityId" Nullable="false" />
+          <Property Type="Int32" Name="stateId" Nullable="false" />
+          <Property Type="String" Name="cityName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="stateName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="countryName" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="countryId" Nullable="false" />
+          <Property Type="String" Name="zipcode" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="roleID" Nullable="false" />
+          <Property Type="Int64" Name="createdBy" Nullable="false" />
+          <Property Type="DateTime" Name="createdDate" Nullable="false" Precision="23" />
+          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+          <Property Type="DateTime" Name="modifiedDate" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+          <Property Type="Boolean" Name="isDelete" Nullable="false" />
+          <Property Type="String" Name="supplier_PPAI_ASI" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="createdByName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="updatedByName" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="bannersCreaTedBy_sp_Result">
+          <Property Type="Int64" Name="userId" Nullable="false" />
+          <Property Type="String" Name="fullName" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="getAllbannersCreatedBy_sp_Result">
+          <Property Type="Int32" Name="bannerId" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="bannerImgURL" Nullable="false" />
+          <Property Type="Int64" Name="userId" Nullable="false" />
+          <Property Type="Int64" Name="createdBy" Nullable="false" />
+          <Property Type="DateTime" Name="createdDate" Nullable="false" Precision="23" />
+          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
+          <Property Type="DateTime" Name="modifiedDate" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+          <Property Type="Boolean" Name="isDelete" Nullable="false" />
+          <Property Type="String" Name="fullName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="modifyByName" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="getAllProductCategories_sp_Result">
+          <Property Type="Int32" Name="productCategoryId" Nullable="true" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="createdDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="modifiedDate" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+          <Property Type="String" Name="createdByName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="modifiedByName" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="isFeaturedCategory" Nullable="true" />
+          <Property Type="Int64" Name="proCategoryClientId" Nullable="false" />
+          <Property Type="Int64" Name="createdBy" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="get_filterSuppliers_Result">
+          <Property Type="Int64" Name="userId" Nullable="true" />
+          <Property Type="String" Name="fullName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="mobile" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="emailAddress" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="website" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="location" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="zipcode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cityName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="countryName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="stateName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="supplierCategoryOptions" Nullable="true" />
+          <Property Type="Int32" Name="MySupplier" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getAllProductClient_sp_Result">
+          <Property Type="Int32" Name="proCategoryId" Nullable="true" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="isFeaturedCategory" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getProductList_sp_Result">
+          <Property Type="Int64" Name="productId" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="sku" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="productTitle" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="slugURL" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="proCategoryId" Nullable="false" />
+          <Property Type="Int32" Name="brandId" Nullable="false" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+          <Property Type="Boolean" Name="isDelete" Nullable="false" />
+          <Property Type="String" Name="imgWebAddress" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="productColorId" Nullable="false" />
+          <Property Type="String" Name="colorName" Nullable="false" MaxLength="1" />
+          <Property Type="Boolean" Name="isFeaturedProduct" Nullable="false" />
+          <Property Type="Int32" Name="isMySelected" Nullable="false" />
         </ComplexType>
         <EntityType Name="ad">
           <Key>
@@ -723,6 +939,22 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           <Property Name="innerException" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="stackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="banner">
+          <Key>
+            <PropertyRef Name="bannerId" />
+          </Key>
+          <Property Name="bannerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="bannerImgURL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+          <Property Name="srNumber" Type="Int32" />
+        </EntityType>
         <EntityType Name="brandClient">
           <Key>
             <PropertyRef Name="brandClientId" />
@@ -758,6 +990,15 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           <Property Name="cityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CityName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="stateId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ClientFeaturedReferrence">
+          <Key>
+            <PropertyRef Name="ClientFeaturedReferrenceId" />
+          </Key>
+          <Property Name="ClientFeaturedReferrenceId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="categoryType" Type="Int32" Nullable="false" />
+          <Property Name="featuredReferrenceValue" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="clientWebInformation">
           <Key>
@@ -814,6 +1055,22 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           <Property Name="isActive" Type="Boolean" Nullable="false" />
           <Property Name="isDelete" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="ContactU">
+          <Key>
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Name="ContactID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactPerson" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactEmail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="isRead" Type="Boolean" Nullable="false" />
+        </EntityType>
         <EntityType Name="country">
           <Key>
             <PropertyRef Name="countryId" />
@@ -839,6 +1096,16 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           <Property Name="title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="userId" Type="Int64" />
           <Property Name="isNew" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="featuredCategoryReferrence">
+          <Key>
+            <PropertyRef Name="featuredCategoryReferrenceId" />
+          </Key>
+          <Property Name="featuredCategoryReferrenceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="categoryCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="categoryType" Type="Int32" Nullable="false" />
+          <Property Name="cateoryDDlValue" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="fontFamily">
           <Key>
@@ -874,7 +1141,6 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           </Key>
           <Property Name="productCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="parentCategoryid" Type="Int32" />
           <Property Name="createdBy" Type="Int64" Nullable="false" />
           <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="modifiedBy" Type="Int64" Nullable="false" />
@@ -888,7 +1154,6 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           </Key>
           <Property Name="proCategoryClientId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="proCategoryId" Type="Int32" />
-          <Property Name="userId" Type="Int64" />
           <Property Name="isFeaturedCategory" Type="Boolean" />
           <Property Name="createdBy" Type="Int64" Nullable="false" />
           <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -936,7 +1201,6 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           <Property Name="PoductionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="safetyAndCompliance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="unit" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="userId" Type="Int64" />
           <Property Name="isShowPrice" Type="Boolean" />
           <Property Name="createdBy" Type="Int64" Nullable="false" />
           <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -944,6 +1208,8 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
           <Property Name="isDelete" Type="Boolean" Nullable="false" />
+          <Property Name="productSubCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="isFeaturedProduct" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="productImage">
           <Key>
@@ -997,18 +1263,35 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           <Property Name="imprintInformationHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="productionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="specificationsHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="cntentsHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="shippingHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContentsHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShippingHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="pricingHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="poductionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PoductionHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="safetyAndCompliance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="unit" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="isShowPrice" Type="Boolean" />
           <Property Name="createdBy" Type="Int64" Nullable="false" />
           <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="modifiedBy" Type="Int64" Nullable="false" />
           <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
           <Property Name="isDelete" Type="Boolean" Nullable="false" />
+          <Property Name="productSubCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="isFeaturedProduct" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productSubCategory">
+          <Key>
+            <PropertyRef Name="productSubCategoryId" />
+          </Key>
+          <Property Name="productSubCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="createdBy" Type="Int64" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+          <Property Name="productCategoryId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="productVedio">
           <Key>
@@ -1038,6 +1321,14 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           <Property Name="isActive" Type="Boolean" Nullable="false" />
           <Property Name="isDelete" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="sendGridDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="projectname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="APIKEY" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="state">
           <Key>
             <PropertyRef Name="stateId" />
@@ -1058,12 +1349,12 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           </Key>
           <Property Name="supplierCategoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="userId" Type="Int64" />
+          <Property Name="supplierCategoryOptId" Type="Int32" Nullable="false" />
           <Property Name="isActive" Type="Boolean" />
           <Property Name="createdBy" Type="Int64" Nullable="false" />
           <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="modifiedBy" Type="Int64" Nullable="false" />
           <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="isActive1" Type="Boolean" Nullable="false" />
           <Property Name="isDelete" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="supplierCategoryOption">
@@ -1173,68 +1464,7 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           <Property Name="isActive" Type="Boolean" Nullable="false" />
           <Property Name="isDelete" Type="Boolean" Nullable="false" />
         </EntityType>
-        <EntityType Name="banner">
-          <Key>
-            <PropertyRef Name="name" />
-            <PropertyRef Name="bannerHtml" />
-            <PropertyRef Name="userId" />
-            <PropertyRef Name="createdBy" />
-            <PropertyRef Name="createdDate" />
-            <PropertyRef Name="modifiedBy" />
-            <PropertyRef Name="modifiedDate" />
-            <PropertyRef Name="isActive" />
-            <PropertyRef Name="isDelete" />
-          </Key>
-          <Property Name="bannerId" Type="Int32" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="bannerHtml" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="userId" Type="Int64" Nullable="false" />
-          <Property Name="createdBy" Type="Int64" Nullable="false" />
-          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
-          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="isActive" Type="Boolean" Nullable="false" />
-          <Property Name="isDelete" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sendGridDetail">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="projectname" />
-            <PropertyRef Name="APIKEY" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="projectname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="APIKEY" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <ComplexType Name="getFilteredUsers_Result">
-          <Property Type="Int64" Name="userId" Nullable="false" />
-          <Property Type="String" Name="userName" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="fullName" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="phone" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="mobile" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="emailAddress" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="website" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="address" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="location" Nullable="false" MaxLength="500" />
-          <Property Type="Int32" Name="cityId" Nullable="false" />
-          <Property Type="Int32" Name="stateId" Nullable="false" />
-          <Property Type="String" Name="cityName" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="stateName" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="countryName" Nullable="true" MaxLength="500" />
-          <Property Type="Int32" Name="countryId" Nullable="false" />
-          <Property Type="String" Name="zipcode" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="roleID" Nullable="false" />
-          <Property Type="Int64" Name="createdBy" Nullable="false" />
-          <Property Type="DateTime" Name="createdDate" Nullable="false" Precision="23" />
-          <Property Type="Int64" Name="modifiedBy" Nullable="false" />
-          <Property Type="DateTime" Name="modifiedDate" Nullable="false" Precision="23" />
-          <Property Type="Boolean" Name="isActive" Nullable="false" />
-          <Property Type="Boolean" Name="isDelete" Nullable="false" />
-          <Property Type="String" Name="supplier_PPAI_ASI" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="createdByName" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="updatedByName" Nullable="false" MaxLength="500" />
-        </ComplexType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1251,6 +1481,136 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="resetPassword_sp" FunctionName="sbv_uuwebstoreModel.Store.resetPassword_sp" />
+          <FunctionImportMapping FunctionImportName="getFilteredUsers" FunctionName="sbv_uuwebstoreModel.Store.getFilteredUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.getFilteredUsers_Result">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
+                <ScalarProperty Name="stateId" ColumnName="stateId" />
+                <ScalarProperty Name="cityName" ColumnName="cityName" />
+                <ScalarProperty Name="stateName" ColumnName="stateName" />
+                <ScalarProperty Name="countryName" ColumnName="countryName" />
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="roleID" ColumnName="roleID" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="supplier_PPAI_ASI" ColumnName="supplier_PPAI_ASI" />
+                <ScalarProperty Name="createdByName" ColumnName="createdByName" />
+                <ScalarProperty Name="updatedByName" ColumnName="updatedByName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="applyTheme_sp" FunctionName="sbv_uuwebstoreModel.Store.applyTheme_sp" />
+          <FunctionImportMapping FunctionImportName="updateLogo_sp" FunctionName="sbv_uuwebstoreModel.Store.updateLogo_sp" />
+          <FunctionImportMapping FunctionImportName="resetPasswordfromForget_sp" FunctionName="sbv_uuwebstoreModel.Store.resetPasswordfromForget_sp" />
+          <FunctionImportMapping FunctionImportName="updateFavicon_sp" FunctionName="sbv_uuwebstoreModel.Store.updateFavicon_sp" />
+          <FunctionImportMapping FunctionImportName="bannersCreaTedBy_sp" FunctionName="sbv_uuwebstoreModel.Store.bannersCreaTedBy_sp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.bannersCreaTedBy_sp_Result">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getAllbannersCreatedBy_sp" FunctionName="sbv_uuwebstoreModel.Store.getAllbannersCreatedBy_sp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.getAllbannersCreatedBy_sp_Result">
+                <ScalarProperty Name="bannerId" ColumnName="bannerId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="bannerImgURL" ColumnName="bannerImgURL" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="modifyByName" ColumnName="modifyByName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="selectBanners_sp" FunctionName="sbv_uuwebstoreModel.Store.selectBanners_sp" />
+          <FunctionImportMapping FunctionImportName="getAllProductCategories_sp" FunctionName="sbv_uuwebstoreModel.Store.getAllProductCategories_sp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.getAllProductCategories_sp_Result">
+                <ScalarProperty Name="productCategoryId" ColumnName="productCategoryId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="createdByName" ColumnName="createdByName" />
+                <ScalarProperty Name="modifiedByName" ColumnName="modifiedByName" />
+                <ScalarProperty Name="isFeaturedCategory" ColumnName="isFeaturedCategory" />
+                <ScalarProperty Name="proCategoryClientId" ColumnName="proCategoryClientId" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_filterSuppliers" FunctionName="sbv_uuwebstoreModel.Store.get_filterSuppliers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.get_filterSuppliers_Result">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="cityName" ColumnName="cityName" />
+                <ScalarProperty Name="countryName" ColumnName="countryName" />
+                <ScalarProperty Name="stateName" ColumnName="stateName" />
+                <ScalarProperty Name="supplierCategoryOptions" ColumnName="supplierCategoryOptions" />
+                <ScalarProperty Name="MySupplier" ColumnName="MySupplier" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getAllProductClient_sp" FunctionName="sbv_uuwebstoreModel.Store.getAllProductClient_sp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.getAllProductClient_sp_Result">
+                <ScalarProperty Name="proCategoryId" ColumnName="proCategoryId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="isFeaturedCategory" ColumnName="isFeaturedCategory" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getProductList_sp" FunctionName="sbv_uuwebstoreModel.Store.getProductList_sp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.getProductList_sp_Result">
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="productTitle" ColumnName="productTitle" />
+                <ScalarProperty Name="slugURL" ColumnName="slugURL" />
+                <ScalarProperty Name="proCategoryId" ColumnName="proCategoryId" />
+                <ScalarProperty Name="brandId" ColumnName="brandId" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="imgWebAddress" ColumnName="imgWebAddress" />
+                <ScalarProperty Name="productColorId" ColumnName="productColorId" />
+                <ScalarProperty Name="colorName" ColumnName="colorName" />
+                <ScalarProperty Name="isFeaturedProduct" ColumnName="isFeaturedProduct" />
+                <ScalarProperty Name="isMySelected" ColumnName="isMySelected" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectProductCategories_sp" FunctionName="sbv_uuwebstoreModel.Store.SelectProductCategories_sp" />
+          <FunctionImportMapping FunctionImportName="SelectSupplier_sp" FunctionName="sbv_uuwebstoreModel.Store.SelectSupplier_sp" />
           <EntitySetMapping Name="ads">
             <EntityTypeMapping TypeName="sbv_uuwebstoreModel.ad">
               <MappingFragment StoreEntitySet="ads">
@@ -1294,6 +1654,23 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="banners">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.banner">
+              <MappingFragment StoreEntitySet="banner">
+                <ScalarProperty Name="srNumber" ColumnName="srNumber" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="bannerImgURL" ColumnName="bannerImgURL" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="bannerId" ColumnName="bannerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="brandClients">
             <EntityTypeMapping TypeName="sbv_uuwebstoreModel.brandClient">
               <MappingFragment StoreEntitySet="brandClient">
@@ -1330,6 +1707,16 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
                 <ScalarProperty Name="stateId" ColumnName="stateId" />
                 <ScalarProperty Name="CityName" ColumnName="CityName" />
                 <ScalarProperty Name="cityId" ColumnName="cityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientFeaturedReferrences">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.ClientFeaturedReferrence">
+              <MappingFragment StoreEntitySet="ClientFeaturedReferrence">
+                <ScalarProperty Name="featuredReferrenceValue" ColumnName="featuredReferrenceValue" />
+                <ScalarProperty Name="categoryType" ColumnName="categoryType" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="ClientFeaturedReferrenceId" ColumnName="ClientFeaturedReferrenceId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1391,6 +1778,23 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ContactUs">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.ContactU">
+              <MappingFragment StoreEntitySet="ContactUs">
+                <ScalarProperty Name="isRead" ColumnName="isRead" />
+                <ScalarProperty Name="CompanyUrl" ColumnName="CompanyUrl" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="countries">
             <EntityTypeMapping TypeName="sbv_uuwebstoreModel.country">
               <MappingFragment StoreEntitySet="country">
@@ -1416,6 +1820,17 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
                 <ScalarProperty Name="fullName" ColumnName="fullName" />
                 <ScalarProperty Name="enquiryHtml" ColumnName="enquiryHtml" />
                 <ScalarProperty Name="enquiryId" ColumnName="enquiryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="featuredCategoryReferrences">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.featuredCategoryReferrence">
+              <MappingFragment StoreEntitySet="featuredCategoryReferrence">
+                <ScalarProperty Name="cateoryDDlValue" ColumnName="cateoryDDlValue" />
+                <ScalarProperty Name="categoryType" ColumnName="categoryType" />
+                <ScalarProperty Name="categoryCode" ColumnName="categoryCode" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+                <ScalarProperty Name="featuredCategoryReferrenceId" ColumnName="featuredCategoryReferrenceId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1458,7 +1873,6 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
                 <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
                 <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-                <ScalarProperty Name="parentCategoryid" ColumnName="parentCategoryid" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="productCategoryId" ColumnName="productCategoryId" />
               </MappingFragment>
@@ -1474,7 +1888,6 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
                 <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
                 <ScalarProperty Name="isFeaturedCategory" ColumnName="isFeaturedCategory" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="proCategoryId" ColumnName="proCategoryId" />
                 <ScalarProperty Name="proCategoryClientId" ColumnName="proCategoryClientId" />
               </MappingFragment>
@@ -1498,6 +1911,8 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           <EntitySetMapping Name="productForClients">
             <EntityTypeMapping TypeName="sbv_uuwebstoreModel.productForClient">
               <MappingFragment StoreEntitySet="productForClient">
+                <ScalarProperty Name="isFeaturedProduct" ColumnName="isFeaturedProduct" />
+                <ScalarProperty Name="productSubCategoryId" ColumnName="productSubCategoryId" />
                 <ScalarProperty Name="isDelete" ColumnName="isDelete" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
@@ -1505,7 +1920,6 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
                 <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
                 <ScalarProperty Name="isShowPrice" ColumnName="isShowPrice" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="unit" ColumnName="unit" />
                 <ScalarProperty Name="safetyAndCompliance" ColumnName="safetyAndCompliance" />
                 <ScalarProperty Name="PoductionHtml" ColumnName="PoductionHtml" />
@@ -1569,18 +1983,21 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
           <EntitySetMapping Name="productsCRAs">
             <EntityTypeMapping TypeName="sbv_uuwebstoreModel.productsCRA">
               <MappingFragment StoreEntitySet="productsCRA">
+                <ScalarProperty Name="isFeaturedProduct" ColumnName="isFeaturedProduct" />
+                <ScalarProperty Name="productSubCategoryId" ColumnName="productSubCategoryId" />
                 <ScalarProperty Name="isDelete" ColumnName="isDelete" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
                 <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
                 <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="isShowPrice" ColumnName="isShowPrice" />
                 <ScalarProperty Name="unit" ColumnName="unit" />
                 <ScalarProperty Name="safetyAndCompliance" ColumnName="safetyAndCompliance" />
-                <ScalarProperty Name="poductionHtml" ColumnName="poductionHtml" />
+                <ScalarProperty Name="PoductionHtml" ColumnName="PoductionHtml" />
                 <ScalarProperty Name="pricingHtml" ColumnName="pricingHtml" />
-                <ScalarProperty Name="shippingHtml" ColumnName="shippingHtml" />
-                <ScalarProperty Name="cntentsHtml" ColumnName="cntentsHtml" />
+                <ScalarProperty Name="ShippingHtml" ColumnName="ShippingHtml" />
+                <ScalarProperty Name="ContentsHtml" ColumnName="ContentsHtml" />
                 <ScalarProperty Name="specificationsHtml" ColumnName="specificationsHtml" />
                 <ScalarProperty Name="productionHtml" ColumnName="productionHtml" />
                 <ScalarProperty Name="imprintInformationHtml" ColumnName="imprintInformationHtml" />
@@ -1595,6 +2012,21 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
                 <ScalarProperty Name="sku" ColumnName="sku" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="productId" ColumnName="productId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productSubCategories">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.productSubCategory">
+              <MappingFragment StoreEntitySet="productSubCategory">
+                <ScalarProperty Name="productCategoryId" ColumnName="productCategoryId" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="productSubCategoryId" ColumnName="productSubCategoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1628,6 +2060,15 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sendGridDetails">
+            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.sendGridDetail">
+              <MappingFragment StoreEntitySet="sendGridDetails">
+                <ScalarProperty Name="APIKEY" ColumnName="APIKEY" />
+                <ScalarProperty Name="projectname" ColumnName="projectname" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="states">
             <EntityTypeMapping TypeName="sbv_uuwebstoreModel.state">
               <MappingFragment StoreEntitySet="states">
@@ -1647,12 +2088,12 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
             <EntityTypeMapping TypeName="sbv_uuwebstoreModel.supplierCategory">
               <MappingFragment StoreEntitySet="supplierCategory">
                 <ScalarProperty Name="isDelete" ColumnName="isDelete" />
-                <ScalarProperty Name="isActive1" ColumnName="isActive1" />
                 <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
                 <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
                 <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="supplierCategoryOptId" ColumnName="supplierCategoryOptId" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="supplierCategoryId" ColumnName="supplierCategoryId" />
               </MappingFragment>
@@ -1771,66 +2212,7 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="banners">
-            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.banner">
-              <MappingFragment StoreEntitySet="banner">
-                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
-                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="bannerHtml" ColumnName="bannerHtml" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="bannerId" ColumnName="bannerId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sendGridDetails">
-            <EntityTypeMapping TypeName="sbv_uuwebstoreModel.sendGridDetail">
-              <MappingFragment StoreEntitySet="sendGridDetails">
-                <ScalarProperty Name="APIKEY" ColumnName="APIKEY" />
-                <ScalarProperty Name="projectname" ColumnName="projectname" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="getFilteredUsers" FunctionName="sbv_uuwebstoreModel.Store.getFilteredUsers">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.getFilteredUsers_Result">
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="userName" ColumnName="userName" />
-                <ScalarProperty Name="fullName" ColumnName="fullName" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="mobile" ColumnName="mobile" />
-                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
-                <ScalarProperty Name="website" ColumnName="website" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="location" ColumnName="location" />
-                <ScalarProperty Name="cityId" ColumnName="cityId" />
-                <ScalarProperty Name="stateId" ColumnName="stateId" />
-                <ScalarProperty Name="cityName" ColumnName="cityName" />
-                <ScalarProperty Name="stateName" ColumnName="stateName" />
-                <ScalarProperty Name="countryName" ColumnName="countryName" />
-                <ScalarProperty Name="countryId" ColumnName="countryId" />
-                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
-                <ScalarProperty Name="roleID" ColumnName="roleID" />
-                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
-                <ScalarProperty Name="supplier_PPAI_ASI" ColumnName="supplier_PPAI_ASI" />
-                <ScalarProperty Name="createdByName" ColumnName="createdByName" />
-                <ScalarProperty Name="updatedByName" ColumnName="updatedByName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="applyTheme_sp" FunctionName="sbv_uuwebstoreModel.Store.applyTheme_sp" />
-          <FunctionImportMapping FunctionImportName="updateLogo_sp" FunctionName="sbv_uuwebstoreModel.Store.updateLogo_sp" />
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

@@ -28,17 +28,20 @@ namespace UUWebstore.Models
         public string imprintInformationHtml { get; set; }
         public string productionHtml { get; set; }
         public string specificationsHtml { get; set; }
-        public string cntentsHtml { get; set; }
-        public string shippingHtml { get; set; }
+        public string ContentsHtml { get; set; }
+        public string ShippingHtml { get; set; }
         public string pricingHtml { get; set; }
-        public string poductionHtml { get; set; }
+        public string PoductionHtml { get; set; }
         public string safetyAndCompliance { get; set; }
         public string unit { get; set; }
+        public Nullable<bool> isShowPrice { get; set; }
         public long createdBy { get; set; }
         public System.DateTime createdDate { get; set; }
         public long modifiedBy { get; set; }
         public System.DateTime modifiedDate { get; set; }
         public bool isActive { get; set; }
         public bool isDelete { get; set; }
+        public int productSubCategoryId { get; set; }
+        public bool isFeaturedProduct { get; set; }
     }
 }

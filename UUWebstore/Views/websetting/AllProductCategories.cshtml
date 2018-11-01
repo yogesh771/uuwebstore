@@ -1,0 +1,78 @@
+﻿<h2>All Product Categories</h2>
+
+    <div class="form-horizontal">
+ 
+        <h4 class="page-header">search</h4>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                  <select id="ddl_filter">
+                      <option value="0">All</option>
+                      <option value="1">Featured</option>
+                  </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input type="button" value="Search" class="btn btn-default" onclick="searchResult()" />
+
+                </div>
+            </div>
+        </div>
+      
+    </div>
+
+    <div class="table-responsive col-lg-12" id="viewResult">
+        <div class="col-lg-12 white-box">
+            <p>Please use above search criteria to view the result list</p>
+        </div>
+    </div>
+
+
+
+<script>
+    $(document).ready(function () {
+        searchResult()
+    })
+   
+</script>
+<script>
+
+    function searchResult() {
+
+        var ddl_filter = $("#ddl_filter").val();
+      
+        debugger
+        $.ajax({
+            url: '/websetting/Partial_SearchProductCategorieReult',
+            type: 'POST',
+            data: {'ddl_filter': ddl_filter },
+            success: function (data) {
+                $('#viewResult').html(data);
+            },
+            error: function () {
+                bootbox.alert({
+                    title: "Alert !",
+                    message: '<p>Whooaaa! Something went wrong..</p>',
+                    timeOut: 2000
+
+                });
+
+            }
+        });
+    }
+</script>
+<script>
+
+    $(document).ready(function () {
+        debugger
+        if ('@TempData["result"] ' != null && '@TempData["result"] ' != '') {
+                bootbox.alert({
+                    title: "Success !",
+                    message: '<p>' + TempData["result"] + '</p>',
+                });
+        }
+    });
+</script>

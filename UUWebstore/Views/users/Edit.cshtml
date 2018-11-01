@@ -1,9 +1,5 @@
 ﻿@model UUWebstore.Models.user
 
-@{
-    ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
-}
 
 @using (Html.BeginForm("Edit", "users"))
 {
@@ -158,3 +154,16 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<script>
+
+    $(document).ready(function () {
+        debugger
+        if ('@ViewBag.message' != null && '@ViewBag.message' != '') {
+                bootbox.alert({
+                    title: "Alert !",
+                    message: '<p>' + ViewBag.message + '</p>',
+                });
+        }
+    });
+</script>

@@ -16,7 +16,6 @@ namespace UUWebstore.Models
     {
         public long proCategoryClientId { get; set; }
         public Nullable<int> proCategoryId { get; set; }
-        public Nullable<long> userId { get; set; }
         public Nullable<bool> isFeaturedCategory { get; set; }
         public long createdBy { get; set; }
         public System.DateTime createdDate { get; set; }

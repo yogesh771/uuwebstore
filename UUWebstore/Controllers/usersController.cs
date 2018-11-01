@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using UUWebstore.Models;
 using UUWebstore.Models.BaseClass;
 using UUWebstore.Models.IRepositories;
 using UUWebstore.Models.Repositories;
-using UUWebstore.Models;
 
 namespace UUWebstore.Controllers
 {
@@ -29,15 +26,27 @@ namespace UUWebstore.Controllers
         // GET: users
         public ActionResult Index()
         {
-
             return View();
+        }
+        private void _fillDropDownList(user ouser=null)
+        {
+            if (ouser == null)
+            {
+                ViewBag.roleID = _IRoleUserServicess.getAllRoles().Select(e => new { e.roleID, e.name });
+                ViewBag.countryId = _ICountryServices.getAllCountries().Select(e => new { e.countryId, e.name });
+                ViewBag.stateId = _IStateServices.getAllStatesByCountryId(1).Select(e => new { e.stateId, e.name });
+                ViewBag.cityId = _IStateServices.getAllCityByStateId(1).Select(e => new { e.cityId, e.CityName });
+            }
+            else {
+                ViewBag.roleID = new SelectList(_IRoleUserServicess.getAllRoles().Select(e => new { e.roleID, e.name }), "roleID", "name", ouser.roleID);
+                ViewBag.countryId = new SelectList(_ICountryServices.getAllCountries().Select(e => new { e.countryId, e.name }), "countryId", "name", ouser.countryId);
+                ViewBag.stateId = new SelectList(_IStateServices.getAllStatesByCountryId(0).Select(e => new { e.stateId, e.name }), "stateId", "name", ouser.stateId);
+                ViewBag.cityId = new SelectList(_IStateServices.getAllCityByStateId(0).Select(e => new { e.cityId, e.CityName }), "cityId", "CityName", ouser.cityId);
+            }
         }
         public ActionResult Add_user()
         {
-            ViewBag.roleID = _IRoleUserServicess.getAllRoles().Select(e => new { e.roleID, e.name });
-            ViewBag.countryId = _ICountryServices.getAllCountries().Select(e => new { e.countryId, e.name });
-            ViewBag.stateId = _IStateServices.getAllStatesByCountryId(1).Select(e => new { e.stateId, e.name });
-            ViewBag.cityId= _IStateServices.getAllCityByStateId(1).Select(e => new { e.cityId, e.CityName });
+            _fillDropDownList();
             return View();
         }
         public ActionResult fillState(Int32 countryID)
@@ -56,30 +65,28 @@ namespace UUWebstore.Controllers
         [HttpPost]
         public ActionResult Add_user(UUWebstore.Models.user objUser)
         {
-            ViewBag.roleID = _IRoleUserServicess.getAllRoles().Select(e => new { e.roleID, e.name });
-            ViewBag.countryId = _ICountryServices.getAllCountries().Select(e => new { e.countryId, e.name });
-            ViewBag.stateId = _IStateServices.getAllStatesByCountryId(1).Select(e => new { e.stateId, e.name });
-            ViewBag.cityId = _IStateServices.getAllCityByStateId(1).Select(e => new { e.cityId, e.CityName });
-
-            if (!IsUserExists_(objUser.userName))
+            bool result = false;
+            _fillDropDownList();
+            if (!_IAccountServices.boolCheckExiststance(objUser.userName, "uname"))
             {
                 ViewBag.message = "User name already exists in database.";
             }
-            else if (!IsMobileExists_(objUser.mobile))
+            else if (!_IAccountServices.boolCheckExiststance(objUser.mobile, "mobile"))
             {
                 ViewBag.message = "Mobile number already exists in database.";
             }
-            else if (!IsEmailExists_(objUser.emailAddress))
+            else if (!_IAccountServices.boolCheckExiststance(objUser.emailAddress, "email"))
             {
                 ViewBag.message = "Email address already exists in database.";
             }
             else
             {
-                bool result = _IAccountServices.create_update_userINformations_sp(objUser);
-                ViewBag.message = "Record saved.";
+                result = _IAccountServices.create_update_userINformations_sp(objUser);
+                TempData["result"] = "Record saved.";
+                return RedirectToAction("searchUser");
             }
-            ViewBag.message = "Record not saved.";
-            return View();
+            TempData["result"] = "Record not saved.";
+            return View(objUser);
         }
       
         public ActionResult Edit(Int64 userID)
@@ -88,70 +95,28 @@ namespace UUWebstore.Controllers
             ModelState.Remove("mobile");
             ModelState.Remove("emailAddress");
             var user = _IAccountServices.getUserById(userID);
-            ViewBag.roleID = new SelectList(_IRoleUserServicess.getAllRoles().Select(e => new { e.roleID, e.name }), "roleID", "name", user.roleID);
-            ViewBag.countryId = new SelectList(_ICountryServices.getAllCountries().Select(e => new { e.countryId, e.name }), "countryId", "name", user.countryId);
-            ViewBag.stateId = new SelectList(_IStateServices.getAllStatesByCountryId(0).Select(e => new { e.stateId, e.name }), "stateId", "name", user.stateId);
-            ViewBag.cityId = new SelectList(_IStateServices.getAllCityByStateId(0).Select(e => new { e.cityId, e.CityName }), "cityId", "CityName", user.cityId);
+            _fillDropDownList(user);
             return View(user);
         }
         [HttpPost]
         public ActionResult Edit(user user)
-        {            
-            ViewBag.roleID = new SelectList(_IRoleUserServicess.getAllRoles().Select(e => new { e.roleID, e.name }), "roleID", "name", user.roleID);
-            ViewBag.countryId = new SelectList(_ICountryServices.getAllCountries().Select(e => new { e.countryId, e.name }), "countryId", "name", user.countryId);
-            ViewBag.stateId = new SelectList(_IStateServices.getAllStatesByCountryId(0).Select(e => new { e.stateId, e.name }), "stateId", "name", user.stateId);
-            ViewBag.cityId = new SelectList(_IStateServices.getAllCityByStateId(0).Select(e => new { e.cityId, e.CityName }), "cityId", "CityName", user.cityId);
+        {
+            _fillDropDownList(user);
             bool result = _IAccountServices.create_update_userINformations_sp(user);
             ViewBag.message= result==true ? "Record saved.":  "Record not saved.";
-         return View(user);
+            return View(user);
         }
-
         public JsonResult IsUserExists(string userName,string PreviousUsername)
         {
-            if (userName == PreviousUsername)
-            {
-                return Json(true, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(_IAccountServices.boolCheckExiststance(userName, "uname"), JsonRequestBehavior.AllowGet);
-            }
+            return Json(userName == PreviousUsername ? true: _IAccountServices.boolCheckExiststance(userName, "uname"), JsonRequestBehavior.AllowGet);                      
         }
-
         public ActionResult IsMobileExists(string mobile,string Previousmobile)
         {
-            if (mobile == Previousmobile)
-            {
-                return Json(true, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(_IAccountServices.boolCheckExiststance(mobile, "mobile"), JsonRequestBehavior.AllowGet);
-            }
+            return Json(mobile == Previousmobile ? true : _IAccountServices.boolCheckExiststance(mobile, "mobile"), JsonRequestBehavior.AllowGet);            
         }
         public ActionResult IsEmailExists(string emailAddress, string PreviousemailAddress)
         {
-            if (emailAddress == PreviousemailAddress)
-            {
-                return Json(true, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(_IAccountServices.boolCheckExiststance(emailAddress, "email"), JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        public bool IsUserExists_(string userName)
-        {
-            return _IAccountServices.boolCheckExiststance(userName, "uname");
-        }       
-        public bool IsMobileExists_(string mobile)
-        {
-            return _IAccountServices.boolCheckExiststance(mobile, "mobile");
-        }
-        public bool IsEmailExists_(string emailAddress)
-        {
-            return _IAccountServices.boolCheckExiststance(emailAddress, "email");
+            return Json(emailAddress == PreviousemailAddress ? true : _IAccountServices.boolCheckExiststance(emailAddress, "email"), JsonRequestBehavior.AllowGet);            
         }
         public ActionResult searchUser()
         {

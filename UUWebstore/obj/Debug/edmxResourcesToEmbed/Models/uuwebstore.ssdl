@@ -40,23 +40,13 @@
     <Property Name="innerException" Type="varchar(max)" />
     <Property Name="stackTrace" Type="varchar(max)" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="banner">
     <Key>
-      <PropertyRef Name="name" />
-      <PropertyRef Name="bannerHtml" />
-      <PropertyRef Name="userId" />
-      <PropertyRef Name="createdBy" />
-      <PropertyRef Name="createdDate" />
-      <PropertyRef Name="modifiedBy" />
-      <PropertyRef Name="modifiedDate" />
-      <PropertyRef Name="isActive" />
-      <PropertyRef Name="isDelete" />
+      <PropertyRef Name="bannerId" />
     </Key>
-    <Property Name="bannerId" Type="int" />
+    <Property Name="bannerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
-    <Property Name="bannerHtml" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="bannerImgURL" Type="nvarchar(max)" Nullable="false" />
     <Property Name="userId" Type="bigint" Nullable="false" />
     <Property Name="createdBy" Type="bigint" Nullable="false" />
     <Property Name="createdDate" Type="datetime" Nullable="false" />
@@ -64,6 +54,7 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
     <Property Name="modifiedDate" Type="datetime" Nullable="false" />
     <Property Name="isActive" Type="bit" Nullable="false" />
     <Property Name="isDelete" Type="bit" Nullable="false" />
+    <Property Name="srNumber" Type="int" />
   </EntityType>
   <EntityType Name="brandClient">
     <Key>
@@ -100,6 +91,15 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
     <Property Name="cityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CityName" Type="varchar" MaxLength="500" />
     <Property Name="stateId" Type="int" />
+  </EntityType>
+  <EntityType Name="ClientFeaturedReferrence">
+    <Key>
+      <PropertyRef Name="ClientFeaturedReferrenceId" />
+    </Key>
+    <Property Name="ClientFeaturedReferrenceId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="bigint" Nullable="false" />
+    <Property Name="categoryType" Type="int" Nullable="false" />
+    <Property Name="featuredReferrenceValue" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="clientWebInformation">
     <Key>
@@ -156,6 +156,22 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
     <Property Name="isActive" Type="bit" Nullable="false" />
     <Property Name="isDelete" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="ContactUs">
+    <Key>
+      <PropertyRef Name="ContactID" />
+    </Key>
+    <Property Name="ContactID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContactPerson" Type="nvarchar" MaxLength="500" />
+    <Property Name="ContactNumber" Type="varchar" MaxLength="50" />
+    <Property Name="ContactEmail" Type="varchar" MaxLength="500" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="userId" Type="bigint" />
+    <Property Name="createdate" Type="datetime" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="500" />
+    <Property Name="Title" Type="varchar" MaxLength="500" />
+    <Property Name="CompanyUrl" Type="varchar" MaxLength="500" />
+    <Property Name="isRead" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="country">
     <Key>
       <PropertyRef Name="countryId" />
@@ -181,6 +197,16 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
     <Property Name="title" Type="varchar" MaxLength="500" />
     <Property Name="userId" Type="bigint" />
     <Property Name="isNew" Type="bit" />
+  </EntityType>
+  <EntityType Name="featuredCategoryReferrence">
+    <Key>
+      <PropertyRef Name="featuredCategoryReferrenceId" />
+    </Key>
+    <Property Name="featuredCategoryReferrenceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="categoryName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="categoryCode" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="categoryType" Type="int" Nullable="false" />
+    <Property Name="cateoryDDlValue" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="fontFamily">
     <Key>
@@ -216,7 +242,6 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
     </Key>
     <Property Name="productCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
-    <Property Name="parentCategoryid" Type="int" />
     <Property Name="createdBy" Type="bigint" Nullable="false" />
     <Property Name="createdDate" Type="datetime" Nullable="false" />
     <Property Name="modifiedBy" Type="bigint" Nullable="false" />
@@ -230,7 +255,6 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
     </Key>
     <Property Name="proCategoryClientId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="proCategoryId" Type="int" />
-    <Property Name="userId" Type="bigint" />
     <Property Name="isFeaturedCategory" Type="bit" />
     <Property Name="createdBy" Type="bigint" Nullable="false" />
     <Property Name="createdDate" Type="datetime" Nullable="false" />
@@ -278,7 +302,6 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
     <Property Name="PoductionHtml" Type="nvarchar(max)" />
     <Property Name="safetyAndCompliance" Type="nvarchar(max)" />
     <Property Name="unit" Type="varchar" MaxLength="500" />
-    <Property Name="userId" Type="bigint" />
     <Property Name="isShowPrice" Type="bit" />
     <Property Name="createdBy" Type="bigint" Nullable="false" />
     <Property Name="createdDate" Type="datetime" Nullable="false" />
@@ -286,6 +309,8 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
     <Property Name="modifiedDate" Type="datetime" Nullable="false" />
     <Property Name="isActive" Type="bit" Nullable="false" />
     <Property Name="isDelete" Type="bit" Nullable="false" />
+    <Property Name="productSubCategoryId" Type="int" Nullable="false" />
+    <Property Name="isFeaturedProduct" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="productImages">
     <Key>
@@ -339,18 +364,35 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
     <Property Name="imprintInformationHtml" Type="nvarchar(max)" />
     <Property Name="productionHtml" Type="nvarchar(max)" />
     <Property Name="specificationsHtml" Type="nvarchar(max)" />
-    <Property Name="cntentsHtml" Type="nvarchar(max)" />
-    <Property Name="shippingHtml" Type="nvarchar(max)" />
+    <Property Name="ContentsHtml" Type="nvarchar(max)" />
+    <Property Name="ShippingHtml" Type="nvarchar(max)" />
     <Property Name="pricingHtml" Type="nvarchar(max)" />
-    <Property Name="poductionHtml" Type="nvarchar(max)" />
+    <Property Name="PoductionHtml" Type="nvarchar(max)" />
     <Property Name="safetyAndCompliance" Type="nvarchar(max)" />
     <Property Name="unit" Type="varchar" MaxLength="500" />
+    <Property Name="isShowPrice" Type="bit" />
     <Property Name="createdBy" Type="bigint" Nullable="false" />
     <Property Name="createdDate" Type="datetime" Nullable="false" />
     <Property Name="modifiedBy" Type="bigint" Nullable="false" />
     <Property Name="modifiedDate" Type="datetime" Nullable="false" />
     <Property Name="isActive" Type="bit" Nullable="false" />
     <Property Name="isDelete" Type="bit" Nullable="false" />
+    <Property Name="productSubCategoryId" Type="int" Nullable="false" />
+    <Property Name="isFeaturedProduct" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="productSubCategory">
+    <Key>
+      <PropertyRef Name="productSubCategoryId" />
+    </Key>
+    <Property Name="productSubCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="modifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="isDelete" Type="bit" Nullable="false" />
+    <Property Name="productCategoryId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="productVedio">
     <Key>
@@ -380,15 +422,11 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.banner' does not have a primary
     <Property Name="isActive" Type="bit" Nullable="false" />
     <Property Name="isDelete" Type="bit" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="sendGridDetails">
     <Key>
       <PropertyRef Name="ID" />
-      <PropertyRef Name="projectname" />
-      <PropertyRef Name="APIKEY" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="projectname" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="APIKEY" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
@@ -412,12 +450,12 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
     </Key>
     <Property Name="supplierCategoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="userId" Type="bigint" />
+    <Property Name="supplierCategoryOptId" Type="int" Nullable="false" />
     <Property Name="isActive" Type="bit" />
     <Property Name="createdBy" Type="bigint" Nullable="false" />
     <Property Name="createdDate" Type="datetime" Nullable="false" />
     <Property Name="modifiedBy" Type="bigint" Nullable="false" />
     <Property Name="modifiedDate" Type="datetime" Nullable="false" />
-    <Property Name="isActive1" Type="bit" Nullable="false" />
     <Property Name="isDelete" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="supplierCategoryOptions">
@@ -531,6 +569,26 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
     <Parameter Name="themeId" Type="int" Mode="In" />
     <Parameter Name="modifyBy" Type="bigint" Mode="In" />
   </Function>
+  <Function Name="bannersCreaTedBy_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="get_filterSuppliers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="supplierName" Type="varchar" Mode="In" />
+    <Parameter Name="cityId" Type="int" Mode="In" />
+    <Parameter Name="stateId" Type="int" Mode="In" />
+    <Parameter Name="countryId" Type="int" Mode="In" />
+    <Parameter Name="userId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="getAllbannersCreatedBy_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userId" Type="bigint" Mode="In" />
+    <Parameter Name="ddl_filter_AutoAll" Type="int" Mode="In" />
+  </Function>
+  <Function Name="getAllProductCategories_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <Parameter Name="featuredOption" Type="int" Mode="In" />
+  </Function>
+  <Function Name="getAllProductClient_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userId" Type="bigint" Mode="In" />
+    <Parameter Name="isFeatured" Type="int" Mode="In" />
+  </Function>
   <Function Name="getFilteredUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="RoleID" Type="int" Mode="In" />
     <Parameter Name="isDeleted" Type="bit" Mode="In" />
@@ -541,31 +599,62 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
     <Parameter Name="countryid" Type="int" Mode="In" />
     <Parameter Name="zipcode" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="getProductList_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="productOptions_All_featured" Type="int" Mode="In" />
+    <Parameter Name="productCategoryId" Type="int" Mode="In" />
+    <Parameter Name="productSubCategoryId" Type="int" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
   <Function Name="resetPassword_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="userId" Type="bigint" Mode="In" />
     <Parameter Name="oldPassword" Type="varchar" Mode="In" />
     <Parameter Name="newPassword" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="resetPasswordfromForget_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userId" Type="bigint" Mode="In" />
+    <Parameter Name="newPassword" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="selectBanners_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SelectProductCategories_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="createdBy" Type="bigint" Mode="In" />
+    <Parameter Name="productCategoryId" Type="int" Mode="In" />
+    <Parameter Name="chk" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="SelectSupplier_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="createdBy" Type="bigint" Mode="In" />
+    <Parameter Name="supplierId_UserID" Type="bigint" Mode="In" />
+    <Parameter Name="chk" Type="bit" Mode="In" />
+  </Function>
   <Function Name="sp_LoginUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="password" Type="nvarchar" Mode="In" />
     <Parameter Name="emailAddress" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="updateFavicon_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="faviconUrl" Type="varchar" Mode="In" />
+    <Parameter Name="modifyBy" Type="bigint" Mode="In" />
+  </Function>
   <Function Name="updateLogo_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="logoUrl" Type="int" Mode="In" />
+    <Parameter Name="logoUrl" Type="varchar" Mode="In" />
     <Parameter Name="modifyBy" Type="bigint" Mode="In" />
   </Function>
   <EntityContainer Name="sbv_uuwebstoreModelStoreContainer">
     <EntitySet Name="ads" EntityType="Self.ads" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="adsSize" EntityType="Self.adsSize" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AppErrorLog" EntityType="Self.AppErrorLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="banner" EntityType="Self.banner" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="brandClient" EntityType="Self.brandClient" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="brands" EntityType="Self.brands" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="city" EntityType="Self.city" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClientFeaturedReferrence" EntityType="Self.ClientFeaturedReferrence" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="clientWebInformation" EntityType="Self.clientWebInformation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ClientWebsiteAdsInfo" EntityType="Self.ClientWebsiteAdsInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ClientWebsiteBannerInfo" EntityType="Self.ClientWebsiteBannerInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContactUs" EntityType="Self.ContactUs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="enquiry" EntityType="Self.enquiry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="featuredCategoryReferrence" EntityType="Self.featuredCategoryReferrence" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="fontFamily" EntityType="Self.fontFamily" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="productAvailableSize" EntityType="Self.productAvailableSize" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="productCategory" EntityType="Self.productCategory" Schema="dbo" store:Type="Tables" />
@@ -575,8 +664,10 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
     <EntitySet Name="productImages" EntityType="Self.productImages" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="productsCRA" EntityType="Self.productsCRA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="productSubCategory" EntityType="Self.productSubCategory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="productVedio" EntityType="Self.productVedio" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="roleUser" EntityType="Self.roleUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sendGridDetails" EntityType="Self.sendGridDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="states" EntityType="Self.states" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="supplierCategory" EntityType="Self.supplierCategory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="supplierCategoryOptions" EntityType="Self.supplierCategoryOptions" Schema="dbo" store:Type="Tables" />
@@ -585,26 +676,5 @@ warning 6002: The table/view 'sbv_uuwebstore.dbo.sendGridDetails' does not have 
     <EntitySet Name="userRights" EntityType="Self.userRights" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WebClientSuppliers" EntityType="Self.WebClientSuppliers" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="banner" EntityType="Self.banner" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [banner].[bannerId] AS [bannerId], 
-    [banner].[name] AS [name], 
-    [banner].[bannerHtml] AS [bannerHtml], 
-    [banner].[userId] AS [userId], 
-    [banner].[createdBy] AS [createdBy], 
-    [banner].[createdDate] AS [createdDate], 
-    [banner].[modifiedBy] AS [modifiedBy], 
-    [banner].[modifiedDate] AS [modifiedDate], 
-    [banner].[isActive] AS [isActive], 
-    [banner].[isDelete] AS [isDelete]
-    FROM [dbo].[banner] AS [banner]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="sendGridDetails" EntityType="Self.sendGridDetails" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [sendGridDetails].[ID] AS [ID], 
-    [sendGridDetails].[projectname] AS [projectname], 
-    [sendGridDetails].[APIKEY] AS [APIKEY]
-    FROM [dbo].[sendGridDetails] AS [sendGridDetails]</DefiningQuery>
-    </EntitySet>
   </EntityContainer>
 </Schema>

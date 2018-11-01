@@ -17,5 +17,7 @@ namespace UUWebstore.Models.IRepositories
         bool boolCheckExiststance(string  uname, string caseToCheck);
         List<getFilteredUsers_Result> getFilteredUsers(search search);
         user getUserById(Int64 userId);
+        string getUserByEmailAddress(string emailId);
+        int resetPasswordFromForget(forgotPassword forgotPassword);
     }
 }

@@ -12,6 +12,136 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="resetPassword_sp" FunctionName="sbv_uuwebstoreModel.Store.resetPassword_sp" />
+    <FunctionImportMapping FunctionImportName="getFilteredUsers" FunctionName="sbv_uuwebstoreModel.Store.getFilteredUsers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.getFilteredUsers_Result">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+          <ScalarProperty Name="website" ColumnName="website" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="stateId" ColumnName="stateId" />
+          <ScalarProperty Name="cityName" ColumnName="cityName" />
+          <ScalarProperty Name="stateName" ColumnName="stateName" />
+          <ScalarProperty Name="countryName" ColumnName="countryName" />
+          <ScalarProperty Name="countryId" ColumnName="countryId" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="roleID" ColumnName="roleID" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+          <ScalarProperty Name="supplier_PPAI_ASI" ColumnName="supplier_PPAI_ASI" />
+          <ScalarProperty Name="createdByName" ColumnName="createdByName" />
+          <ScalarProperty Name="updatedByName" ColumnName="updatedByName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="applyTheme_sp" FunctionName="sbv_uuwebstoreModel.Store.applyTheme_sp" />
+    <FunctionImportMapping FunctionImportName="updateLogo_sp" FunctionName="sbv_uuwebstoreModel.Store.updateLogo_sp" />
+    <FunctionImportMapping FunctionImportName="resetPasswordfromForget_sp" FunctionName="sbv_uuwebstoreModel.Store.resetPasswordfromForget_sp" />
+    <FunctionImportMapping FunctionImportName="updateFavicon_sp" FunctionName="sbv_uuwebstoreModel.Store.updateFavicon_sp" />
+    <FunctionImportMapping FunctionImportName="bannersCreaTedBy_sp" FunctionName="sbv_uuwebstoreModel.Store.bannersCreaTedBy_sp">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.bannersCreaTedBy_sp_Result">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getAllbannersCreatedBy_sp" FunctionName="sbv_uuwebstoreModel.Store.getAllbannersCreatedBy_sp">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.getAllbannersCreatedBy_sp_Result">
+          <ScalarProperty Name="bannerId" ColumnName="bannerId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="bannerImgURL" ColumnName="bannerImgURL" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="modifyByName" ColumnName="modifyByName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="selectBanners_sp" FunctionName="sbv_uuwebstoreModel.Store.selectBanners_sp" />
+    <FunctionImportMapping FunctionImportName="getAllProductCategories_sp" FunctionName="sbv_uuwebstoreModel.Store.getAllProductCategories_sp">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.getAllProductCategories_sp_Result">
+          <ScalarProperty Name="productCategoryId" ColumnName="productCategoryId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="createdByName" ColumnName="createdByName" />
+          <ScalarProperty Name="modifiedByName" ColumnName="modifiedByName" />
+          <ScalarProperty Name="isFeaturedCategory" ColumnName="isFeaturedCategory" />
+          <ScalarProperty Name="proCategoryClientId" ColumnName="proCategoryClientId" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="get_filterSuppliers" FunctionName="sbv_uuwebstoreModel.Store.get_filterSuppliers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.get_filterSuppliers_Result">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+          <ScalarProperty Name="website" ColumnName="website" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="cityName" ColumnName="cityName" />
+          <ScalarProperty Name="countryName" ColumnName="countryName" />
+          <ScalarProperty Name="stateName" ColumnName="stateName" />
+          <ScalarProperty Name="supplierCategoryOptions" ColumnName="supplierCategoryOptions" />
+          <ScalarProperty Name="MySupplier" ColumnName="MySupplier" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getAllProductClient_sp" FunctionName="sbv_uuwebstoreModel.Store.getAllProductClient_sp">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.getAllProductClient_sp_Result">
+          <ScalarProperty Name="proCategoryId" ColumnName="proCategoryId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="isFeaturedCategory" ColumnName="isFeaturedCategory" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getProductList_sp" FunctionName="sbv_uuwebstoreModel.Store.getProductList_sp">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.getProductList_sp_Result">
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="sku" ColumnName="sku" />
+          <ScalarProperty Name="productTitle" ColumnName="productTitle" />
+          <ScalarProperty Name="slugURL" ColumnName="slugURL" />
+          <ScalarProperty Name="proCategoryId" ColumnName="proCategoryId" />
+          <ScalarProperty Name="brandId" ColumnName="brandId" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+          <ScalarProperty Name="imgWebAddress" ColumnName="imgWebAddress" />
+          <ScalarProperty Name="productColorId" ColumnName="productColorId" />
+          <ScalarProperty Name="colorName" ColumnName="colorName" />
+          <ScalarProperty Name="isFeaturedProduct" ColumnName="isFeaturedProduct" />
+          <ScalarProperty Name="isMySelected" ColumnName="isMySelected" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectProductCategories_sp" FunctionName="sbv_uuwebstoreModel.Store.SelectProductCategories_sp" />
+    <FunctionImportMapping FunctionImportName="SelectSupplier_sp" FunctionName="sbv_uuwebstoreModel.Store.SelectSupplier_sp" />
     <EntitySetMapping Name="ads">
       <EntityTypeMapping TypeName="sbv_uuwebstoreModel.ad">
         <MappingFragment StoreEntitySet="ads">
@@ -55,6 +185,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="banners">
+      <EntityTypeMapping TypeName="sbv_uuwebstoreModel.banner">
+        <MappingFragment StoreEntitySet="banner">
+          <ScalarProperty Name="srNumber" ColumnName="srNumber" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="bannerImgURL" ColumnName="bannerImgURL" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="bannerId" ColumnName="bannerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="brandClients">
       <EntityTypeMapping TypeName="sbv_uuwebstoreModel.brandClient">
         <MappingFragment StoreEntitySet="brandClient">
@@ -91,6 +238,16 @@
           <ScalarProperty Name="stateId" ColumnName="stateId" />
           <ScalarProperty Name="CityName" ColumnName="CityName" />
           <ScalarProperty Name="cityId" ColumnName="cityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClientFeaturedReferrences">
+      <EntityTypeMapping TypeName="sbv_uuwebstoreModel.ClientFeaturedReferrence">
+        <MappingFragment StoreEntitySet="ClientFeaturedReferrence">
+          <ScalarProperty Name="featuredReferrenceValue" ColumnName="featuredReferrenceValue" />
+          <ScalarProperty Name="categoryType" ColumnName="categoryType" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="ClientFeaturedReferrenceId" ColumnName="ClientFeaturedReferrenceId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -152,6 +309,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ContactUs">
+      <EntityTypeMapping TypeName="sbv_uuwebstoreModel.ContactU">
+        <MappingFragment StoreEntitySet="ContactUs">
+          <ScalarProperty Name="isRead" ColumnName="isRead" />
+          <ScalarProperty Name="CompanyUrl" ColumnName="CompanyUrl" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="createdate" ColumnName="createdate" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="countries">
       <EntityTypeMapping TypeName="sbv_uuwebstoreModel.country">
         <MappingFragment StoreEntitySet="country">
@@ -177,6 +351,17 @@
           <ScalarProperty Name="fullName" ColumnName="fullName" />
           <ScalarProperty Name="enquiryHtml" ColumnName="enquiryHtml" />
           <ScalarProperty Name="enquiryId" ColumnName="enquiryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="featuredCategoryReferrences">
+      <EntityTypeMapping TypeName="sbv_uuwebstoreModel.featuredCategoryReferrence">
+        <MappingFragment StoreEntitySet="featuredCategoryReferrence">
+          <ScalarProperty Name="cateoryDDlValue" ColumnName="cateoryDDlValue" />
+          <ScalarProperty Name="categoryType" ColumnName="categoryType" />
+          <ScalarProperty Name="categoryCode" ColumnName="categoryCode" />
+          <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+          <ScalarProperty Name="featuredCategoryReferrenceId" ColumnName="featuredCategoryReferrenceId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -219,7 +404,6 @@
           <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
           <ScalarProperty Name="createdDate" ColumnName="createdDate" />
           <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-          <ScalarProperty Name="parentCategoryid" ColumnName="parentCategoryid" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="productCategoryId" ColumnName="productCategoryId" />
         </MappingFragment>
@@ -235,7 +419,6 @@
           <ScalarProperty Name="createdDate" ColumnName="createdDate" />
           <ScalarProperty Name="createdBy" ColumnName="createdBy" />
           <ScalarProperty Name="isFeaturedCategory" ColumnName="isFeaturedCategory" />
-          <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="proCategoryId" ColumnName="proCategoryId" />
           <ScalarProperty Name="proCategoryClientId" ColumnName="proCategoryClientId" />
         </MappingFragment>
@@ -259,6 +442,8 @@
     <EntitySetMapping Name="productForClients">
       <EntityTypeMapping TypeName="sbv_uuwebstoreModel.productForClient">
         <MappingFragment StoreEntitySet="productForClient">
+          <ScalarProperty Name="isFeaturedProduct" ColumnName="isFeaturedProduct" />
+          <ScalarProperty Name="productSubCategoryId" ColumnName="productSubCategoryId" />
           <ScalarProperty Name="isDelete" ColumnName="isDelete" />
           <ScalarProperty Name="isActive" ColumnName="isActive" />
           <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
@@ -266,7 +451,6 @@
           <ScalarProperty Name="createdDate" ColumnName="createdDate" />
           <ScalarProperty Name="createdBy" ColumnName="createdBy" />
           <ScalarProperty Name="isShowPrice" ColumnName="isShowPrice" />
-          <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="unit" ColumnName="unit" />
           <ScalarProperty Name="safetyAndCompliance" ColumnName="safetyAndCompliance" />
           <ScalarProperty Name="PoductionHtml" ColumnName="PoductionHtml" />
@@ -330,18 +514,21 @@
     <EntitySetMapping Name="productsCRAs">
       <EntityTypeMapping TypeName="sbv_uuwebstoreModel.productsCRA">
         <MappingFragment StoreEntitySet="productsCRA">
+          <ScalarProperty Name="isFeaturedProduct" ColumnName="isFeaturedProduct" />
+          <ScalarProperty Name="productSubCategoryId" ColumnName="productSubCategoryId" />
           <ScalarProperty Name="isDelete" ColumnName="isDelete" />
           <ScalarProperty Name="isActive" ColumnName="isActive" />
           <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
           <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
           <ScalarProperty Name="createdDate" ColumnName="createdDate" />
           <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="isShowPrice" ColumnName="isShowPrice" />
           <ScalarProperty Name="unit" ColumnName="unit" />
           <ScalarProperty Name="safetyAndCompliance" ColumnName="safetyAndCompliance" />
-          <ScalarProperty Name="poductionHtml" ColumnName="poductionHtml" />
+          <ScalarProperty Name="PoductionHtml" ColumnName="PoductionHtml" />
           <ScalarProperty Name="pricingHtml" ColumnName="pricingHtml" />
-          <ScalarProperty Name="shippingHtml" ColumnName="shippingHtml" />
-          <ScalarProperty Name="cntentsHtml" ColumnName="cntentsHtml" />
+          <ScalarProperty Name="ShippingHtml" ColumnName="ShippingHtml" />
+          <ScalarProperty Name="ContentsHtml" ColumnName="ContentsHtml" />
           <ScalarProperty Name="specificationsHtml" ColumnName="specificationsHtml" />
           <ScalarProperty Name="productionHtml" ColumnName="productionHtml" />
           <ScalarProperty Name="imprintInformationHtml" ColumnName="imprintInformationHtml" />
@@ -356,6 +543,21 @@
           <ScalarProperty Name="sku" ColumnName="sku" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="productId" ColumnName="productId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="productSubCategories">
+      <EntityTypeMapping TypeName="sbv_uuwebstoreModel.productSubCategory">
+        <MappingFragment StoreEntitySet="productSubCategory">
+          <ScalarProperty Name="productCategoryId" ColumnName="productCategoryId" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="productSubCategoryId" ColumnName="productSubCategoryId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -389,6 +591,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="sendGridDetails">
+      <EntityTypeMapping TypeName="sbv_uuwebstoreModel.sendGridDetail">
+        <MappingFragment StoreEntitySet="sendGridDetails">
+          <ScalarProperty Name="APIKEY" ColumnName="APIKEY" />
+          <ScalarProperty Name="projectname" ColumnName="projectname" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="states">
       <EntityTypeMapping TypeName="sbv_uuwebstoreModel.state">
         <MappingFragment StoreEntitySet="states">
@@ -408,12 +619,12 @@
       <EntityTypeMapping TypeName="sbv_uuwebstoreModel.supplierCategory">
         <MappingFragment StoreEntitySet="supplierCategory">
           <ScalarProperty Name="isDelete" ColumnName="isDelete" />
-          <ScalarProperty Name="isActive1" ColumnName="isActive1" />
           <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
           <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
           <ScalarProperty Name="createdDate" ColumnName="createdDate" />
           <ScalarProperty Name="createdBy" ColumnName="createdBy" />
           <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="supplierCategoryOptId" ColumnName="supplierCategoryOptId" />
           <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="supplierCategoryId" ColumnName="supplierCategoryId" />
         </MappingFragment>
@@ -532,64 +743,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="banners">
-      <EntityTypeMapping TypeName="sbv_uuwebstoreModel.banner">
-        <MappingFragment StoreEntitySet="banner">
-          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
-          <ScalarProperty Name="isActive" ColumnName="isActive" />
-          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
-          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-          <ScalarProperty Name="userId" ColumnName="userId" />
-          <ScalarProperty Name="bannerHtml" ColumnName="bannerHtml" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="bannerId" ColumnName="bannerId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="sendGridDetails">
-      <EntityTypeMapping TypeName="sbv_uuwebstoreModel.sendGridDetail">
-        <MappingFragment StoreEntitySet="sendGridDetails">
-          <ScalarProperty Name="APIKEY" ColumnName="APIKEY" />
-          <ScalarProperty Name="projectname" ColumnName="projectname" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="getFilteredUsers" FunctionName="sbv_uuwebstoreModel.Store.getFilteredUsers">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="sbv_uuwebstoreModel.getFilteredUsers_Result">
-          <ScalarProperty Name="userId" ColumnName="userId" />
-          <ScalarProperty Name="userName" ColumnName="userName" />
-          <ScalarProperty Name="fullName" ColumnName="fullName" />
-          <ScalarProperty Name="phone" ColumnName="phone" />
-          <ScalarProperty Name="mobile" ColumnName="mobile" />
-          <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
-          <ScalarProperty Name="website" ColumnName="website" />
-          <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="location" ColumnName="location" />
-          <ScalarProperty Name="cityId" ColumnName="cityId" />
-          <ScalarProperty Name="stateId" ColumnName="stateId" />
-          <ScalarProperty Name="cityName" ColumnName="cityName" />
-          <ScalarProperty Name="stateName" ColumnName="stateName" />
-          <ScalarProperty Name="countryName" ColumnName="countryName" />
-          <ScalarProperty Name="countryId" ColumnName="countryId" />
-          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
-          <ScalarProperty Name="roleID" ColumnName="roleID" />
-          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
-          <ScalarProperty Name="isActive" ColumnName="isActive" />
-          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
-          <ScalarProperty Name="supplier_PPAI_ASI" ColumnName="supplier_PPAI_ASI" />
-          <ScalarProperty Name="createdByName" ColumnName="createdByName" />
-          <ScalarProperty Name="updatedByName" ColumnName="updatedByName" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="applyTheme_sp" FunctionName="sbv_uuwebstoreModel.Store.applyTheme_sp" />
-    <FunctionImportMapping FunctionImportName="updateLogo_sp" FunctionName="sbv_uuwebstoreModel.Store.updateLogo_sp" />
   </EntityContainerMapping>
 </Mapping>

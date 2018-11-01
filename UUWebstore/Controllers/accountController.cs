@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using UUWebstore.Models;
 using UUWebstore.Models.BaseClass;
 using UUWebstore.Models.IRepositories;
 using UUWebstore.Models.Repositories;
-using UUWebstore.Models;
 
 namespace UUWebstore.Controllers
 {
@@ -78,6 +75,26 @@ namespace UUWebstore.Controllers
             }
             return View();
         }
-      
+        public ActionResult forgot_password()
+        {
+            return View();
+        }
+        [HttpPost]
+        public string sendLinkToMail(string EmailAddress)
+        {
+            return _IAccountServices.getUserByEmailAddress(EmailAddress);
+        }
+        [HttpGet]      
+        public ActionResult Reset__password(Int64 id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Reset__password(forgotPassword oforgotPassword)
+        {
+            ViewBag.message = _IAccountServices.resetPasswordFromForget(oforgotPassword);
+            return View();
+        }
     }
 }
