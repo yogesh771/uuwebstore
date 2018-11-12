@@ -1,0 +1,24 @@
+﻿@model IEnumerable<UUWebstore.Models.theme>
+
+<h4 class="page-header">Themes</h4>    
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <div>
+                <a herf="@item.DemoSiteURl"><img src='@item.themeImage' height="300px" width="200px" /></a>
+            </div>
+            <div>
+                @Html.DisplayFor(modelItem => item.name)
+            </div>           
+            <div>
+                @Html.DisplayFor(modelItem => item.fontFamily)
+            </div>
+            <div>
+                @Html.DisplayFor(modelItem => item.webURL)
+            </div>
+            <button value="View Demo">View Demo</button>
+        </li>
+    }
+</ul>
+
