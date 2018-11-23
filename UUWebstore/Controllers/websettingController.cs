@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -87,7 +86,33 @@ namespace UUWebstore.Controllers
             return  chk ==true? _IsettingServices.MakeProductCategoriesAsFeatured(productCategoryId) : _IsettingServices.RemoveProductCategoriesAsFeatured(productCategoryId);
                  
         }
-      
-      
+
+        [HttpGet]
+        public ActionResult promotionalVideo()
+        {
+            ViewBag.Video = _IsettingServices.GetVideo();
+            return View();
+        }
+        [HttpPost]       
+        public ActionResult promotionalVideo(FormCollection frm)
+        {
+            string Video = frm["Pramotinal_Video_Url"].ToString();
+            ViewBag.message= _IsettingServices.UpdateVideo(Video)==1?"Record updated.":"Record not updated.";
+            ViewBag.Video = frm["Pramotinal_Video_Url"].ToString();
+            return View();
+        }
+        [HttpGet]
+        public ActionResult PromotionalBlock()
+        {
+            var promotionalBlockClass = new promotionalBlockClass();
+            promotionalBlockClass.promotionalBlock = _IsettingServices.GetBlock();
+            return View(promotionalBlockClass);
+        }
+        [HttpPost]
+        public ActionResult PromotionalBlock(promotionalBlockClass opromotionalBlockClass)
+        {
+            ViewBag.message=_IsettingServices.UpdateBlock(opromotionalBlockClass.promotionalBlock) == 1 ? "Record updated." : "Record not updated.";
+            return View(opromotionalBlockClass);
+        }
     }
 }

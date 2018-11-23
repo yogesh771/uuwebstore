@@ -226,6 +226,7 @@
     </Compile>
     <Compile Include="Models\BaseClass\BaseClass.cs" />
     <Compile Include="Models\BaseClass\baseModel.cs" />
+    <Compile Include="Models\BaseClass\Utility.cs" />
     <Compile Include="Models\brand.cs">
       <DependentUpon>uuwebstore.tt</DependentUpon>
     </Compile>
@@ -274,6 +275,9 @@
     <Compile Include="Models\getFilteredUsers_Result.cs">
       <DependentUpon>uuwebstore.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getProductList_sp_client_Result.cs">
+      <DependentUpon>uuwebstore.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\getProductList_sp_Result.cs">
       <DependentUpon>uuwebstore.tt</DependentUpon>
     </Compile>
@@ -289,6 +293,15 @@
     <Compile Include="Models\IRepositories\IsettingServices.cs" />
     <Compile Include="Models\IRepositories\IStateServices.cs" />
     <Compile Include="Models\IRepositories\IthemeServices.cs" />
+    <Compile Include="Models\OrderPresentStatu.cs">
+      <DependentUpon>uuwebstore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderStatu.cs">
+      <DependentUpon>uuwebstore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\packagingInformation.cs">
+      <DependentUpon>uuwebstore.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\productAvailableSize.cs">
       <DependentUpon>uuwebstore.tt</DependentUpon>
     </Compile>
@@ -301,10 +314,16 @@
     <Compile Include="Models\productColor.cs">
       <DependentUpon>uuwebstore.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\productexcel.cs">
+      <DependentUpon>uuwebstore.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\productForClient.cs">
       <DependentUpon>uuwebstore.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\productImage.cs">
+      <DependentUpon>uuwebstore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductOrder.cs">
       <DependentUpon>uuwebstore.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductPrice.cs">
@@ -337,6 +356,12 @@
       <DependentUpon>uuwebstore.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_LoginUser_Result.cs">
+      <DependentUpon>uuwebstore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_ProductForClient_GetById_Result.cs">
+      <DependentUpon>uuwebstore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_productOrder_GetAll_Result.cs">
       <DependentUpon>uuwebstore.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\state.cs">
@@ -605,16 +630,13 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\theme\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\PageNotFound.cshtml" />
+    <Content Include="Views\Shared\NotFound404.cshtml" />
     <Content Include="Views\Shared\_LayoutInternal.cshtml" />
     <Content Include="Views\account\Index.cshtml" />
     <Content Include="Views\account\login.cshtml" />
     <Content Include="Views\account\reset_password.cshtml" />
-    <Content Include="Views\account\error.cshtml" />
     <Content Include="Views\users\Add_user.cshtml" />
     <Content Include="Views\users\searchUser.cshtml" />
     <Content Include="Views\users\Partial_SearchUsersReult.cshtml" />
@@ -626,19 +648,20 @@
     <Content Include="Views\websetting\availablebanners.cshtml" />
     <Content Include="Views\websetting\Partial_SearchUsersReult.cshtml" />
     <Content Include="Views\websetting\Edit.cshtml" />
-    <Content Include="Views\users\_ViewStart.cshtml" />
-    <Content Include="Views\websetting\_ViewStart.cshtml" />
     <Content Include="Views\websetting\AllProductCategories.cshtml" />
     <Content Include="Views\websetting\Partial_SearchProductCategorieReult.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\Products\_ViewStart.cshtml" />
     <Content Include="Views\Products\Partial_SearchProductsReult.cshtml" />
     <Content Include="Views\ContactUs\Index.cshtml" />
     <Content Include="Views\ContactUs\Contacts.cshtml" />
+    <Content Include="Views\Products\uploadProducts.cshtml" />
+    <Content Include="Views\websetting\promotionalVideo.cshtml" />
+    <Content Include="Views\websetting\PromotionalBlock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bannersImg\" />
+    <Folder Include="Content\productUploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

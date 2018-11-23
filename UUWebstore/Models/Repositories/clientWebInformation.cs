@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿
 using UUWebstore.Models.IRepositories;
 
 namespace UUWebstore.Models.Repositories

@@ -23,6 +23,7 @@ namespace UUWebstore.Models
         public System.DateTime modifiedDate { get; set; }
         public bool isActive { get; set; }
         public bool isDelete { get; set; }
+        public Nullable<int> srNumber { get; set; }
         public string fullName { get; set; }
         public string modifyByName { get; set; }
     }

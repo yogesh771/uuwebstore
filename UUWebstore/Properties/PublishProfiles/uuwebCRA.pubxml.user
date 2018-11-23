@@ -154,7 +154,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2015 04:04:30</publishTime>
     </File>
     <File Include="bin/UUWebstore.dll">
-      <publishTime>11/12/2018 16:42:59</publishTime>
+      <publishTime>11/23/2018 14:11:26</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>09/10/2013 17:28:38</publishTime>
@@ -694,7 +694,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/19/2018 14:17:51</publishTime>
     </File>
     <File Include="Models/uuwebstore.edmx.diagram">
-      <publishTime>11/01/2018 15:16:16</publishTime>
+      <publishTime>11/22/2018 19:38:24</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>10/22/2018 12:50:56</publishTime>
@@ -772,16 +772,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2018 12:47:16</publishTime>
     </File>
     <File Include="Views/ContactUs/Contacts.cshtml">
-      <publishTime>11/01/2018 14:45:25</publishTime>
+      <publishTime>11/22/2018 17:06:01</publishTime>
     </File>
     <File Include="Views/ContactUs/Index.cshtml">
-      <publishTime>11/01/2018 15:23:52</publishTime>
+      <publishTime>11/22/2018 17:06:10</publishTime>
     </File>
     <File Include="Views/Products/Index.cshtml">
-      <publishTime>11/05/2018 19:45:14</publishTime>
+      <publishTime>11/23/2018 12:40:31</publishTime>
     </File>
     <File Include="Views/Products/Partial_SearchProductsReult.cshtml">
-      <publishTime>11/12/2018 15:51:53</publishTime>
+      <publishTime>11/22/2018 17:40:42</publishTime>
+    </File>
+    <File Include="Views/Products/uploadProducts.cshtml">
+      <publishTime>11/21/2018 20:48:45</publishTime>
     </File>
     <File Include="Views/Products/_ViewStart.cshtml">
       <publishTime>10/25/2018 20:04:56</publishTime>
@@ -799,25 +802,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2018 12:56:20</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutInternal.cshtml">
-      <publishTime>11/05/2018 20:02:34</publishTime>
+      <publishTime>11/23/2018 13:11:11</publishTime>
     </File>
     <File Include="Views/theme/Index.cshtml">
-      <publishTime>10/24/2018 15:23:09</publishTime>
+      <publishTime>11/23/2018 12:41:17</publishTime>
     </File>
     <File Include="Views/theme/_ViewStart.cshtml">
       <publishTime>10/24/2018 15:22:26</publishTime>
     </File>
     <File Include="Views/users/Add_user.cshtml">
-      <publishTime>10/24/2018 16:04:12</publishTime>
+      <publishTime>11/23/2018 12:41:26</publishTime>
     </File>
     <File Include="Views/users/Edit.cshtml">
-      <publishTime>10/24/2018 16:02:47</publishTime>
+      <publishTime>11/23/2018 12:41:34</publishTime>
     </File>
     <File Include="Views/users/Partial_SearchUsersReult.cshtml">
-      <publishTime>10/26/2018 19:49:55</publishTime>
+      <publishTime>11/22/2018 17:00:57</publishTime>
     </File>
     <File Include="Views/users/searchUser.cshtml">
-      <publishTime>11/05/2018 19:46:52</publishTime>
+      <publishTime>11/23/2018 12:41:46</publishTime>
     </File>
     <File Include="Views/users/_ViewStart.cshtml">
       <publishTime>10/24/2018 15:22:44</publishTime>
@@ -826,28 +829,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/12/2018 14:42:53</publishTime>
     </File>
     <File Include="Views/websetting/AllProductCategories.cshtml">
-      <publishTime>11/05/2018 19:45:03</publishTime>
+      <publishTime>11/23/2018 12:57:44</publishTime>
     </File>
     <File Include="Views/websetting/availablebanners.cshtml">
-      <publishTime>11/05/2018 19:45:49</publishTime>
+      <publishTime>11/23/2018 12:59:10</publishTime>
     </File>
     <File Include="Views/websetting/Edit.cshtml">
-      <publishTime>10/31/2018 15:22:17</publishTime>
+      <publishTime>11/23/2018 12:42:29</publishTime>
     </File>
     <File Include="Views/websetting/Partial_SearchProductCategorieReult.cshtml">
-      <publishTime>10/25/2018 15:55:28</publishTime>
+      <publishTime>11/22/2018 16:59:49</publishTime>
     </File>
     <File Include="Views/websetting/Partial_SearchUsersReult.cshtml">
-      <publishTime>10/22/2018 20:43:36</publishTime>
+      <publishTime>11/22/2018 17:53:46</publishTime>
+    </File>
+    <File Include="Views/websetting/PromotionalBlock.cshtml">
+      <publishTime>11/22/2018 20:48:20</publishTime>
+    </File>
+    <File Include="Views/websetting/promotionalVideo.cshtml">
+      <publishTime>11/22/2018 20:34:06</publishTime>
     </File>
     <File Include="Views/websetting/uploadbanner.cshtml">
-      <publishTime>10/31/2018 15:21:58</publishTime>
+      <publishTime>11/23/2018 13:00:51</publishTime>
     </File>
     <File Include="Views/websetting/_ViewStart.cshtml">
       <publishTime>10/24/2018 15:22:47</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/05/2018 15:08:04</publishTime>
+      <publishTime>11/23/2018 14:11:33</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -61,60 +61,7 @@ namespace UUWebstore.Models
         }
 
         #endregion
-        #region Send Mail
-        //public static void SendMail(String EmailIDTo, String SubjectText, String Body, String[] attachments = null)
-        //{
-        //    try
-        //    {
-
-        //        string EMAIL_SENT = GetWebConfigValue("EMAIL_SENT");
-        //        string COMPANY_EMAIL = GetWebConfigValue("COMPANY_EMAIL");
-        //        string COMPANY_EMAIL_PWD = GetWebConfigValue("COMPANY_EMAIL_PWD");
-        //        string Host = GetWebConfigValue("Host");
-
-        //        string CC = GetWebConfigValue("CC");
-        //        //string BCC = GetWebConfigValue("BCC");
-
-        //        SmtpClient smtpClient = new SmtpClient();
-        //        MailMessage message = new MailMessage();
-        //        MailAddress fromAddress = new MailAddress(COMPANY_EMAIL, SubjectText);
-        //        smtpClient.Host = Host;
-        //        smtpClient.Port = 587;
-        //        smtpClient.EnableSsl = true;
-        //        smtpClient.UseDefaultCredentials = false;
-        //        smtpClient.Credentials = new System.Net.NetworkCredential(COMPANY_EMAIL, COMPANY_EMAIL_PWD);
-
-        //        message.From = fromAddress;
-        //        message.To.Add(Convert.ToString(EmailIDTo.Trim()));
-        //        //message.CC.Add(Convert.ToString(CC));
-        //        // message.Bcc.Add(Convert.ToString(BCC));
-
-        //        StringBuilder sb = new StringBuilder();
-        //        if (attachments != null)
-        //        {
-        //            foreach (var item in attachments)
-        //            {
-        //                if (item != null)
-        //                    message.Attachments.Add(new Attachment(item));
-        //            }
-        //        }
-        //        message.Subject = SubjectText;
-        //        message.IsBodyHtml = true;
-        //        message.Body = Body;// +sb.ToString();
-        //        if (EMAIL_SENT == "Y")
-        //        {
-        //            smtpClient.Send(message);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-
-        //}
-        #endregion
-
-
+       
 
     }
 

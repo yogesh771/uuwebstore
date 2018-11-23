@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace UUWebstore.Models.IRepositories
 {
@@ -15,5 +13,9 @@ namespace UUWebstore.Models.IRepositories
         List<getAllProductCategories_sp_Result> GetAllProductCategories(int ddl_filter);
         int RemoveProductCategoriesAsFeatured(Int64 productCategoryId);
         int MakeProductCategoriesAsFeatured(int productCategoryId);
+        int UpdateVideo(string videogoUrl);
+        int UpdateBlock(string  BlockPramotionAdmin);
+        string GetBlock();
+        string GetVideo();
     }
 }

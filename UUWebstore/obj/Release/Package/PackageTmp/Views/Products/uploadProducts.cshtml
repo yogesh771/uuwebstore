@@ -1,0 +1,135 @@
+﻿@using System.Data;
+@{
+    ViewBag.Title = "uploadProducts";
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+
+
+
+<div class="col-md-9 box-2 running-campaigns padding-none">
+    <div class="col-md-12">
+        <h4>Upload Product List </h4>
+        <hr />
+    </div>
+    @using (Html.BeginForm("uploadProducts", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+    { <input type="file" id="FileUpload" name="FileUpload1" />
+    <input type="submit" id="Submit" name="Submit" class="btn btn-defaul" value="Submit" />
+        
+    }
+
+    <div class="table-responsive col-md-12">
+        <table class="table table-striped">
+            @{ var r = ViewBag.Data; var er = ViewBag.Error; var error = ViewBag.ErrorData;}
+            @if (r != null)
+            {
+                <thead>
+
+                    @foreach (DataColumn column in (ViewBag.Data as System.Data.DataTable).Columns)
+                    {
+                    <th>@column.ColumnName.ToUpper()</th>
+                    }
+                    </thead>
+                if ((r as System.Data.DataTable).Rows.Count > 0)
+                {
+                    foreach (DataRow dr in (ViewBag.Data as System.Data.DataTable).Rows)
+                    {
+
+                        <tr>
+
+                            @foreach (DataColumn column in (r as System.Data.DataTable).Columns)
+                            {
+                                <td data-title='@column.ColumnName'>
+
+                                    @dr[column].ToString()
+                                </td>
+                            }
+
+                        </tr>
+
+                    }
+
+                }
+                else
+                {
+                    int count = (r as System.Data.DataTable).Columns.Count;
+                    <tr>
+
+                        <td colspan='@count' style="color:red;">
+
+                            No Data Found.
+                        </td>
+
+
+
+                    </tr>
+
+                }
+
+            }
+            else
+            {
+                if (er != null)
+                {
+                    <tr>
+                        <td style="color:red;">
+
+                            @(er != null ? er.ToString() : "")
+                        </td>
+
+
+
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <div class="table-responsive col-md-12">
+        <b>Error Rows</b>
+        <table class="table table-striped">
+            @{if (ViewBag.ErrorData != null && ViewBag.ErrorData.Count > 1)
+                {
+                    <thead>
+
+                        @foreach (DataColumn column1 in (ViewBag.ErrorData as System.Data.DataTable).Columns)
+                {
+                        <th>@column1.ColumnName.ToUpper()</th>
+                        }
+                        </thead>
+                    if ((error as System.Data.DataTable).Rows.Count > 0)
+                    {
+                        foreach (DataRow dr1 in (ViewBag.ErrorData as System.Data.DataTable).Rows)
+                        {
+
+                            <tr>
+                                @foreach (DataColumn column1 in (error as System.Data.DataTable).Columns)
+                        {
+                                    <td data-title='@column1.ColumnName'>
+
+                                        @dr1[column1].ToString()
+                                    </td>
+                                }
+                            </tr>
+
+                        }
+
+                    }
+                }
+            }
+        </table>
+    </div>
+</div>
+
+<script>
+        function callpng() {
+            $("#loading").show();
+        };
+
+</script>
+<script>
+        $(document).ready(function () {
+            if ('@er' != null || '@r' != null) {
+                $("#loading").hide();
+            }
+        });
+</script>

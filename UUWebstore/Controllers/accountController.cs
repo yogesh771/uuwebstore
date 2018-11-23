@@ -96,5 +96,16 @@ namespace UUWebstore.Controllers
             ViewBag.message = _IAccountServices.resetPasswordFromForget(oforgotPassword);
             return View();
         }
+        public ActionResult LogOut()
+        {
+            Session.Abandon();
+            return RedirectToAction("Login");
+        }
+        public ActionResult NotFound404()
+        {
+            Response.StatusCode = 404;
+            ViewBag.Title = "Error 404 - File not Found";
+            return View();
+        }
     }
 }

@@ -68,7 +68,7 @@ namespace UUWebstore.Models.BaseClass
             fileName = Guid.NewGuid() + "_" + Path.GetFileName(file.FileName);
             var savedToPath = Path.Combine(Server.MapPath("~" + path), fileName);
             file.SaveAs(savedToPath);
-            return path +"/"+ fileName;
+            return BaseUtil.GetApplicationPath() + path +"/"+ fileName;
         }
     }
   

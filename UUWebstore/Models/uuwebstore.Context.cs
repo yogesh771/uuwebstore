@@ -43,12 +43,17 @@ namespace UUWebstore.Models
         public virtual DbSet<enquiry> enquiries { get; set; }
         public virtual DbSet<featuredCategoryReferrence> featuredCategoryReferrences { get; set; }
         public virtual DbSet<fontFamily> fontFamilies { get; set; }
+        public virtual DbSet<OrderPresentStatu> OrderPresentStatus { get; set; }
+        public virtual DbSet<OrderStatu> OrderStatus { get; set; }
+        public virtual DbSet<packagingInformation> packagingInformations { get; set; }
         public virtual DbSet<productAvailableSize> productAvailableSizes { get; set; }
         public virtual DbSet<productCategory> productCategories { get; set; }
         public virtual DbSet<productCategoryClient> productCategoryClients { get; set; }
         public virtual DbSet<productColor> productColors { get; set; }
+        public virtual DbSet<productexcel> productexcels { get; set; }
         public virtual DbSet<productForClient> productForClients { get; set; }
         public virtual DbSet<productImage> productImages { get; set; }
+        public virtual DbSet<ProductOrder> ProductOrders { get; set; }
         public virtual DbSet<ProductPrice> ProductPrices { get; set; }
         public virtual DbSet<productsCRA> productsCRAs { get; set; }
         public virtual DbSet<productSubCategory> productSubCategories { get; set; }
@@ -64,17 +69,116 @@ namespace UUWebstore.Models
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<WebClientSupplier> WebClientSuppliers { get; set; }
     
-        public virtual ObjectResult<sp_LoginUser_Result> sp_LoginUser(string password, string emailAddress)
+        public virtual ObjectResult<Nullable<int>> applyTheme_sp(Nullable<int> themeId, Nullable<long> modifyBy)
         {
-            var passwordParameter = password != null ?
-                new ObjectParameter("password", password) :
-                new ObjectParameter("password", typeof(string));
+            var themeIdParameter = themeId.HasValue ?
+                new ObjectParameter("themeId", themeId) :
+                new ObjectParameter("themeId", typeof(int));
     
-            var emailAddressParameter = emailAddress != null ?
-                new ObjectParameter("emailAddress", emailAddress) :
-                new ObjectParameter("emailAddress", typeof(string));
+            var modifyByParameter = modifyBy.HasValue ?
+                new ObjectParameter("modifyBy", modifyBy) :
+                new ObjectParameter("modifyBy", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_LoginUser_Result>("sp_LoginUser", passwordParameter, emailAddressParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("applyTheme_sp", themeIdParameter, modifyByParameter);
+        }
+    
+        public virtual ObjectResult<bannersCreaTedBy_sp_Result> bannersCreaTedBy_sp()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<bannersCreaTedBy_sp_Result>("bannersCreaTedBy_sp");
+        }
+    
+        public virtual ObjectResult<get_filterSuppliers_Result> get_filterSuppliers(string supplierName, Nullable<int> cityId, Nullable<int> stateId, Nullable<int> countryId, Nullable<int> userId)
+        {
+            var supplierNameParameter = supplierName != null ?
+                new ObjectParameter("supplierName", supplierName) :
+                new ObjectParameter("supplierName", typeof(string));
+    
+            var cityIdParameter = cityId.HasValue ?
+                new ObjectParameter("cityId", cityId) :
+                new ObjectParameter("cityId", typeof(int));
+    
+            var stateIdParameter = stateId.HasValue ?
+                new ObjectParameter("stateId", stateId) :
+                new ObjectParameter("stateId", typeof(int));
+    
+            var countryIdParameter = countryId.HasValue ?
+                new ObjectParameter("countryId", countryId) :
+                new ObjectParameter("countryId", typeof(int));
+    
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_filterSuppliers_Result>("get_filterSuppliers", supplierNameParameter, cityIdParameter, stateIdParameter, countryIdParameter, userIdParameter);
+        }
+    
+        public virtual ObjectResult<getAllbannersCreatedBy_sp_Result> getAllbannersCreatedBy_sp(Nullable<long> userId, Nullable<int> ddl_filter_AutoAll)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(long));
+    
+            var ddl_filter_AutoAllParameter = ddl_filter_AutoAll.HasValue ?
+                new ObjectParameter("ddl_filter_AutoAll", ddl_filter_AutoAll) :
+                new ObjectParameter("ddl_filter_AutoAll", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getAllbannersCreatedBy_sp_Result>("getAllbannersCreatedBy_sp", userIdParameter, ddl_filter_AutoAllParameter);
+        }
+    
+        public virtual ObjectResult<getAllProductCategories_sp_Result> getAllProductCategories_sp(Nullable<long> userid, Nullable<int> featuredOption)
+        {
+            var useridParameter = userid.HasValue ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(long));
+    
+            var featuredOptionParameter = featuredOption.HasValue ?
+                new ObjectParameter("featuredOption", featuredOption) :
+                new ObjectParameter("featuredOption", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getAllProductCategories_sp_Result>("getAllProductCategories_sp", useridParameter, featuredOptionParameter);
+        }
+    
+        public virtual ObjectResult<getAllProductClient_sp_Result> getAllProductClient_sp(Nullable<long> userId, Nullable<int> isFeatured)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(long));
+    
+            var isFeaturedParameter = isFeatured.HasValue ?
+                new ObjectParameter("isFeatured", isFeatured) :
+                new ObjectParameter("isFeatured", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getAllProductClient_sp_Result>("getAllProductClient_sp", userIdParameter, isFeaturedParameter);
+        }
+    
+        public virtual int getClientWebsiteReference_sp(Nullable<long> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("getClientWebsiteReference_sp", userIdParameter);
+        }
+    
+        public virtual ObjectResult<getProductList_sp_Result> getProductList_sp(Nullable<int> productOptions_All_featured, Nullable<int> productCategoryId, Nullable<int> productSubCategoryId, Nullable<int> userId)
+        {
+            var productOptions_All_featuredParameter = productOptions_All_featured.HasValue ?
+                new ObjectParameter("productOptions_All_featured", productOptions_All_featured) :
+                new ObjectParameter("productOptions_All_featured", typeof(int));
+    
+            var productCategoryIdParameter = productCategoryId.HasValue ?
+                new ObjectParameter("productCategoryId", productCategoryId) :
+                new ObjectParameter("productCategoryId", typeof(int));
+    
+            var productSubCategoryIdParameter = productSubCategoryId.HasValue ?
+                new ObjectParameter("productSubCategoryId", productSubCategoryId) :
+                new ObjectParameter("productSubCategoryId", typeof(int));
+    
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getProductList_sp_Result>("getProductList_sp", productOptions_All_featuredParameter, productCategoryIdParameter, productSubCategoryIdParameter, userIdParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> resetPassword_sp(Nullable<long> userId, string oldPassword, string newPassword)
@@ -92,6 +196,153 @@ namespace UUWebstore.Models
                 new ObjectParameter("newPassword", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("resetPassword_sp", userIdParameter, oldPasswordParameter, newPasswordParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> resetPasswordfromForget_sp(Nullable<long> userId, string newPassword)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(long));
+    
+            var newPasswordParameter = newPassword != null ?
+                new ObjectParameter("newPassword", newPassword) :
+                new ObjectParameter("newPassword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("resetPasswordfromForget_sp", userIdParameter, newPasswordParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> selectBanners_sp(Nullable<long> userID)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("userID", userID) :
+                new ObjectParameter("userID", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("selectBanners_sp", userIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SelectProduct_sp(Nullable<long> createdBy, Nullable<int> productId, Nullable<bool> chk, Nullable<bool> isFeatured)
+        {
+            var createdByParameter = createdBy.HasValue ?
+                new ObjectParameter("createdBy", createdBy) :
+                new ObjectParameter("createdBy", typeof(long));
+    
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("productId", productId) :
+                new ObjectParameter("productId", typeof(int));
+    
+            var chkParameter = chk.HasValue ?
+                new ObjectParameter("chk", chk) :
+                new ObjectParameter("chk", typeof(bool));
+    
+            var isFeaturedParameter = isFeatured.HasValue ?
+                new ObjectParameter("isFeatured", isFeatured) :
+                new ObjectParameter("isFeatured", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SelectProduct_sp", createdByParameter, productIdParameter, chkParameter, isFeaturedParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SelectProductCategories_sp(Nullable<long> createdBy, Nullable<int> productCategoryId, Nullable<bool> chk)
+        {
+            var createdByParameter = createdBy.HasValue ?
+                new ObjectParameter("createdBy", createdBy) :
+                new ObjectParameter("createdBy", typeof(long));
+    
+            var productCategoryIdParameter = productCategoryId.HasValue ?
+                new ObjectParameter("productCategoryId", productCategoryId) :
+                new ObjectParameter("productCategoryId", typeof(int));
+    
+            var chkParameter = chk.HasValue ?
+                new ObjectParameter("chk", chk) :
+                new ObjectParameter("chk", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SelectProductCategories_sp", createdByParameter, productCategoryIdParameter, chkParameter);
+        }
+    
+        public virtual int SelectSupplier_sp(Nullable<long> createdBy, Nullable<long> supplierId_UserID, Nullable<bool> chk)
+        {
+            var createdByParameter = createdBy.HasValue ?
+                new ObjectParameter("createdBy", createdBy) :
+                new ObjectParameter("createdBy", typeof(long));
+    
+            var supplierId_UserIDParameter = supplierId_UserID.HasValue ?
+                new ObjectParameter("supplierId_UserID", supplierId_UserID) :
+                new ObjectParameter("supplierId_UserID", typeof(long));
+    
+            var chkParameter = chk.HasValue ?
+                new ObjectParameter("chk", chk) :
+                new ObjectParameter("chk", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SelectSupplier_sp", createdByParameter, supplierId_UserIDParameter, chkParameter);
+        }
+    
+        public virtual ObjectResult<sp_LoginUser_Result> sp_LoginUser(string password, string emailAddress)
+        {
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var emailAddressParameter = emailAddress != null ?
+                new ObjectParameter("emailAddress", emailAddress) :
+                new ObjectParameter("emailAddress", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_LoginUser_Result>("sp_LoginUser", passwordParameter, emailAddressParameter);
+        }
+    
+        public virtual ObjectResult<sp_ProductForClient_GetById_Result> sp_ProductForClient_GetById(Nullable<long> productId, Nullable<long> userId)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("productId", productId) :
+                new ObjectParameter("productId", typeof(long));
+    
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ProductForClient_GetById_Result>("sp_ProductForClient_GetById", productIdParameter, userIdParameter);
+        }
+    
+        public virtual ObjectResult<sp_productOrder_GetAll_Result> sp_productOrder_GetAll(Nullable<long> orderID, Nullable<long> orderTOWebClient)
+        {
+            var orderIDParameter = orderID.HasValue ?
+                new ObjectParameter("OrderID", orderID) :
+                new ObjectParameter("OrderID", typeof(long));
+    
+            var orderTOWebClientParameter = orderTOWebClient.HasValue ?
+                new ObjectParameter("orderTOWebClient", orderTOWebClient) :
+                new ObjectParameter("orderTOWebClient", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_productOrder_GetAll_Result>("sp_productOrder_GetAll", orderIDParameter, orderTOWebClientParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> updateFavicon_sp(string faviconUrl, Nullable<long> modifyBy)
+        {
+            var faviconUrlParameter = faviconUrl != null ?
+                new ObjectParameter("faviconUrl", faviconUrl) :
+                new ObjectParameter("faviconUrl", typeof(string));
+    
+            var modifyByParameter = modifyBy.HasValue ?
+                new ObjectParameter("modifyBy", modifyBy) :
+                new ObjectParameter("modifyBy", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("updateFavicon_sp", faviconUrlParameter, modifyByParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> updateLogo_sp(string logoUrl, Nullable<long> modifyBy)
+        {
+            var logoUrlParameter = logoUrl != null ?
+                new ObjectParameter("logoUrl", logoUrl) :
+                new ObjectParameter("logoUrl", typeof(string));
+    
+            var modifyByParameter = modifyBy.HasValue ?
+                new ObjectParameter("modifyBy", modifyBy) :
+                new ObjectParameter("modifyBy", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("updateLogo_sp", logoUrlParameter, modifyByParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_productCRA_uploadExcel()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_productCRA_uploadExcel");
         }
     
         public virtual ObjectResult<getFilteredUsers_Result> getFilteredUsers(Nullable<int> roleID, Nullable<bool> isDeleted, string userName, string fullName, Nullable<int> cityid, Nullable<int> stateid, Nullable<int> countryid, string zipcode)
@@ -131,137 +382,7 @@ namespace UUWebstore.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getFilteredUsers_Result>("getFilteredUsers", roleIDParameter, isDeletedParameter, userNameParameter, fullNameParameter, cityidParameter, stateidParameter, countryidParameter, zipcodeParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> applyTheme_sp(Nullable<int> themeId, Nullable<long> modifyBy)
-        {
-            var themeIdParameter = themeId.HasValue ?
-                new ObjectParameter("themeId", themeId) :
-                new ObjectParameter("themeId", typeof(int));
-    
-            var modifyByParameter = modifyBy.HasValue ?
-                new ObjectParameter("modifyBy", modifyBy) :
-                new ObjectParameter("modifyBy", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("applyTheme_sp", themeIdParameter, modifyByParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> updateLogo_sp(string logoUrl, Nullable<long> modifyBy)
-        {
-            var logoUrlParameter = logoUrl != null ?
-                new ObjectParameter("logoUrl", logoUrl) :
-                new ObjectParameter("logoUrl", typeof(string));
-    
-            var modifyByParameter = modifyBy.HasValue ?
-                new ObjectParameter("modifyBy", modifyBy) :
-                new ObjectParameter("modifyBy", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("updateLogo_sp", logoUrlParameter, modifyByParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> resetPasswordfromForget_sp(Nullable<long> userId, string newPassword)
-        {
-            var userIdParameter = userId.HasValue ?
-                new ObjectParameter("userId", userId) :
-                new ObjectParameter("userId", typeof(long));
-    
-            var newPasswordParameter = newPassword != null ?
-                new ObjectParameter("newPassword", newPassword) :
-                new ObjectParameter("newPassword", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("resetPasswordfromForget_sp", userIdParameter, newPasswordParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> updateFavicon_sp(string faviconUrl, Nullable<long> modifyBy)
-        {
-            var faviconUrlParameter = faviconUrl != null ?
-                new ObjectParameter("faviconUrl", faviconUrl) :
-                new ObjectParameter("faviconUrl", typeof(string));
-    
-            var modifyByParameter = modifyBy.HasValue ?
-                new ObjectParameter("modifyBy", modifyBy) :
-                new ObjectParameter("modifyBy", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("updateFavicon_sp", faviconUrlParameter, modifyByParameter);
-        }
-    
-        public virtual ObjectResult<bannersCreaTedBy_sp_Result> bannersCreaTedBy_sp()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<bannersCreaTedBy_sp_Result>("bannersCreaTedBy_sp");
-        }
-    
-        public virtual ObjectResult<getAllbannersCreatedBy_sp_Result> getAllbannersCreatedBy_sp(Nullable<long> userId, Nullable<int> ddl_filter_AutoAll)
-        {
-            var userIdParameter = userId.HasValue ?
-                new ObjectParameter("userId", userId) :
-                new ObjectParameter("userId", typeof(long));
-    
-            var ddl_filter_AutoAllParameter = ddl_filter_AutoAll.HasValue ?
-                new ObjectParameter("ddl_filter_AutoAll", ddl_filter_AutoAll) :
-                new ObjectParameter("ddl_filter_AutoAll", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getAllbannersCreatedBy_sp_Result>("getAllbannersCreatedBy_sp", userIdParameter, ddl_filter_AutoAllParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> selectBanners_sp(Nullable<long> userID)
-        {
-            var userIDParameter = userID.HasValue ?
-                new ObjectParameter("userID", userID) :
-                new ObjectParameter("userID", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("selectBanners_sp", userIDParameter);
-        }
-    
-        public virtual ObjectResult<getAllProductCategories_sp_Result> getAllProductCategories_sp(Nullable<long> userid, Nullable<int> featuredOption)
-        {
-            var useridParameter = userid.HasValue ?
-                new ObjectParameter("userid", userid) :
-                new ObjectParameter("userid", typeof(long));
-    
-            var featuredOptionParameter = featuredOption.HasValue ?
-                new ObjectParameter("featuredOption", featuredOption) :
-                new ObjectParameter("featuredOption", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getAllProductCategories_sp_Result>("getAllProductCategories_sp", useridParameter, featuredOptionParameter);
-        }
-    
-        public virtual ObjectResult<get_filterSuppliers_Result> get_filterSuppliers(string supplierName, Nullable<int> cityId, Nullable<int> stateId, Nullable<int> countryId, Nullable<int> userId)
-        {
-            var supplierNameParameter = supplierName != null ?
-                new ObjectParameter("supplierName", supplierName) :
-                new ObjectParameter("supplierName", typeof(string));
-    
-            var cityIdParameter = cityId.HasValue ?
-                new ObjectParameter("cityId", cityId) :
-                new ObjectParameter("cityId", typeof(int));
-    
-            var stateIdParameter = stateId.HasValue ?
-                new ObjectParameter("stateId", stateId) :
-                new ObjectParameter("stateId", typeof(int));
-    
-            var countryIdParameter = countryId.HasValue ?
-                new ObjectParameter("countryId", countryId) :
-                new ObjectParameter("countryId", typeof(int));
-    
-            var userIdParameter = userId.HasValue ?
-                new ObjectParameter("userId", userId) :
-                new ObjectParameter("userId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_filterSuppliers_Result>("get_filterSuppliers", supplierNameParameter, cityIdParameter, stateIdParameter, countryIdParameter, userIdParameter);
-        }
-    
-        public virtual ObjectResult<getAllProductClient_sp_Result> getAllProductClient_sp(Nullable<long> userId, Nullable<int> isFeatured)
-        {
-            var userIdParameter = userId.HasValue ?
-                new ObjectParameter("userId", userId) :
-                new ObjectParameter("userId", typeof(long));
-    
-            var isFeaturedParameter = isFeatured.HasValue ?
-                new ObjectParameter("isFeatured", isFeatured) :
-                new ObjectParameter("isFeatured", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getAllProductClient_sp_Result>("getAllProductClient_sp", userIdParameter, isFeaturedParameter);
-        }
-    
-        public virtual ObjectResult<getProductList_sp_Result> getProductList_sp(Nullable<int> productOptions_All_featured, Nullable<int> productCategoryId, Nullable<int> productSubCategoryId, Nullable<int> userId)
+        public virtual ObjectResult<getProductList_sp_client_Result> getProductList_sp_client(Nullable<int> productOptions_All_featured, Nullable<int> productCategoryId, Nullable<int> productSubCategoryId, Nullable<long> userId, Nullable<int> webReference)
         {
             var productOptions_All_featuredParameter = productOptions_All_featured.HasValue ?
                 new ObjectParameter("productOptions_All_featured", productOptions_All_featured) :
@@ -276,44 +397,14 @@ namespace UUWebstore.Models
                 new ObjectParameter("productSubCategoryId", typeof(int));
     
             var userIdParameter = userId.HasValue ?
-                new ObjectParameter("UserId", userId) :
-                new ObjectParameter("UserId", typeof(int));
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getProductList_sp_Result>("getProductList_sp", productOptions_All_featuredParameter, productCategoryIdParameter, productSubCategoryIdParameter, userIdParameter);
-        }
+            var webReferenceParameter = webReference.HasValue ?
+                new ObjectParameter("webReference", webReference) :
+                new ObjectParameter("webReference", typeof(int));
     
-        public virtual ObjectResult<Nullable<int>> SelectProductCategories_sp(Nullable<long> createdBy, Nullable<int> productCategoryId, Nullable<bool> chk)
-        {
-            var createdByParameter = createdBy.HasValue ?
-                new ObjectParameter("createdBy", createdBy) :
-                new ObjectParameter("createdBy", typeof(long));
-    
-            var productCategoryIdParameter = productCategoryId.HasValue ?
-                new ObjectParameter("productCategoryId", productCategoryId) :
-                new ObjectParameter("productCategoryId", typeof(int));
-    
-            var chkParameter = chk.HasValue ?
-                new ObjectParameter("chk", chk) :
-                new ObjectParameter("chk", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SelectProductCategories_sp", createdByParameter, productCategoryIdParameter, chkParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> SelectSupplier_sp(Nullable<long> createdBy, Nullable<long> supplierId_UserID, Nullable<bool> chk)
-        {
-            var createdByParameter = createdBy.HasValue ?
-                new ObjectParameter("createdBy", createdBy) :
-                new ObjectParameter("createdBy", typeof(long));
-    
-            var supplierId_UserIDParameter = supplierId_UserID.HasValue ?
-                new ObjectParameter("supplierId_UserID", supplierId_UserID) :
-                new ObjectParameter("supplierId_UserID", typeof(long));
-    
-            var chkParameter = chk.HasValue ?
-                new ObjectParameter("chk", chk) :
-                new ObjectParameter("chk", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SelectSupplier_sp", createdByParameter, supplierId_UserIDParameter, chkParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getProductList_sp_client_Result>("getProductList_sp_client", productOptions_All_featuredParameter, productCategoryIdParameter, productSubCategoryIdParameter, userIdParameter, webReferenceParameter);
         }
     }
 }

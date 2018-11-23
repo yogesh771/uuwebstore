@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using UUWebstore.Models;
 namespace UUWebstore.Models
 {
     public class viewModel
@@ -180,5 +176,11 @@ namespace UUWebstore.Models
         [Display(Name = "Company Website")]
         [Required]
         public string CompanyUrl { get; set; }        
+    }
+
+    public class promotionalBlockClass
+    {
+        [AllowHtml]
+        public string promotionalBlock { get; set; }
     }
 }

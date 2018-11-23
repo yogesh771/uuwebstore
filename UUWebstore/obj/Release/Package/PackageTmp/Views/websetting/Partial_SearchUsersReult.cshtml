@@ -3,24 +3,22 @@
 <table class="table" id="tblData">
     <thead>
         <tr>
-            <th><img src="~/images/arrow.jpg" width="27" height="34"></th>
+            <th>Sr</th>
             <th>
-                @Html.DisplayNameFor(model => model.name)
+              Banner Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.bannerImgURL)
+              Banner 
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fullName)
+              Create By
             </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.modifyByName)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.isActive)
             </th>
-            <th></th>
+            <th>Action</th>
         </tr>
     </thead> 
 
@@ -32,7 +30,7 @@
         @if (a == 0)
         {
             <tr>
-                <td colspan="12">
+                <td colspan="6">
                     No Result Found
                 </td>
             </tr>
@@ -54,8 +52,7 @@
                     @Html.DisplayFor(modelItem => item.fullName)
                 </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.modifyByName)<br />@item.modifiedDate.ToString("MM/dd/yyyy")
+               
                 <td>
                     @Html.DisplayFor(modelItem => item.isActive)
                 </td>

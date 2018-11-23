@@ -1,6 +1,10 @@
 ﻿@using UUWebstore.Models;
-<link href="~/Content/slimtable.css" rel="stylesheet" />
-<script src="~/Scripts/slimtable.js"></script>
+@*<link href="~/Content/slimtable.css" rel="stylesheet" />
+    <script src="~/Scripts/slimtable.js"></script>*@
+@{
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+
 <h2>Products</h2>
 <div class="form-horizontal">
 
@@ -18,15 +22,15 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                @Html.DropDownList("productCategoryId", null,"Product Categories", new { @class = "form-control", onChange = "fillSubCategories()" })               
+                @Html.DropDownList("productCategoryId", null,"Product Categories", new { @class = "form-control" })               @*onChange = "fillSubCategories()"*@
             </div>
 
         </div>
-        <div class="col-md-3"">
+        @*<div class="col-md-3"">
             <div class="form-group">
                 @Html.DropDownList("productSubCategoryId", null,"Product Subcategories", new { @class = "form-control" })
             </div>
-        </div>
+        </div>*@
         <div class="col-md-3">
             <div class="form-group">
                 @Html.DropDownList("userId", null, "Featured products Of", new { @class = "form-control" })
@@ -91,12 +95,12 @@
 
         var ddl_filterCategory = $("#ddl_filterCategory").val();
         var productCategoryId = $("#productCategoryId").val() == '' ? 0 : $("#productCategoryId").val();
-        var productSubCategoryId = $("#productSubCategoryId").val() == '' ? 0 : $("#productSubCategoryId").val();
+        //var productSubCategoryId = $("#productSubCategoryId").val() == '' ? 0 : $("#productSubCategoryId").val();
         var userId = $("#userId").val() == '' ? 0 : $("#userId").val();
-
+        var productSubCategoryId = 0;
        
         $.ajax({
-            url: '/Products/Partial_SearchProductsReult',
+            url: '@BaseUtil.GetApplicationPath()' + '/Products/Partial_SearchProductsReult',
             type: 'POST',
             data: { 'productOptions_All_featured': ddl_filterCategory, 'productCategoryId': productCategoryId, 'productSubCategoryId': productSubCategoryId, 'UserId': userId },
             success: function (data) {

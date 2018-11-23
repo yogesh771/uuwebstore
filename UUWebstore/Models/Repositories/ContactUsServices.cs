@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using UUWebstore.Models.IRepositories;
 
 namespace UUWebstore.Models.Repositories
@@ -20,7 +19,7 @@ namespace UUWebstore.Models.Repositories
         {
             oContact.createdate = BaseUtil.GetCurrentDateTime();
             oContact.isRead = false;
-            oContact.userId = 1;
+            oContact.userId = Convert.ToInt64(BaseUtil.GetWebConfigValue("ClientID"));
             uow.ContactU_.Add(oContact);
 
           
@@ -37,7 +36,8 @@ namespace UUWebstore.Models.Repositories
 
         public List<ContactU> GetAllContacts()
         {
-            return uow.ContactU_.GetAll().OrderByDescending(e => e.createdate).ToList();
+            var userId = Convert.ToInt64(BaseUtil.GetWebConfigValue("ClientID"));
+            return uow.ContactU_.GetAll().Where(e=>e.userId== userId).OrderByDescending(e => e.createdate).ToList();
         }
     }
 }

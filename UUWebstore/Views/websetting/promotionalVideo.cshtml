@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "promotionalVideo";
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2>promotionalVideo</h2>
+        <hr />
+        <input type="text" name="Pramotinal_Video_Url" value="@ViewBag.Video" placeholder="Pramotinal Video Url" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+
+
+@{ var d = "";
+    if (ViewBag.message != null)
+    {
+        d = ViewBag.message.ToString();
+    }
+
+}
+
+<script>
+    debugger
+    if ('@d'!= '')
+    {
+        bootbox.alert({
+            title: "Confirmation !",
+            message: '@d'
+        });
+    }
+</script>

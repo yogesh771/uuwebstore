@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Linq;
-using System.Web;
 using UUWebstore.Models.IRepositories;
 
 namespace UUWebstore.Models.Repositories
@@ -51,7 +50,7 @@ namespace UUWebstore.Models.Repositories
         public List<getAllProductCategories_sp_Result> GetAllProductCategories(int ddl_filter)
         {
             var param_userid = new SqlParameter("@userid", SqlString.Null);
-            var param_featuredOption = new SqlParameter("@featuredOption", ddl_filter);
+            var param_featuredOption = new SqlParameter("@featuredOption","0");
             var res = uow.sp_LoginUser_Result_.SQLQuery<getAllProductCategories_sp_Result>("getAllProductCategories_sp @userid, @featuredOption", param_userid,param_featuredOption).ToList();
             return res;           
         }
@@ -76,6 +75,30 @@ namespace UUWebstore.Models.Repositories
             if(productCategory!=null)
             uow.productCategoryClient_.Remove(productCategory);
             return 1;
+        }
+
+        public int UpdateVideo(string videogoUrl)
+        {
+
+            var logoUrl_ = new SqlParameter("@videogoUrl", videogoUrl);          
+            var result = uow.sp_LoginUser_Result_.SQLQuery<int>("updatePramotionVideo_sp @videogoUrl", logoUrl_).FirstOrDefault();
+            return result;
+        }
+        public string GetVideo()
+        {
+            var result = (uow.clientWebInformation_.Find(e => e.userId == 2).Select(e => new { e.youTubePramotionAdmin }).FirstOrDefault()).youTubePramotionAdmin;
+            return result;
+        }
+        public int UpdateBlock(string  BlockPramotionAdmin)
+        {
+            var BlockPramotionAdmin_ = new SqlParameter("@BlockPramotionAdmin", BlockPramotionAdmin);
+            var result = uow.sp_LoginUser_Result_.SQLQuery<int>("updatePramotionalBlock_sp @BlockPramotionAdmin", BlockPramotionAdmin_).FirstOrDefault();
+            return result;
+        }
+        public string GetBlock()
+        {
+            var result = (uow.clientWebInformation_.Find(e=>e.userId==2).Select(e => new { e.BlockPramotionAdmin }).FirstOrDefault()).BlockPramotionAdmin;
+            return result;
         }
     }
 }

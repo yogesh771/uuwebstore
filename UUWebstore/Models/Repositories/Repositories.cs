@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
-using UUWebstore.Models;
 
 namespace UUWebstore.Models.Repositories
 {

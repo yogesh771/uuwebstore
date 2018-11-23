@@ -4,20 +4,20 @@
 <table class="table" id="tblData">
     <thead>
         <tr>
-            <th><img src="~/images/arrow.jpg" width="27" height="34"></th>
+            <th>Sr</th>
             <th>
-                @Html.DisplayNameFor(model => model.name)
+               Category
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.createdByName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.modifiedByName)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.isActive)
             </th>
-            <th>Featured</th>
+           
         </tr>
     </thead>
     @{
@@ -28,7 +28,7 @@
         @if (a == 0)
         {
             <tr>
-                <td colspan="12">
+                <td colspan="3">
                     No Result Found
                 </td>
             </tr>
@@ -42,20 +42,20 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.name)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.createdByName)<br />@Html.DisplayFor(modelItem => item.createdDate)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.modifiedByName)<br />@Html.DisplayFor(modelItem => item.modifiedDate)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.isActive)
                 </td>
 
-                <td>
+                @*<td>
                     <input type="checkbox" id='chk_@item.productCategoryId' onclick="makeFeaturedCategory(@item.productCategoryId,@item.proCategoryClientId)" @(Convert.ToBoolean(@item.isFeaturedCategory) == true ? "checked='checked'" : string.Empty) />
 
-                </td>
+                </td>*@
             </tr>
         }
     </tbody>

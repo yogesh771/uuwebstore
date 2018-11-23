@@ -22,18 +22,18 @@ namespace UUWebstore.Models
         public string website { get; set; }
         public string address { get; set; }
         public string location { get; set; }
-        public int cityId { get; set; }
-        public int stateId { get; set; }
+        public Nullable<int> cityId { get; set; }
+        public Nullable<int> stateId { get; set; }
         public string cityName { get; set; }
         public string stateName { get; set; }
         public string countryName { get; set; }
-        public int countryId { get; set; }
+        public Nullable<int> countryId { get; set; }
         public string zipcode { get; set; }
         public int roleID { get; set; }
         public long createdBy { get; set; }
         public System.DateTime createdDate { get; set; }
-        public long modifiedBy { get; set; }
-        public System.DateTime modifiedDate { get; set; }
+        public Nullable<long> modifiedBy { get; set; }
+        public Nullable<System.DateTime> modifiedDate { get; set; }
         public bool isActive { get; set; }
         public bool isDelete { get; set; }
         public string supplier_PPAI_ASI { get; set; }
